@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solution Energy and Engineering Services Ltd. | SEESL</title>
+  
+  <!-- Meta Tags -->
+  <meta name="description" content="SEESL provides engineering, procurement, installation, asset management, gas conversion technology, renewable energy, civil construction, ISO certification, and more services across Africa and internationally.">
+  <meta name="keywords" content="SEESL, Solution Energy, engineering services, procurement, asset management, gas conversion, renewable energy, ISO certification, Nigeria">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="Solution Energy and Engineering Services Ltd">
+  <meta property="og:description" content="Leading provider of engineering and energy services in Nigeria and across Africa.">
+  <meta property="og:image" content="./assets/images/seesl-logo.jpg">
+  <meta property="og:url" content="https://www.solutionenergylimited.com">
+  <meta property="og:type" content="website">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="./assets/images/favicon.ico">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="./css/variables.css">
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+          <img src="./assets/images/seesl-logo.jpg" alt="SEESL Logo">
+        </a>
+        
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
+          <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li class="dropdown">
+              <button class="dropdown-button" aria-haspopup="true" aria-expanded="false" id="services-dropdown">
+                Services <i class="fas fa-chevron-down" aria-hidden="true"></i>
+              </button>
+              <div class="dropdown-content" role="menu" aria-labelledby="services-dropdown">
+                <a href="services/asset-management.html" role="menuitem" tabindex="-1">Asset Management</a>
+                <a href="services/procurement.html" role="menuitem" tabindex="-1">Procurement</a>
+                <a href="services/engineering.html" role="menuitem" tabindex="-1">Engineering</a>
+                <a href="services/gas-conversion.html" role="menuitem" tabindex="-1">Gas Conversion</a>
+                <a href="services/renewable-energy.html" role="menuitem" tabindex="-1">Renewable Energy</a>
+                <a href="services/civil-construction.html" role="menuitem" tabindex="-1">Civil Construction</a>
+                <a href="services/tank-cleaning.html" role="menuitem" tabindex="-1">Tank Cleaning</a>
+                <a href="services/iso-certification/" role="menuitem" tabindex="-1">ISO Certification</a>
+              </div>
+            </li>
+            <li><a href="process.html">Process</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        
+        <!-- Social Icons & Theme Toggle - Desktop -->
+        <div class="header-actions">
+          <div class="contact-info">
+            <a href="tel:+2349153123973">+234 (915) 312-3973</a>
+          </div>
+          <div class="social-icons">
+            <a href="https://web.facebook.com/profile.php?id=100091983091138" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.linkedin.com/company/solution-energy-and-engineering-services-ltd/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/solution_energylimited" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/message/6BQ37R6VWG2VA1" target="_blank" aria-label="Whatsapp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+          
+          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme">
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-moon"></i>
+          </button>
+          
+          <!-- Mobile Menu Toggle -->
+          <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li>
+          <button id="services-dropdown-mobile" class="services-dropdown">
+            Services <i class="fas fa-chevron-down"></i>
+          </button>
+          <div id="mobile-services" class="mobile-services">
+            <a href="services/asset-management.html">Asset Management</a>
+            <a href="services/procurement.html">Procurement</a>
+            <a href="services/engineering.html">Engineering</a>
+            <a href="services/gas-conversion.html">Gas Conversion</a>
+            <a href="services/renewable-energy.html">Renewable Energy</a>
+            <a href="services/civil-construction.html">Civil Construction</a>
+            <a href="services/tank-cleaning.html">Tank Cleaning</a>
+            <a href="services/iso-certification/">ISO Certification</a>
+          </div>
+        </li>
+        <li><a href="process.html">Process</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        
+        <!-- Social Media Icons - Mobile -->
+        <li class="mobile-social">
+          <div class="social-icons-mobile">
+            <a href="https://web.facebook.com/profile.php?id=100091983091138" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.linkedin.com/company/solution-energy-and-engineering-services-ltd/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/solution_energylimited" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/message/6BQ37R6VWG2VA1" target="_blank" aria-label="Whatsapp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="container">
+        <div class="hero-content">
+          <h1>Solution Energy and Engineering Services Ltd</h1>
+          <p>ENGINEERING | PROCUREMENT | INSTALLATION | ASSET MANAGEMENT | GAS TECH | POWER & RENEWABLE ENERGY | AUDIT AND CERTIFICATION</p>
+          
+          <div class="hero-buttons">
+            <a href="#services" class="btn btn-secondary">Explore Services</a>
+            <a href="contact.html" class="btn btn-primary">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services section-light">
+      <div class="container">
+        <div class="section-title">
+          <h2>Our Services</h2>
+          <p>We provide a variety of world-class engineering and technical services to meet the needs of our clients</p>
+        </div>
+        
+        <div class="services-grid">
+          <!-- Service Card 1 -->
+          <div class="service-card card">
+            <div class="card-icon">
+              <i class="fas fa-tools"></i>
+            </div>
+            <div class="card-content">
+              <h3>Engineering</h3>
+              <ul>
+                <li><i class="fas fa-check"></i> FEED, Fabrication & Construction</li>
+                <li><i class="fas fa-check"></i> Installation & Commissioning</li>
+                <li><i class="fas fa-check"></i> Process Engineering Solutions</li>
+              </ul>
+            </div>
+            <a href="services/engineering.html" class="btn btn-primary">Learn More</a>
+          </div>
+          
+          <!-- Service Card 2 -->
+          <div class="service-card card">
+            <div class="card-icon">
+              <i class="fas fa-shopping-cart"></i>
+            </div>
+            <div class="card-content">
+              <h3>Procurement</h3>
+              <ul>
+                <li><i class="fas fa-check"></i> Oil and Gas Equipment</li>
+                <li><i class="fas fa-check"></i> Pumps, Valves, Flanges</li>
+                <li><i class="fas fa-check"></i> Mechanical Seals</li>
+              </ul>
+            </div>
+            <a href="services/procurement.html" class="btn btn-primary">Learn More</a>
+          </div>
+          
+          <!-- Service Card 3 -->
+          <div class="service-card card">
+            <div class="card-icon">
+              <i class="fas fa-cogs"></i>
+            </div>
+            <div class="card-content">
+              <h3>Asset Management</h3>
+              <ul>
+                <li><i class="fas fa-check"></i> Assets Integrity Management</li>
+                <li><i class="fas fa-check"></i> Automated Process Maintenance</li>
+                <li><i class="fas fa-check"></i> Facility Management</li>
+              </ul>
+            </div>
+            <a href="services/asset-management.html" class="btn btn-primary">Learn More</a>
+          </div>
+          
+          <!-- Service Card 4 -->
+          <div class="service-card card">
+            <div class="card-icon">
+              <i class="fas fa-road"></i>
+            </div>
+            <div class="card-content">
+              <h3>Civil Construction</h3>
+              <ul>
+                <li><i class="fas fa-check"></i> Civil Works</li>
+                <li><i class="fas fa-check"></i> Road Construction</li>
+                <li><i class="fas fa-check"></i> Infrastructure Development</li>
+              </ul>
+            </div>
+            <a href="services/civil-construction.html" class="btn btn-primary">Learn More</a>
+          </div>
+          
+          <!-- Service Card 5 -->
+          <div class="service-card card">
+            <div class="card-icon">
+              <i class="fas fa-solar-panel"></i>
+            </div>
+            <div class="card-content">
+              <h3>Renewable Energy</h3>
+              <ul>
+                <li><i class="fas fa-check"></i> Solar Installations</li>
+                <li><i class="fas fa-check"></i> Green Hydrogen Production</li>
+                <li><i class="fas fa-check"></i> Solar Powered Irrigation</li>
+              </ul>
+            </div>
+            <a href="services/renewable-energy.html" class="btn btn-primary">Learn More</a>
+          </div>
+          
+          <!-- Service Card 6 -->
+          <div class="service-card card">
+            <div class="card-icon">
+              <i class="fas fa-certificate"></i>
+            </div>
+            <div class="card-content">
+              <h3>ISO Certification</h3>
+              <ul>
+                <li><i class="fas fa-check"></i> ISO 9001, 14001, 45001</li>
+                <li><i class="fas fa-check"></i> Certification & Training</li>
+                <li><i class="fas fa-check"></i> Audit Services</li>
+              </ul>
+            </div>
+            <a href="services/iso-certification/" class="btn btn-primary">Learn More</a>
+          </div>
+          
+          <!-- Service Card 7 -->
+          <div class="service-card card">
+            <div class="card-icon">
+              <i class="fas fa-gas-pump"></i>
+            </div>
+            <div class="card-content">
+              <h3>Gas Conversion</h3>
+              <ul>
+                <li><i class="fas fa-check"></i> Auto-CNG Solutions</li>
+                <li><i class="fas fa-check"></i> CNG Modules for Generators</li>
+                <li><i class="fas fa-check"></i> LNG Industrial Solutions</li>
+              </ul>
+            </div>
+            <a href="services/gas-conversion.html" class="btn btn-primary">Learn More</a>
+          </div>
+          
+          <!-- Service Card 8 -->
+          <div class="service-card card">
+            <div class="card-icon">
+              <i class="fas fa-fill-drip"></i>
+            </div>
+            <div class="card-content">
+              <h3>Tank & Vessel Cleaning</h3>
+              <ul>
+                <li><i class="fas fa-check"></i> Automated Tank Cleaning</li>
+                <li><i class="fas fa-check"></i> Pressure Vessel Cleaning</li>
+                <li><i class="fas fa-check"></i> Water Storage Tanks</li>
+              </ul>
+            </div>
+            <a href="services/tank-cleaning.html" class="btn btn-primary">Learn More</a>
+          </div>
+          
+          <!-- Service Card 9 -->
+          <div class="service-card card">
+            <div class="card-icon">
+              <i class="fas fa-drone"></i>
+            </div>
+            <div class="card-content">
+              <h3>Advanced Tech Solutions</h3>
+              <ul>
+                <li><i class="fas fa-check"></i> Drone Technology</li>
+                <li><i class="fas fa-check"></i> Robotic Cleaning Systems</li>
+                <li><i class="fas fa-check"></i> Automated Painting Solutions</li>
+              </ul>
+            </div>
+            <a href="#" class="btn btn-primary">Coming Soon</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission, Vision & History Section -->
+    <section class="mission-vision section-dark">
+      <div class="container">
+        <div class="section-title">
+          <h2>Mission, Vision & History</h2>
+        </div>
+        
+        <div class="mission-grid">
+          <div class="mission-card card">
+            <div class="card-icon">
+              <i class="fas fa-bullseye"></i>
+            </div>
+            <h3>Mission</h3>
+            <p>To provide a variety of World-class engineering and technical services to our esteemed clients. Our services are carefully tailored to meet the needs of our clients: To meet the needs of our Clients using highly professional, competent and motivated Personnel with the right skill set supported with advanced technology and guided by the highest standards of professional ethics.</p>
+          </div>
+          
+          <div class="mission-card card">
+            <div class="card-icon">
+              <i class="fas fa-eye"></i>
+            </div>
+            <h3>Vision</h3>
+            <p>To consistently exceed expectations of our clients by providing timely, excellent, cost effective and uncompromised quality of services with respect to health, safety and environment requirements.</p>
+          </div>
+          
+          <div class="mission-card card">
+            <div class="card-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h3>Our Team</h3>
+            <p>At SEES, we have first-hand knowledge of the significant pressures of a plant operations environment. With decades of experience both operating our own plants and optimizing client facilities, we understand what a successful turnaround entails. That's why we start client projects with clearly defined goals and deliverables — and tailor our approach, design and output to meet client objectives.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Showcase -->
+    <section class="projects section-light">
+      <div class="container">
+        <div class="section-title">
+          <h2>Our Projects</h2>
+          <p>See our work in action across various sectors and industries</p>
+        </div>
+        
+        <div class="projects-carousel">
+          <div class="carousel-track">
+            <div class="project-slide active">
+              <div class="image-container">
+                <img src="./assets/images/project1.jpg" alt="Plant Maintenance">
+              </div>
+              <div class="project-info">
+                <h3>Plant Maintenance</h3>
+                <p>Ongoing Plant Maintenance at a client's facility</p>
+              </div>
+            </div>
+            
+            <div class="project-slide">
+              <div class="image-container">
+                <img src="./assets/images/project2.jpg" alt="Tank Cleaning">
+              </div>
+              <div class="project-info">
+                <h3>Tank Cleaning</h3>
+                <p>Automated Tank Cleaning Services</p>
+              </div>
+            </div>
+            
+            <div class="project-slide">
+              <div class="image-container">
+                <img src="./assets/images/project3.jpg" alt="Engineering Project">
+              </div>
+              <div class="project-info">
+                <h3>Engineering Services</h3>
+                <p>Engineering and installation services for industrial clients</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="carousel-controls">
+            <button class="prev-button" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+            <div class="carousel-dots">
+              <button class="dot active" data-index="0" aria-label="Slide 1"></button>
+              <button class="dot" data-index="1" aria-label="Slide 2"></button>
+              <button class="dot" data-index="2" aria-label="Slide 3"></button>
+            </div>
+            <button class="next-button" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Technologies Section -->
+    <section class="featured-tech section-dark">
+      <div class="container">
+        <div class="section-title">
+          <h2>Featured Technologies</h2>
+          <h3>SEESL Feature Services in Auto CNG, Auto Tank Cleaning and Drone Technology!</h3>
+        </div>
+        
+        <p class="text-center mb-3">Our specialty focuses on development, Robotic cleaning of High-Rise buildings, Automated Painting of high-rise buildings, Automated Cleaning and Waste Management of Petroleum Products Storage Tanks (Onshore/Offshore), Automated Cleaning Pressure Vessels, Automated Cleaning of Water Storage Tanks, Automated Cleaning of other Liquid product Storage Containers (Pharmaceuticals/FMCGs/Breweries), PMS and Auto-CNG for light duty vehicles including Tricycles, AGO and Auto-CNG for heavy duty vehicles, Installation of CNG Module for Modular power generators, Installation of LNG Module for Industrial Power generators, and many more...</p>
+        
+        <div class="tech-grid">
+          <div class="tech-card card">
+            <div class="image-container">
+              <img src="./assets/images/drone-tech.jpg" alt="Drone Technology">
+            </div>
+            <h4>Drone Technology</h4>
+            <p>Advanced drone solutions for inspections and monitoring</p>
+          </div>
+          
+          <div class="tech-card card">
+            <div class="image-container">
+              <img src="./assets/images/painting-tech.jpg" alt="Automated Painting">
+            </div>
+            <h4>Automated Painting</h4>
+            <p>Robotic painting solutions for high-rise buildings</p>
+          </div>
+          
+          <div class="tech-card card">
+            <div class="image-container">
+              <img src="./assets/images/cng-tech.jpg" alt="Auto CNG">
+            </div>
+            <h4>Auto CNG Solutions</h4>
+            <p>Clean energy solutions for vehicles and equipment</p>
+          </div>
+          
+          <div class="tech-card card">
+            <div class="image-container">
+              <img src="./assets/images/tank-tech.jpg" alt="Tank Cleaning">
+            </div>
+            <h4>Automated Tank Cleaning</h4>
+            <p>Advanced systems for safe and efficient tank cleaning</p>
+          </div>
+        </div>
+        
+        <div class="tech-cta text-center mt-3">
+          <a href="contact.html" class="btn btn-secondary">Request Service</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners section-light">
+      <div class="container">
+        <div class="section-title">
+          <h2>Our Partners & OEMs</h2>
+          <p>We collaborate with distinguished & known OEMs to offer our clients, durable spares and equipment suitable for their operations</p>
+        </div>
+        
+        <div class="partners-carousel">
+          <div class="carousel-container">
+            <div class="partner-item">
+              <img src="./assets/images/partner1.jpg" alt="Partner 1">
+            </div>
+            <div class="partner-item">
+              <img src="./assets/images/partner2.jpg" alt="Partner 2">
+            </div>
+            <div class="partner-item">
+              <img src="./assets/images/partner3.jpg" alt="Partner 3">
+            </div>
+            <div class="partner-item">
+              <img src="./assets/images/partner4.jpg" alt="Partner 4">
+            </div>
+            <div class="partner-item">
+              <img src="./assets/images/partner5.jpg" alt="Partner 5">
+            </div>
+            <div class="partner-item">
+              <img src="./assets/images/partner6.jpg" alt="Partner 6">
+            </div>
+          </div>
+          
+          <div class="carousel-controls">
+            <button class="prev-button" aria-label="Previous partners"><i class="fas fa-chevron-left"></i></button>
+            <button class="next-button" aria-label="Next partners"><i class="fas fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta section-dark">
+      <div class="container">
+        <div class="cta-content">
+          <h2>Ready to Work With Us?</h2>
+          <p>Contact us today to discuss how we can help with your engineering, energy, and certification needs.</p>
+          <a href="contact.html" class="btn btn-secondary">Contact Us Now</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <h4>About SEESL</h4>
+          <p>Solution Energy and Engineering Services Ltd provides world-class engineering, procurement, installation, asset management, and ISO certification services to businesses across Africa and beyond.</p>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="process.html">Process</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-services">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="services/engineering.html">Engineering</a></li>
+            <li><a href="services/procurement.html">Procurement</a></li>
+            <li><a href="services/asset-management.html">Asset Management</a></li>
+            <li><a href="services/renewable-energy.html">Renewable Energy</a></li>
+            <li><a href="services/iso-certification/">ISO Certification</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-contact">
+          <h4>Contact Us</h4>
+          <ul>
+            <li><i class="fas fa-envelope"></i> info@solutionenergylimited.com</li>
+            <li><i class="fas fa-phone"></i> +234 915 312 3973</li>
+            <li><i class="fas fa-map-marker-alt"></i> No 8B Salem Avenue <br> off Aker Road Rumolumeni <br> Port Harcourt, Nigeria</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Social Media Icons -->
+      <div class="footer-social">
+        <h4>Connect With Us</h4>
+        <div class="social-icons-footer">
+          <a href="https://web.facebook.com/profile.php?id=100091983091138" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.linkedin.com/company/solution-energy-and-engineering-services-ltd/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.instagram.com/solution_energylimited" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/message/6BQ37R6VWG2VA1" target="_blank" aria-label="Whatsapp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; <span id="current-year"></span> Solution Energy Limited. All Rights Reserved.</p>
+        <div class="footer-legal">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-of-service.html">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Success Modal -->
+  <div id="success-modal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <div class="modal-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h3>Message Sent!</h3>
+      <p>Thank you for contacting SEESL. We'll get back to you shortly.</p>
+      <button class="btn btn-primary modal-btn">Close</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="./js/main.js"></script>
+</body>
+</html>

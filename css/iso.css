@@ -1,0 +1,337 @@
+/**
+ * SEESL Website - ISO Certification Stylesheet
+ * This file contains styles specific to the ISO certification section
+ */
+
+/* ISO Hero Section */
+.iso-hero {
+    background: linear-gradient(to right, #003366, #0056b3);
+  }
+  
+  .iso-hero .hero-overlay {
+    background-image: url('../assets/images/iso-hero-bg.jpg');
+  }
+  
+  /* Trust Badge Section */
+  .trust-badge {
+    padding: 3rem 0;
+  }
+  
+  .trust-badge-content {
+    background-color: var(--background);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .trust-badge-content h2 {
+    margin-bottom: 2rem;
+  }
+  
+  /* Certificate Gallery */
+  .certificates-section {
+    padding: 4rem 0;
+  }
+  
+  .certificate-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .filter-button {
+    padding: 0.5rem 1rem;
+    background-color: var(--background);
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius-sm);
+    color: var(--text);
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .filter-button:hover,
+  .filter-button.active {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--primary);
+  }
+  
+  .certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2rem;
+  }
+  
+  .certificate-item {
+    background-color: var(--background);
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s;
+  }
+  
+  .certificate-item:hover {
+    transform: translateY(-5px);
+  }
+  
+  .certificate-image {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    padding: 1rem;
+    background-color: white;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .certificate-info {
+    padding: 1.5rem;
+  }
+  
+  .certificate-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .certificate-type {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  
+  .certificate-link {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: var(--primary);
+    color: white;
+    border-radius: var(--border-radius-sm);
+    transition: background-color 0.3s;
+  }
+  
+  .certificate-link:hover {
+    background-color: var(--primary-hover);
+  }
+  
+  /* Global Reach */
+  .global-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2rem;
+  }
+  
+  .global-card {
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .flag-icon {
+    width: 100px;
+    height: 70px;
+    margin: 0 auto 1.5rem;
+  }
+  
+  .global-flag {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius-sm);
+  }
+  
+  .global-card h4 {
+    margin-bottom: 1rem;
+  }
+  
+  .global-card p {
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Testimonials */
+  .testimonial-carousel {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .testimonial-slides {
+    position: relative;
+    height: 300px;
+    margin-bottom: 2rem;
+  }
+  
+  .testimonial-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s;
+  }
+  
+  .testimonial-slide.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .testimonial-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .testimonial-quote {
+    position: relative;
+    flex-grow: 1;
+    padding: 0 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .testimonial-quote i.fa-quote-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: var(--secondary);
+    opacity: 0.5;
+  }
+  
+  .testimonial-quote i.fa-quote-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: var(--secondary);
+    opacity: 0.5;
+  }
+  
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 2rem;
+  }
+  
+  .author-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .testimonial-author h4 {
+    margin-bottom: 0.25rem;
+  }
+  
+  .testimonial-author p {
+    color: var(--text-light);
+    margin-bottom: 0;
+    font-size: 0.9rem;
+  }
+  
+  .testimonial-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .testimonial-control {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--primary);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .testimonial-control:hover {
+    background-color: var(--primary-hover);
+  }
+  
+  .testimonial-dots {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--border);
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: none;
+  }
+  
+  .dot.active {
+    background-color: var(--primary);
+  }
+  
+  /* Process Steps */
+  .process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 3rem 0;
+  }
+  
+  .process-step {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+  
+  .step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+  
+  .step-content {
+    flex-grow: 1;
+  }
+  
+  .step-content h3 {
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Media Queries */
+  @media (min-width: 768px) {
+    .certificates-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .global-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .testimonial-slides {
+      height: 250px;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .certificates-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .process-steps {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    
+    .process-step {
+      width: calc(50% - 1rem);
+    }
+  }
