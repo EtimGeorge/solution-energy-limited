@@ -387,6 +387,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalTriggers = document.querySelectorAll('[data-modal]');
     const closeButtons = document.querySelectorAll('.modal-close, .modal-cancel');
     
+    // Hide modal by default
+    modals.forEach(modal => {
+      modal.style.display = 'none';
+    });
+    
     // Open modal when trigger is clicked
     modalTriggers.forEach(trigger => {
       trigger.addEventListener('click', function() {
@@ -394,7 +399,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const modal = document.getElementById(modalId);
         
         if (modal) {
-          modal.classList.add('open');
+          modal.style.display = 'block';
           document.body.style.overflow = 'hidden'; // Prevent body scrolling
         }
       });
@@ -404,8 +409,10 @@ document.addEventListener('DOMContentLoaded', function() {
     closeButtons.forEach(button => {
       button.addEventListener('click', function() {
         const modal = this.closest('.modal');
-        modal.classList.remove('open');
-        document.body.style.overflow = ''; // Restore body scrolling
+        if (modal) {
+          modal.style.display = 'none';
+          document.body.style.overflow = ''; // Restore body scrolling
+        }
       });
     });
     
@@ -413,7 +420,7 @@ document.addEventListener('DOMContentLoaded', function() {
     modals.forEach(modal => {
       modal.addEventListener('click', function(e) {
         if (e.target === this) {
-          this.classList.remove('open');
+          this.style.display = 'none';
           document.body.style.overflow = ''; // Restore body scrolling
         }
       });
@@ -423,11 +430,66 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
         modals.forEach(modal => {
-          if (modal.classList.contains('open')) {
-            modal.classList.remove('open');
+          if (modal.style.display === 'block') {
+            modal.style.display = 'none';
             document.body.style.overflow = ''; // Restore body scrolling
           }
         });
       }
     });
+  
+
+
+
+
+
+  // Carousel Setup with Autoplay, Arrows & Dots
+function setupCarousel(selector) {
+  const container = document.querySelector(selector);
+  const track = container.querySelector('.'+selector.replace('.', '')+'-track');
+  const items = track.children;
+  const prev = container.querySelector('.prev-' + selector.replace('.', ''));
+  const next = container.querySelector('.next-' + selector.replace('.', ''));
+  const dotsContainer = container.querySelector('.pagination-dots');
+  let index = 0, timer;
+  const total = items.length, interval = 4000;
+
+  // Create and attach dots
+  for (let i = 0; i < total; i++) {
+    const dot = document.createElement('button');
+    dot.addEventListener('click', () => goTo(i));
+    dotsContainer.append(dot);
   }
+  const dots = dotsContainer.children;
+
+  function update() {
+    track.scrollTo({ left: index * track.clientWidth, behavior: 'smooth' });
+    Array.from(dots).forEach((d, i) => d.classList.toggle('active', i === index));
+  }
+  function nextSlide() { index = (index + 1) % total; update(); }
+  function prevSlide() { index = (index - 1 + total) % total; update(); }
+  function resetTimer() { clearInterval(timer); timer = setInterval(nextSlide, interval); }
+  function goTo(i) { index = i; resetTimer(); update(); }
+
+  prev.addEventListener('click', () => { prevSlide(); resetTimer(); });
+  next.addEventListener('click', () => { nextSlide(); resetTimer(); });
+  resetTimer(); update();
+}
+
+setupCarousel('.tech-carousel');
+setupCarousel('.projects-carousel');
+
+// Lightbox Functionality
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = lightbox.querySelector('.lightbox-img');
+const closeBtn = lightbox.querySelector('.lightbox-close');
+document.querySelectorAll('.thumbnail').forEach(img => {
+  img.addEventListener('click', () => {
+    lightboxImg.src = img.src;
+    lightbox.classList.remove('hidden');
+  });
+});
+closeBtn.addEventListener('click', () => lightbox.classList.add('hidden'));
+lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.add('hidden'); });
+
+}
