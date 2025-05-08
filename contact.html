@@ -17,12 +17,135 @@
   <meta property="og:type" content="website">
   
   <!-- Favicon -->
-  <link rel="icon" href="./assets/images/favicon.ico">
+  <link rel="icon" href="./images/SEES_new_logo.jpg">
   
   <!-- Stylesheets -->
   <link rel="stylesheet" href="./css/variables.css">
   <link rel="stylesheet" href="./css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <style>
+
+
+  /* ... existing styles ... */
+
+  
+
+  .contact-form-container {
+    padding: 15px; /* Adjust padding as needed */
+  }
+
+  p .response-time {
+    background: var(--footer);
+    color:wheat;
+  }
+
+  p, small{
+  background: var(--footer);
+  margin: 0.5rem;
+  border-radius: var(--border-radius-sm);
+  padding: 5px;
+  text-align: center;
+  color:yellow;
+}
+
+  .contact-form input[type="text"],
+  .contact-form input[type="email"],
+  .contact-form input[type="tel"],
+  .contact-form select,
+  .contact-form textarea {
+    height: 40px; /* Set a uniform height for input fields and select */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  }
+
+  .contact-form textarea {
+    height: 80px; /* Set a specific height for the textarea */
+  }
+
+  /* ... existing styles ... */
+
+
+
+   
+  
+  .contact-info-container {
+      background-image: url('./images/contact-background.jpg'); /* Path to your contact background image */
+      background-size: cover;
+      background-position: center;
+      padding: 20px; /* Adjust padding as needed */
+      border-radius: 8px; /* Optional: adds rounded corners */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: adds shadow for depth */
+      max-width: 400px; /* Adjust size as needed */
+      margin: 0 auto; /* Center the contact info */
+  }
+
+  
+  /* ... existing styles ... */
+
+  .contact-form-container {
+    padding: 15px; /* Adjust padding as needed */
+    margin: 20px;
+  }
+
+  .contact-form input[type="text"],
+  .contact-form input[type="email"],
+  .contact-form input[type="tel"],
+  .contact-form select,
+  .contact-form textarea {
+    height: 40px; /* Set a uniform height for input fields and select */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  }
+
+  .contact-form textarea {
+    height: 80px; /* Set a specific height for the textarea */
+  }
+
+  /* ... existing styles ... */
+
+
+  
+
+
+  
+  /* ... existing styles ... */
+
+  .contact-info-container {
+      background-image: url('./images/contact-background.jpg'); /* Path to your contact background image */
+      background-size: cover;
+      background-position: center;
+      padding: 20px; /* Adjust padding as needed */
+      border-radius: 8px; /* Optional: adds rounded corners */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.228); /* Optional: adds shadow for depth */
+      max-width: 900px; /* Adjust size as needed */
+      margin: 0 auto; /* Center the contact info */
+      border: 2px solid #007bff; /* Add a border with your brand color */
+      width: 100%; /* Ensure it takes full width of its container */
+      box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  }
+
+  .contact-info-card {
+      padding: 20px; /* Add padding for better spacing */
+      border-radius: 8px; /* Optional: adds rounded corners */
+      background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background for contrast */
+  }
+
+  /* ... existing styles ... */
+
+
+  .social-icons-contact a {
+    font-size: 1.5em; /* Increase icon size */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+  }
+
+  .social-icons-contact a:hover {
+    color: #007bff; /* Replace with your brand color */
+  }
+  
+  /* ... existing styles ... */
+
+
+  </style>
+
 </head>
 <body>
   <!-- Header -->
@@ -31,7 +154,7 @@
       <div class="header-content">
         <!-- Logo -->
         <a href="index.html" class="logo">
-          <img src="./assets/images/seesl-logo.jpg" alt="SEESL Logo">
+          <img src="./images/SEES_new_logo.jpg" alt="SEESL Logo">
         </a>
         
         <!-- Desktop Navigation -->
@@ -123,12 +246,16 @@
   <!-- Main Content -->
   <main>
     <!-- Page Hero Section -->
-    <section class="page-hero">
-      <div class="hero-overlay"></div>
+    <section class="hero">
+      <div class="hero-overlay" style="background-image: url('./images/home-hero-image.jpg'); background-size: cover; background-position: center; "></div>
       <div class="container">
         <div class="hero-content">
           <h1>Contact Us</h1>
           <p>Get in touch with our team for inquiries, quotes, or more information</p>
+          <!-- <div class="hero-buttons">
+            <a href="#services" class="btn btn-secondary">Explore Services</a>
+            <a href="contact.html" class="btn btn-primary">Contact Us</a>
+          </div> -->
         </div>
       </div>
     </section>
@@ -186,7 +313,7 @@
               <button type="submit" class="btn btn-primary">Submit Inquiry</button>
             </form>
 
-            <p><small>We typically respond within 1-2 business days. By submitting this form, you consent to us contacting you regarding your inquiry.</small></p>
+            <p><small class="response-time">We typically respond within 1-2 business days. By submitting this form, you consent to us contacting you regarding your inquiry.</small></p>
           </div>
           
           <div class="contact-info-container">
@@ -257,14 +384,15 @@
       <div class="container">
         <div class="section-title">
           <h2>Our Location</h2>
+          <!-- <img src="https://img.freepik.com/premium-vector/location-icon-png_636116-128.jpg?w=100" alt="SEESL Office Location Map"> -->
         </div>
         
         <div class="map-container">
           <!-- This would be replaced with an actual Google Maps embed, using a placeholder for now -->
           <div class="map-placeholder">
-            <img src="./assets/images/map-placeholder.jpg" alt="SEESL Office Location Map">
+            <img src="" alt="SEESL Office Location Map">
             <div class="map-overlay">
-              <p>Interactive Map Would Be Embedded Here</p>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.0730730000003!2d6.978285314769775!3d4.848136396758073!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x106d8b3b3b3b3b3b%3A0x3e3b3b3b3b3b3b3b!2sSolution%20Energy%20and%20Engineering%20Services%20Ltd!5e0!3m2!1sen!2sng!4v1633940730003!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
               <a href="https://goo.gl/maps/your-location-link" class="btn btn-secondary" target="_blank">Open in Google Maps</a>
             </div>
           </div>

@@ -33,6 +33,8 @@
   --background-alt: #f5f8fa;
   --border: #e5e7eb;
   --error: #dc2626;
+  --erro-hover:rgb(178, 7, 7);
+  --accent:#ffff00;
   
   /* Typography */
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -645,8 +647,9 @@ section {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-250%);
   }
+  
 }
 
 .carousel-controls {
@@ -690,12 +693,12 @@ section {
 }
 
 .btn-primary {
-  background-color: var(--primary);
+  background-color: var(--error);
   color: white;
 }
 
 .btn-primary:hover {
-  background-color: var(--primary-hover);
+  background-color: var(--erro-hover);
 }
 
 .btn-secondary {
@@ -710,23 +713,36 @@ section {
 .contact-form-container {
   background-color: var(--background);
   border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lg);
   padding: 2rem;
+  
+
+  
+    background-image: url('../images/SEESL-office-image.png'); /* Path to your form background image */
+    background-size: cover;
+    background-position: center;
+    max-width: 600px; /* Adjust size as needed */
+    margin: 0 auto; /* Center the form */
+    margin-bottom: 2rem;
+
 }
 
 .form-group {
   margin-bottom: 1.5rem;
   position: relative;
+  color: var(--accent);
 }
 
 .form-title {
   font-size: var(--font-size-lg);
-  font-weight: 600;
+  font-weight: 800;
   margin-bottom: 1.5rem;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid var(--primary);
   color: var(--primary);
 }
+
+
 
 label {
   display: block;
@@ -923,13 +939,16 @@ input:focus, select:focus, textarea:focus {
 
 /* ========================================== */
 
-/* <!-- ===== CSS Code (Paste into style.css) ===== --> */
+/* <!-- ===== CSS Code (NOTE this code needs to be proparly placed) ===== --> */
 
 /* Carousel & Layout */
-.tech-carousel, .projects-carousel {
-   position: relative; 
-   overflow: hidden; 
-  }
+.t.tech-carousel, .projects-carousel, .tech-track, .proj-track {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+}
 .tech-track, .proj-track {
    display: flex; 
    gap: 1rem; 
@@ -943,7 +962,7 @@ input:focus, select:focus, textarea:focus {
 .image-thumbnails {
    display: grid; 
    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); 
-   gap: 0.6rem; 
+   gap: 0.7rem; 
   }
 
 /* Hover Effects */
@@ -1030,4 +1049,28 @@ input:focus, select:focus, textarea:focus {
    font-size:2rem; 
    color:#fff; 
    cursor:pointer; 
+  }
+
+  
+
+  /* Responsive adjustments for image thumbnails */
+  @media (max-width: 768px) {
+    .tech-carousel, .projects-carousel {
+      flex-direction: column;
+      align-items: center;
+    }
+    .tech-track, .proj-track {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .tech-carousel, .projects-carousel {
+      gap: 10px;
+    }
+    .tech-track, .proj-track {
+      gap: 5px;
+    }
   }
