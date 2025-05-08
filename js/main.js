@@ -437,7 +437,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       }
     });
-  
+  }
 
 
 
@@ -492,4 +492,3 @@ document.querySelectorAll('.thumbnail').forEach(img => {
 closeBtn.addEventListener('click', () => lightbox.classList.add('hidden'));
 lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.add('hidden'); });
 
-}
