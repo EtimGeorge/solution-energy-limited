@@ -265,7 +265,7 @@
       <div class="container">
         <div class="contact-grid">
           <div class="contact-form-container">
-            <form id="contact-form" class="contact-form" action="mailto:info@solutionenergylimited.com" method="POST">
+            <form id="contact-form" class="contact-form" action="https://formspree.io/f/meogpvoq" method="POST">
               <!-- Form title -->
               <div id="form-title" class="form-title">Send us an inquiry</div>
               
@@ -464,15 +464,11 @@
   </footer>
 
   <!-- Success Modal -->
-  <div id="success-modal" class="modal">
+  <div id="success-modal" class="modal hidden">
     <div class="modal-content">
-      <span class="modal-close">&times;</span>
-      <div class="modal-icon">
-        <i class="fas fa-check-circle"></i>
-      </div>
-      <h3>Message Sent!</h3>
-      <p>Thank you for contacting SEESL. We'll get back to you shortly.</p>
-      <button class="btn btn-primary modal-btn">Close</button>
+      <span class="modal-close" onclick="document.getElementById('success-modal').classList.remove('open');">&times;</span>
+      <h2>Success!</h2>
+      <p>Your inquiry has been submitted successfully. We will contact you soon.</p>
     </div>
   </div>
 

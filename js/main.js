@@ -169,44 +169,10 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
     
-    // Validate form on submit
-    form.addEventListener('submit', function(e) {
-      let isValid = true;
-      
-      // Validate all required fields
-      const requiredInputs = form.querySelectorAll('[required]');
-      requiredInputs.forEach(input => {
-        if (!validateInput(input)) {
-          isValid = false;
-        }
-      });
-      
-      // Validate email fields
-      const emailInputs = form.querySelectorAll('input[type="email"]');
-      emailInputs.forEach(input => {
-        if (input.value.trim() !== '' && !validateEmail(input)) {
-          isValid = false;
-        }
-      });
-      
-      if (!isValid) {
-        e.preventDefault();
-      } else {
-        // For demo purposes, prevent actual form submission and show success
-        e.preventDefault();
-        
-        // Show success message or modal
-        const successModal = document.getElementById('success-modal');
-        if (successModal) {
-          successModal.classList.add('open');
-        } else {
-          alert('Form submitted successfully! We will contact you soon.');
-        }
-        
-        // Reset form
-        form.reset();
-      }
-    });
+    // Comment out the JavaScript for testing
+    // document.getElementById('contact-form').addEventListener('submit', function(e) {
+    //     // Your validation and submission logic here
+    // });
     
     // Input validation function
     function validateInput(input) {
@@ -439,9 +405,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-
-
-
+  // Clear the form fields when the page loads
+  window.addEventListener('load', function() {
+    const form = document.getElementById('contact-form');
+    if (form) {
+        form.reset(); // Reset the form fields
+    }
+  });
 
   // Carousel Setup with Autoplay, Arrows & Dots
 function setupCarousel(selector) {
