@@ -17,12 +17,51 @@
   <meta property="og:type" content="website">
   
   <!-- Favicon -->
-  <link rel="icon" href="../assets/images/favicon.ico">
+  <link rel="icon" href="../images/SEES_new_logo.jpg">
   
   <!-- Stylesheets -->
   <link rel="stylesheet" href="../css/variables.css">
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <style>
+    .stylized-paragraph {
+        font-size: 1.1em; /* Slightly larger font size */
+        line-height: 1.6; /* Improved line spacing for readability */
+        color: #333; /* Dark gray text color */
+        margin-bottom: 1.5em; /* Space between paragraphs */
+        transition: color 0.3s ease, transform 0.3s ease; /* Smooth color and transform transition */
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2), 0 0 25px rgba(0, 0, 0, 0.1); /* 3D text shadow */
+    }
+
+    .stylized-paragraph:hover {
+        color: #007BFF; /* Change color on hover for interactivity */
+        cursor: pointer; /* Change cursor to pointer to indicate interactivity */
+        transform: translateY(-2px); /* Slight upward movement on hover for a 3D effect */
+    }
+
+    .page-hero {
+        position: relative; /* Ensure positioning context for absolute elements */
+        overflow: hidden; /* Prevent overflow of child elements */
+        padding: 60px; /* Add padding to create space above and below the content */
+        height: auto; /* Allow height to adjust based on content */
+    }
+
+    .hero-overlay {
+        position: absolute; /* Position overlay absolutely */
+        top: 0; /* Align to the top */
+        left: 0; /* Align to the left */
+        right: 0; /* Align to the right */
+        bottom: 0; /* Align to the bottom */
+        z-index: 1; /* Ensure overlay is behind content */
+    }
+
+    .hero-content {
+        position: relative; /* Position content relative to the hero section */
+        z-index: 2; /* Ensure content is above the overlay */
+        text-align: center; /* Center align text */
+    }
+  </style>
 </head>
 <body>
   <!-- Header -->
@@ -31,7 +70,7 @@
       <div class="header-content">
         <!-- Logo -->
         <a href="../index.html" class="logo">
-          <img src="../assets/images/seesl-logo.jpg" alt="SEESL Logo">
+          <img src="../images/SEES_new_logo.jpg" alt="SEESL Logo">
         </a>
         
         <!-- Desktop Navigation -->
@@ -123,12 +162,22 @@
   <!-- Main Content -->
   <main>
     <!-- Page Hero Section -->
-    <section class="page-hero">
-      <div class="hero-overlay"></div>
+    <section class="page-hero homepage-hero">
+      <div class="hero-overlay" style="background-image: url('../images/engineering-services/engineering-service_banner.jpg'); background-size: cover; background-position: center;"></div>
       <div class="container">
         <div class="hero-content">
           <h1>Engineering Services</h1>
-          <p>FEED, Fabrication, Construction, Installation & Commissioning Services</p>
+          <p>FEED, 
+            Fabrication, 
+            Construction, 
+            Installation & 
+            Commissioning 
+            Services</p>
+          
+          <div class="hero-buttons">
+            <a href="../index.html#services" class="btn btn-secondary">Explore Services</a>
+            <a href="../contact.html" class="btn btn-primary">Contact Us</a>
+          </div>
         </div>
       </div>
     </section>
@@ -143,15 +192,15 @@
         
         <div class="service-content">
           <div class="service-text">
-            <p>At SEESL, we provide comprehensive engineering services to support your project from concept to completion. Our team of experienced engineers combines technical expertise with industry knowledge to deliver solutions that meet your specific requirements.</p>
+            <p class="stylized-paragraph">At SEESL, we provide comprehensive engineering services to support your project from concept to completion. Our team of experienced engineers combines technical expertise with industry knowledge to deliver solutions that meet your specific requirements.</p>
             
-            <p>Our engineering services encompass Front End Engineering Design (FEED), detailed engineering, fabrication, construction, installation, and commissioning. We work across various industries, including oil and gas, manufacturing, power generation, and more, ensuring that each project is executed to the highest standards of quality and safety.</p>
+            <p class="stylized-paragraph">Our engineering services encompass Front End Engineering Design (FEED), detailed engineering, fabrication, construction, installation, and commissioning. We work across various industries, including oil and gas, manufacturing, power generation, and more, ensuring that each project is executed to the highest standards of quality and safety.</p>
             
-            <p>We pride ourselves on our ability to tackle complex engineering challenges, developing innovative solutions that optimize performance, enhance efficiency, and ensure long-term reliability. Whether you need support for a new development or improvements to existing facilities, our team has the expertise to deliver results.</p>
+            <p class="stylized-paragraph">We pride ourselves on our ability to tackle complex engineering challenges, developing innovative solutions that optimize performance, enhance efficiency, and ensure long-term reliability. Whether you need support for a new development or improvements to existing facilities, our team has the expertise to deliver results.</p>
           </div>
           
           <div class="service-image">
-            <img src="../assets/images/engineering-service.jpg" alt="Engineering Services">
+            <img src="../images/engineering-services/engg.jpg" alt="Engineering Services">
           </div>
         </div>
       </div>
