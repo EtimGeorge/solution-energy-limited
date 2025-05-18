@@ -4,58 +4,568 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gas Conversion | SEESL</title>
+    <meta name="description" content="Explore our advanced gas conversion technologies for onshore and offshore applications. Learn how we can help you reduce costs and improve efficiency with our innovative solutions.">
+    <meta name="keywords" content="Gas Conversion, Energy Solutions, CNG, LNG, Environmental Impact, Cost Savings, Dual Fuel Technology, SEESL">
+    <meta name="author" content="Solution Energy and Engineering Services Limited">
     <link rel="stylesheet" href="../css/variables.css">
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+/* ==========================================================================
+   SEESL Gas Conversion Page - Organized Stylesheet
+   ========================================================================== */
+
+/* -----------------------------------------------------------------------------
+   1. TYPOGRAPHY & BASIC STYLES
+   -------------------------------------------------------------------------- */
+body {
+    font-family: 'Titillium Web', sans-serif;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Orbitron', sans-serif;
+    color: #004d99; /* Default color for headings */
+}
+
+.service-content h2, 
+.facility-maintenance h2, 
+.visual-highlights h2, 
+.success-gallery h2, 
+.cta-section h2 {
+    color: #0077cc; /* Default color for section headings */
+    margin-bottom: 1rem;
+}
+
+/* -----------------------------------------------------------------------------
+   2. UI COMPONENT EFFECTS & ANIMATIONS
+   -------------------------------------------------------------------------- */
+
+/* 3D Floating Card Effect */
+.float-3d {
+    background-color: #ffffff; /* Default background for cards */
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 1rem;
+    text-align: center;
+}
+
+.float-3d:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+/* Thumbnail Image Effects */
+.thumbnail {
+    width: 100%;
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.thumbnail:hover {
+    box-shadow: 0 0 20px rgba(0, 153, 255, 0.75);
+    transform: scale(1.03);
+}
+
+/* Service Images Styling */
+.service-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Add margin for better spacing */
+}
+
+.service-image img {
+    width: 100%;
+}
+
+/* -----------------------------------------------------------------------------
+   3. DARK MODE STYLES
+   -------------------------------------------------------------------------- */
+body.dark-mode {
+    background-color: #121212; /* Dark background */
+    color: #ffffff; /* Light text */
+}
+
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3, 
+body.dark-mode h4 {
+    color: #ffffff; /* Light headings for dark mode */
+}
+
+body.dark-mode .service-content h2, 
+body.dark-mode .facility-maintenance h2, 
+body.dark-mode .visual-highlights h2, 
+body.dark-mode .success-gallery h2, 
+body.dark-mode .cta-section h2 {
+    color: #ffffff; /* Light section headings for dark mode */
+}
+
+body.dark-mode .service-list li {
+    color: #f0f0f0; /* Light text for list items in dark mode */
+}
+
+/* -----------------------------------------------------------------------------
+   4. LAYOUT GRIDS & CONTAINERS
+   -------------------------------------------------------------------------- */
+
+/* Highlight Grid Layout */
+.highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px; /* Space between grid items */
+}
+
+/* Gallery Track Layout */
+.gallery-track {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjusted min size for responsiveness */
+    gap: 20px; /* Space between gallery items */
+    margin: 40px;
+}
+
+/* Service Content Layout */
+.service-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: center; /* Center the text for better presentation */
+    margin-top: 20px; /* Space between content and the next section */
+    position: relative; /* Position relative for layering */
+    z-index: 2; /* Ensure content is above the background */
+}
+
+/* Service Overview Section Layout */
+.service-overview {
+    position: relative; /* Position relative for absolute children */
+    margin: 20px 0; /* Add margin for spacing */
+    overflow: hidden; /* Hide overflow for the background image */
+}
+
+/* Service List Container Layout */
+.service-list-container {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center the list container */
+    margin-top: 20px; /* Space between content and list */
+    position: relative; /* Position relative for layering */
+    z-index: 2; /* Ensure list is above the background */
+}
+
+/* -----------------------------------------------------------------------------
+   5. SERVICE LIST COMPONENTS
+   -------------------------------------------------------------------------- */
+
+/* Service List Grid */
+.service-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Responsive grid */
+    gap: 25px; /* Space between grid items */
+    padding: 15px; /* Padding inside the border */
+    border-radius: 8px; /* Rounded corners */
+    background: linear-gradient(to right, #ffcc0086, #ff990070); /* Gradient background */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    width: 100%; /* Full width */
+    max-width: 1200px; /* Max width for the gallery */
+}
+
+/* Service List Items */
+.service-list li {
+    background-color: rgba(255, 255, 0, 0.142); /* Change background color to yellow */
+    border: 2px solid #0077cc; /* Thick border for card */
+    border-radius: 8px; /* Rounded corners */
+    padding: 10px; /* Padding inside the card */
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease; /* Animation effect */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.service-list li:hover {
+    transform: scale(1.05); /* Scale effect on hover */
+}
+
+/* Background Gradient Image */
+.background-image {
+    position: absolute; /* Position absolute to cover the section */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #00ffff86, #255a8c70); /* Color gradient */
+    background-size: cover; /* Cover the entire area */
+    background-position: center; /* Center the background image */
+    z-index: 1; /* Ensure it is behind the content */
+}
+
+/* -----------------------------------------------------------------------------
+   6. GAS TECHNOLOGY IMAGES
+   -------------------------------------------------------------------------- */
+.gas-tech-image {
+    border: 4px solid #0077cc; /* Thick border */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Ensure images don't overflow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation effect */
+}
+
+.gas-tech-image:hover {
+    transform: scale(1.05); /* Scale effect on hover */
+    box-shadow: 0 0 20px rgba(0, 153, 255, 0.75); /* Shadow effect on hover */
+}
+
+.gas-tech-image img {
+    width: 100%; /* Ensure images take full width */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove bottom space */
+}
+
+/* -----------------------------------------------------------------------------
+   7. RIVER & SECTION DIVIDER ANIMATIONS
+   -------------------------------------------------------------------------- */
+
+/* Basic Section Divider */
+.space-between-sections {
+    height: 20px;
+    background: linear-gradient(to right, #00ffff86, #255a8c70);
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+/* Animated Gradient Flow Effect */
+.space-between-sections.river {
+    background: linear-gradient(to right, #00ffff86, #255a8c70);
+    background-size: 200% 100%;
+    animation: gradient-flow 10s linear infinite;
+}
+
+@keyframes gradient-flow {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
+}
+
+/* River Component */
+.river {
+    height: 30px; /* Increased height for better visibility */
+    background: linear-gradient(to right, #00aaff, #005577); /* Gradient colors for the river */
+    border-radius: 10px; /* Rounded edges for a more natural look */
+    position: relative; /* Position for the pseudo-element */
+    overflow: hidden; /* Hide overflow for the animation */
+}
+
+/* River Wave Animation */
+.river::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%; /* Start off-screen */
+    width: 200%; /* Double the width for smooth animation */
+    height: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)); /* White wave effect */
+    animation: wave-flow 3s linear infinite; /* Animation for flowing effect */
+}
+
+/* -----------------------------------------------------------------------------
+   X. BENEFITS SECTION STYLES (New or to be added/modified)
+   -------------------------------------------------------------------------- */
+
+ .benefits {
+    padding: 40px 0;
+    background-color: #f4f7f6; /* Light mode background for the section */
+    /* This ensures the section itself takes this color */
+}
+
+/*
+   IMPORTANT FOR DARK MODE BACKGROUND:
+   The .container div INSIDE the .benefits section might have its own background
+   (e.g., white) from your global styles.css. We need to make sure it's transparent
+   in dark mode so the .benefits section's dark background can show through.
+*/
+.benefits .container {
+    /* By default, ensure the container is transparent.
+       If your global .container has a background, this will override it
+       ONLY when the container is inside .benefits. */
+    background-color: transparent;
+}
+
+body.dark-mode .benefits {
+    background-color: #1f1f1f; /* Dark mode background for the SECTION */
+}
+
+/*
+   This rule explicitly ensures that the .container *within* .benefits
+   is also transparent (or inherits the section's dark background) in dark mode.
+   This is crucial if your global .container style has a background color.
+*/
+body.dark-mode .benefits .container {
+    background-color: transparent; /* Ensures it doesn't have its own conflicting background */
+}
+
+
+.benefits h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #004d99; /* Match heading color */
+}
+
+body.dark-mode .benefits h2 {
+    color: #e0e0e0; /* Light heading for dark mode */
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive columns */
+    gap: 30px; /* Space between cards */
+    /* Padding should ideally be on the .container or .benefits, not the grid itself
+       if .container handles page width constraints. */
+}
+
+.benefit-card {
+    background-color: #ffffff; /* Card background in light mode */
+    border-radius: 12px;
+    padding: 25px 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.benefit-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0, 77, 153, 0.15);
+}
+
+body.dark-mode .benefit-card {
+    background-color: #2a2a2a; /* Card background in dark mode */
+    border-color: #444;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .benefit-card:hover {
+    box-shadow: 0 12px 25px rgba(0, 119, 204, 0.25);
+}
+
+.benefit-icon {
+    font-size: 3rem;
+    color: #0077cc;
+    margin-bottom: 20px;
+    line-height: 1;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.dark-mode .benefit-icon {
+    color: #3498db;
+}
+
+.benefit-card h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: #004d99;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+body.dark-mode .benefit-card h3 {
+    color: #f0f0f0;
+}
+
+.benefit-card p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+body.dark-mode .benefit-card p {
+    color: #cccccc;
+}
+
+/* --- Animations for Benefit Icons --- */
+@keyframes moneyWave {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    25% { transform: rotate(-3deg) scale(1.05); }
+    50% { transform: rotate(3deg) scale(1.1); }
+    75% { transform: rotate(-2deg) scale(1.05); }
+}
+.benefit-card:hover .fa-money-bill-wave {
+    animation: moneyWave 1.2s ease-in-out infinite;
+}
+
+@keyframes leafGrow {
+    0%, 100% { transform: scale(1) rotate(-5deg); opacity: 0.8; }
+    50% { transform: scale(1.15) rotate(5deg); opacity: 1; }
+}
+.benefit-card:hover .fa-leaf {
+    transform-origin: bottom center;
+    animation: leafGrow 1.8s ease-in-out infinite;
+}
+
+@keyframes syncSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+.benefit-card:hover .fa-sync {
+    animation: syncSpin 1.5s linear infinite;
+}
+
+@keyframes tachometerPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+}
+.benefit-card:hover .fa-tachometer-alt {
+    animation: tachometerPulse 0.9s ease-in-out infinite;
+}
+
+/* Add a media query for smaller screens if cards get too narrow */
+@media (max-width: 360px) {
+    .benefits-grid {
+        grid-template-columns: 1fr; /* Single column on very small screens */
+    }
+}
+
+
+@keyframes wave-flow {
+    0% {
+        left: -100%; /* Start off-screen */
+    }
+    100% {
+        left: 100%; /* Move to the right */
+    }
+}
+
+/* -----------------------------------------------------------------------------
+   8. RESPONSIVE STYLES
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+    .gallery-track {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjusted min size for responsiveness */
+        gap: 20px; /* Space between gallery items */
+    }
+}
+
+    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container header-container">
-            <div class="logo">
-                <a href="../index.html">
-                    <img src="../images/logo-placeholder.png" alt="SEESL Logo">
-                </a>
-            </div>
-            <nav class="main-nav">
-                <ul class="nav-list">
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../about.html">About</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="active">Services <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="engineering.html">Engineering</a></li>
-                            <li><a href="asset-management.html">Asset Management</a></li>
-                            <li><a href="gas-conversion.html" class="active">Gas Conversion</a></li>
-                            <li><a href="renewable-energy.html">Renewable Energy</a></li>
-                            <li><a href="civil-construction.html">Civil Construction</a></li>
-                            <li><a href="tank-cleaning.html">Tank Cleaning</a></li>
-                            <li><a href="iso-certification/index.html">ISO Certification</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="../contact.html">Contact</a></li>
-                </ul>
-            </nav>
-            <div class="header-buttons">
-                <button class="theme-toggle" aria-label="Toggle dark mode">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
+     <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <!-- Logo -->
+        <a href="../index.html" class="logo">
+          <img src="../images/SEES_new_logo.jpg" alt="SEESL Logo">
+        </a>
+        
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../about.html" class="active">About</a></li>
+            <li class="dropdown">
+              <button class="dropdown-button" aria-haspopup="true" aria-expanded="false" id="services-dropdown">
+                Services <i class="fas fa-chevron-down" aria-hidden="true"></i>
+              </button>
+              <div class="dropdown-content" role="menu" aria-labelledby="services-dropdown">
+                <a href="../services/asset-management.html" role="menuitem" tabindex="-1">Asset Management</a>
+                <a href="../services/procurement.html" role="menuitem" tabindex="-1">Procurement</a>
+                <a href="../services/engineering.html" role="menuitem" tabindex="-1">Engineering</a>
+                <a href="../services/gas-conversion.html" role="menuitem" tabindex="-1">Gas Conversion</a>
+                <a href="../services/renewable-energy.html" role="menuitem" tabindex="-1">Renewable Energy</a>
+                <a href="../services/civil-construction.html" role="menuitem" tabindex="-1">Civil Construction</a>
+                <a href="../services/tank-cleaning.html" role="menuitem" tabindex="-1">Tank Cleaning</a>
+                <a href="../services/iso-certification/" role="menuitem" tabindex="-1">ISO Certification</a>
+              </div>
+            </li>
+            <li><a href="../process.html">Process</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        
+        <!-- Social Icons & Theme Toggle - Desktop -->
+        <div class="header-actions">
+          <div class="contact-info">
+            <a href="tel:+2349153123973">+234 (915) 312-3973</a>
+          </div>
+          <div class="social-icons">
+            <a href="https://web.facebook.com/profile.php?id=100091983091138" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.linkedin.com/company/solution-energy-and-engineering-services-ltd/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/solution_energylimited" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/message/6BQ37R6VWG2VA1" target="_blank" aria-label="Whatsapp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+          
+          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme">
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-moon"></i>
+          </button>
+          
+          <!-- Mobile Menu Toggle -->
+          <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+            <i class="fas fa-bars"></i>
+          </button>
         </div>
-    </header>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li>
+          <button id="services-dropdown-mobile" class="services-dropdown">
+            Services <i class="fas fa-chevron-down"></i>
+          </button>
+          <div id="mobile-services" class="mobile-services">
+            <a href="../services/asset-management.html">Asset Management</a>
+            <a href="../services/procurement.html">Procurement</a>
+            <a href="../services/engineering.html">Engineering</a>
+            <a href="../services/gas-conversion.html">Gas Conversion</a>
+            <a href="../services/renewable-energy.html">Renewable Energy</a>
+            <a href="../services/civil-construction.html">Civil Construction</a>
+            <a href="../services/tank-cleaning.html">Tank Cleaning</a>
+            <a href="../services/iso-certification/">ISO Certification</a>
+          </div>
+        </li>
+        <li><a href="../process.html">Process</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+        
+        <!-- Social Media Icons - Mobile -->
+        <li class="mobile-social">
+          <div class="social-icons-mobile">
+            <a href="https://web.facebook.com/profile.php?id=100091983091138" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.linkedin.com/company/solution-energy-and-engineering-services-ltd/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/solution_energylimited" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/message/6BQ37R6VWG2VA1" target="_blank" aria-label="Whatsapp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </header>
+
 
     <!-- Hero Section -->
-    <section class="hero-section service-hero">
+    <section class="hero">
+        <div class="hero-overlay" style="background-image: url('../images/GAS-CONVERSION/Gas\ Conversion\ Technologies-hero.jpg'); background-size: cover; background-position: center;"></div>
         <div class="container">
-            <h1>Gas Conversion Technology</h1>
-            <p>Onshore & Offshore Gas Conversion Technologies</p>
-        </div>
-    </section>
+          <div class="hero-content">
+            <h1>Transform Your Energy with Gas Conversion</h1>
+            <p>Unlock the potential of innovative gas conversion technologies for a sustainable future in Onshore & 
+                Offshore Gas 
+                Conversion 
+                Technologies.</p>
+            <div class="hero-buttons">
+                <a href="../index.html#sevicess" class="btn btn-secondary">Discover Our Solutions</a>
+                <a href="../contact.html" class="btn btn-primary">Get in Touch</a>
+              </div>
+            </div>
+          </div>
+        </section>
 
     <!-- Main Content -->
     <main>
@@ -65,35 +575,86 @@
                     <h2>Gas Conversion Expertise</h2>
                     <p>We have developed strong expertise in gas conversion technologies, having entered into mutual agreements with our team of foreign technology providers that possess well-proven, commercially viable & patented technologies in gas conversion specifically to various natural gas liquids and other intended products. These Technologies come in compact and modular units.</p>
                     
-                    <h3>Our Gas Conversion Technologies Include:</h3>
-                    <ul class="service-list">
-                        <li><i class="fas fa-check-circle"></i> Flare gas to Diesel or Gasoline</li>
-                        <li><i class="fas fa-check-circle"></i> Flare gas to LNG, CNG or LPG</li>
-                        <li><i class="fas fa-check-circle"></i> Modular gas to Power technologies</li>
+                    
+                    <div class="container">
+
+                        
+                        <div class="demo-section">
+                            
+                            <div class="space-between-sections river">
+
+                        </div>
+                            
+                        
+                        <!-- <div class="demo-section">
+
+                            
+                            <div class="river">
+
+                        </div> -->
+                            
+                            
+                            <div class="service-content">
+                                <h3>Our Gas Conversion Technologies Include:</h3>
+                                <div class="space-between-sections river"></div>
+                                <ul class="service-list">
+                                    <li><i class="fas fa-check-circle"></i> Flare gas to Diesel or Gasoline</li>
+                                    <li><i class="fas fa-check-circle"></i> Flare gas to LNG, CNG or LPG</li>
+                                    <li><i class="fas fa-check-circle"></i> Modular gas to Power technologies</li>
+                        
                         <li><i class="fas fa-check-circle"></i> Natural gas to Blue Ammonia</li>
                         <li><i class="fas fa-check-circle"></i> Natural gas to Blue Hydrogen</li>
                     </ul>
                 </div>
-                <div class="service-image">
-                    <img src="../images/service-gas-conversion.jpg" alt="Gas Conversion Technologies">
+                <div class="gallery-track">
+                    <div class="gas-tech-image">
+                        <img src="../images/GAS-CONVERSION/reducing-ghg-landfill-gas-conversion.jpg" alt="Gas Conversion Technologies-1">
+                    </div>
+                    <div class="gas-tech-image">
+                        <img src="../images/GAS-CONVERSION/oil-field-technologie.jpg" alt="Gas Conversion Technologies-2">
+                    </div>
+                    <div class="gas-tech-image">
+                        <img src="../images/GAS-CONVERSION/modular poer substation.jpg" alt="Gas Conversion Technologies-4">
+                    </div>
+                    <div class="gas-tech-image">
+                        <img src="../images/GAS-CONVERSION/gas-conversion-plant.png" alt="Combustion Engine">
+                    </div>
+                    <div class="gas-tech-image">
+                        <img src="../images/GAS-CONVERSION/generator-conversion-kit.JPG" alt="Gas Conversion Technologies-5">
+                    </div>
                 </div>
             </div>
         </section>
+        
+        
 
         <section class="dual-fuel-technology">
+            <!-- <div class="demo-section">
+                            
+            <div class="space-between-sections river">
+
+        </div> -->
+            
+        
+        <div class="demo-section">
+
+            
+            <div class="river">
+
+        </div>
             <div class="container">
                 <h2>Combustion Engines | Dual Fuel Technology & Support Services</h2>
                 <p>As part of our contribution to the actualization of the Nigerian Gas Masterplan, we have developed great capability in Autogas Technologies. We make use of Italian Standard Sequential CNG kits that are the latest in CNG Autogas technology. We install these kits in your vehicles or Power generators professionally with minimal damages and offer Bi-annual checks and certifications for your assets.</p>
                 
-                <div class="gas-tech-grid">
+                <div class="gallery-track">
                     <div class="gas-tech-image">
-                        <img src="../images/gas-tech-1.jpg" alt="Gas Technology">
+                        <img src="../images/GAS-CONVERSION/dual_fuel-engine.avif" alt="Gas Conversion Technologies3">
                     </div>
                     <div class="gas-tech-image">
-                        <img src="../images/gas-tech-2.jpg" alt="Gas Technology">
+                        <img src="../images/GAS-CONVERSION/combustion-engine.jpg" alt="Combustion Engine">
                     </div>
                     <div class="gas-tech-image">
-                        <img src="../images/gas-tech-3.jpg" alt="Gas Technology">
+                        <img src="../images/GAS-CONVERSION/DualFuelEngine-1.webp" alt="Gas Conversion Technologies3">
                     </div>
                 </div>
                 
@@ -155,47 +716,89 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="../images/logo-placeholder.png" alt="SEESL Logo">
-                    <p>Solution Energy and Engineering Services Limited</p>
-                </div>
-                <div class="footer-links">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="../index.html">Home</a></li>
-                        <li><a href="../about.html">About</a></li>
-                        <li><a href="../services.html">Services</a></li>
-                        <li><a href="../contact.html">Contact</a></li>
-                        <li><a href="../privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="../terms-of-service.html">Terms of Service</a></li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> No 5B Salem Avenue off Aker Road, Rumuolumeni, Port-Harcourt, Rivers State</p>
-                    <p><i class="fas fa-phone"></i> +234 (915) 312-3973</p>
-                    <p><i class="fas fa-phone"></i> +234 (818) 216-8127</p>
-                    <p><i class="fas fa-envelope"></i> info@solutionenergylimited.com</p>
-                </div>
-                <div class="footer-social">
-                    <h3>Follow Us</h3>
-                    <div class="social-icons">
-                        <a href="https://www.facebook.com/profile.php?id=100091983091138" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/message/6BQ37R6VWG2VA1" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 All Rights Reserved | Solution Energy Limited</p>
-            </div>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <h4>About SEESL</h4>
+          <p>Solution Energy and Engineering Services Ltd provides world-class engineering, procurement, installation, asset management, and ISO certification services to businesses across Africa and beyond.</p>
         </div>
-    </footer>
+        
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="process.html">Process</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-services">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="services/engineering.html">Engineering</a></li>
+            <li><a href="services/procurement.html">Procurement</a></li>
+            <li><a href="services/asset-management.html">Asset Management</a></li>
+            <li><a href="services/renewable-energy.html">Renewable Energy</a></li>
+            <li><a href="services/iso-certification/">ISO Certification</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-contact">
+          <h4>Contact Us</h4>
+          <ul>
+            <li><i class="fas fa-envelope"></i> info@solutionenergylimited.com</li>
+            <li><i class="fas fa-phone"></i> +234 915 312 3973</li>
+            <li><i class="fas fa-map-marker-alt"></i> No 8B Salem Avenue <br> off Aker Road Rumolumeni <br> Port Harcourt, Nigeria</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Social Media Icons -->
+      <div class="footer-social">
+        <h4>Connect With Us</h4>
+        <div class="social-icons-footer">
+          <a href="https://web.facebook.com/profile.php?id=100091983091138" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.linkedin.com/company/solution-energy-and-engineering-services-ltd/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.instagram.com/solution_energylimited" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/message/6BQ37R6VWG2VA1" target="_blank" aria-label="Whatsapp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; <span id="current-year"></span> Solution Energy Limited. All Rights Reserved.</p>
+        <div class="footer-legal">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-of-service.html">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
     <script src="../js/main.js"></script>
+    <script>
+        // This script is just to verify animations are working 
+        // It's not necessary for the actual animations
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Page loaded. Animations should be running.');
+            
+            // Check if animations are applied
+            const riverElements = document.querySelectorAll('.river');
+            riverElements.forEach(el => {
+                console.log('River element found:', el);
+                const style = window.getComputedStyle(el);
+                console.log('Animation:', style.animation);
+            });
+            
+            const spaceBetweenRivers = document.querySelectorAll('.space-between-sections.river');
+            spaceBetweenRivers.forEach(el => {
+                console.log('Space between river element found:', el);
+                const style = window.getComputedStyle(el);
+                console.log('Animation:', style.animation);
+            });
+        });
+    </script>
 </body>
 </html>
