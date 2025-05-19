@@ -17,22 +17,67 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize form validation if form exists
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
-      initFormValidation(contactForm);
-    }
+      initFormValidation(contactForm); // This now includes the AJAX submit logic
+    } 
     
-    // Initialize carousels if they exist
-    if (document.querySelector('.partners-carousel')) {
-      initPartnersCarousel();
-    }
     
-    if (document.querySelector('.projects-carousel')) {
-      initProjectsCarousel();
-    }
-    
-    // Initialize modals if they exist
+    // Initialize modals (handles success modal closing, and any data-modal triggers)
     if (document.querySelector('.modal')) {
       initModals();
     }
+
+        // Initialize carousels
+        if (document.querySelector('.tech-carousel')) {
+          setupCarousel('.tech-carousel'); // Uses modified setupCarousel
+      }
+      if (document.querySelector('.projects-carousel')) {
+          setupCarousel('.projects-carousel'); // Uses modified setupCarousel
+      }
+
+  // Initialize Lightbox
+const lightbox = document.getElementById('lightbox');
+
+if (lightbox) { // Only proceed if the main lightbox element exists
+    const lightboxImg = lightbox.querySelector('.lightbox-img');
+    const closeBtn = lightbox.querySelector('.lightbox-close');
+
+    if (lightboxImg && closeBtn) { // Ensure critical inner elements also exist
+        document.querySelectorAll('.thumbnail').forEach(img => {
+            img.addEventListener('click', (e) => {
+                e.preventDefault(); // Good practice if thumbnails are ever wrapped in <a>
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt || "Expanded view"; // Set alt text for accessibility
+                lightbox.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Prevent body scrolling when lightbox is open
+            });
+        });
+
+        const closeLightbox = () => {
+            lightbox.classList.add('hidden');
+            document.body.style.overflow = ''; // Restore body scrolling
+        };
+
+        closeBtn.addEventListener('click', closeLightbox);
+        
+        lightbox.addEventListener('click', e => {
+            if (e.target === lightbox) { // Click on the overlay itself
+                closeLightbox();
+            }
+        });
+
+        // Optional: Close lightbox with ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
+                closeLightbox();
+            }
+        });
+    } else {
+        // console.warn("Lightbox image container or close button not found."); // Optional for debugging
+    }
+} else {
+    // console.warn("Lightbox element not found."); // Optional for debugging
+}
+
   });
   
   /**
@@ -169,10 +214,113 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
     
-    // Comment out the JavaScript for testing
-    // document.getElementById('contact-form').addEventListener('submit', function(e) {
-    //     // Your validation and submission logic here
-    // });
+    
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault(); // Prevent default HTML form submission
+    
+      let isValidForm = true;
+      // Re-validate all required inputs before submission
+      inputs.forEach(input => {
+        if (input.hasAttribute('required')) {
+          if (!validateInput(input)) {
+            isValidForm = false;
+          }
+        }
+        if (input.type === 'email') {
+          if (!validateEmail(input)) { // Assuming validateEmail also checks required if applicable
+            isValidForm = false;
+          }
+        }
+      });
+    
+      if (!isValidForm) {
+        // Optionally, focus the first invalid input or show a general message
+        const firstError = form.querySelector('.form-group.error input, .form-group.error select, .form-group.error textarea');
+        if (firstError) {
+          firstError.focus();
+        }
+        return; // Stop if form is not valid
+      }
+    
+      // If form is valid, proceed with submission
+      const formData = new FormData(form);
+      const submitButton = form.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton.textContent;
+      submitButton.disabled = true;
+      submitButton.textContent = 'Submitting...';
+    
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: formData,
+          headers: {
+            'Accept': 'application/json' // Important for Formspree to return JSON
+          }
+        });
+    
+        if (response.ok) {
+          // Formspree submission successful
+          form.reset(); // Clear the form fields
+          // Remove any lingering validation error messages after successful submission
+          form.querySelectorAll('.error-message').forEach(el => el.remove());
+          form.querySelectorAll('.form-group.error').forEach(el => el.classList.remove('error'));
+    
+          // Show the success modal
+          const successModal = document.getElementById('success-modal');
+          if (successModal) {
+            // Check if initModals has made it 'none' or if it's using the 'hidden' class.
+            // The current initModals uses style.display.
+            // Let's ensure it becomes visible using the same mechanism.
+            successModal.style.display = 'block'; 
+            // If your modals rely on 'open' class from CSS, use:
+            // successModal.classList.add('open'); 
+            // successModal.classList.remove('hidden');
+            
+            // Ensure body scroll is handled if initModals isn't already doing it upon opening this specific modal
+             if (typeof document.body.style.overflow !== 'undefined') { // Check if style property exists
+                document.body.style.overflow = 'hidden';
+             }
+    
+    
+            // If you have a specific close button for this modal inside it (e.g., class .modal-btn)
+            // and want to add an event listener here (though initModals should cover general .modal-close)
+            const modalCloseButton = successModal.querySelector('.modal-btn, .modal-close'); // Adjust selector if needed
+            if (modalCloseButton) {
+              modalCloseButton.onclick = () => { // Use onclick for simplicity here or addEventListener
+                successModal.style.display = 'none';
+                if (typeof document.body.style.overflow !== 'undefined') {
+                    document.body.style.overflow = '';
+                }
+              };
+            }
+          } else {
+            alert('Thank you! Your message has been sent.'); // Fallback if modal not found
+          }
+        } else {
+          // Formspree returned an error
+          response.json().then(data => {
+            if (data.errors) {
+              // Display Formspree errors (e.g., "email is not valid")
+              // This is a simple alert, you might want to display them near fields
+              alert(data.errors.map(error => error.message).join("\n"));
+            } else {
+              alert('Oops! There was a problem submitting your form. Please try again.');
+            }
+          }).catch(() => {
+            alert('Oops! There was a problem submitting your form and parsing the response.');
+          });
+        }
+      } catch (error) {
+        console.error('Submission error:', error);
+        alert('Oops! There was a network error. Please try again.');
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+      }
+    });
+
+
     
     // Input validation function
     function validateInput(input) {
@@ -223,127 +371,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
-  /**
-   * Partners Carousel
-   */
-  function initPartnersCarousel() {
-    const carousel = document.querySelector('.partners-carousel');
-    const carouselContainer = carousel.querySelector('.carousel-container');
-    const prevButton = carousel.querySelector('.prev-button');
-    const nextButton = carousel.querySelector('.next-button');
-    const items = carousel.querySelectorAll('.partner-item');
-    
-    if (items.length === 0) return;
-    
-    let currentIndex = 0;
-    let itemWidth = items[0].offsetWidth + parseInt(getComputedStyle(items[0]).marginRight);
-    let itemsPerView = Math.floor(carouselContainer.offsetWidth / itemWidth);
-    
-    // Update on window resize
-    window.addEventListener('resize', function() {
-      itemWidth = items[0].offsetWidth + parseInt(getComputedStyle(items[0]).marginRight);
-      itemsPerView = Math.floor(carouselContainer.offsetWidth / itemWidth);
-      updateCarousel();
-    });
-    
-    // Move to previous slide
-    prevButton.addEventListener('click', function() {
-      currentIndex = Math.max(currentIndex - 1, 0);
-      updateCarousel();
-    });
-    
-    // Move to next slide
-    nextButton.addEventListener('click', function() {
-      currentIndex = Math.min(currentIndex + 1, items.length - itemsPerView);
-      updateCarousel();
-    });
-    
-    // Update carousel position
-    function updateCarousel() {
-      const translateX = -currentIndex * itemWidth;
-      carouselContainer.style.transform = `translateX(${translateX}px)`;
-      
-      // Update button states
-      prevButton.disabled = currentIndex === 0;
-      nextButton.disabled = currentIndex >= items.length - itemsPerView;
-    }
-    
-    // Initial update
-    updateCarousel();
-  }
-  
-  /**
-   * Projects Carousel
-   */
-  function initProjectsCarousel() {
-    const carousel = document.querySelector('.projects-carousel');
-    const slides = carousel.querySelectorAll('.project-slide');
-    const dots = carousel.querySelectorAll('.dot');
-    const prevButton = carousel.querySelector('.prev-button');
-    const nextButton = carousel.querySelector('.next-button');
-    
-    if (slides.length === 0) return;
-    
-    let currentSlide = 0;
-    
-    // Show slide by index
-    function showSlide(index) {
-      // Hide all slides
-      slides.forEach(slide => {
-        slide.classList.remove('active');
-      });
-      
-      // Deactivate all dots
-      dots.forEach(dot => {
-        dot.classList.remove('active');
-      });
-      
-      // Show current slide and activate dot
-      slides[index].classList.add('active');
-      dots[index].classList.add('active');
-    }
-    
-    // Move to previous slide
-    prevButton.addEventListener('click', function() {
-      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-      showSlide(currentSlide);
-    });
-    
-    // Move to next slide
-    nextButton.addEventListener('click', function() {
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlide(currentSlide);
-    });
-    
-    // Dot navigation
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', function() {
-        currentSlide = index;
-        showSlide(currentSlide);
-      });
-    });
-    
-    // Auto-advance slides
-    let autoAdvance = setInterval(function() {
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlide(currentSlide);
-    }, 5000);
-    
-    // Pause auto-advance on hover
-    carousel.addEventListener('mouseenter', function() {
-      clearInterval(autoAdvance);
-    });
-    
-    carousel.addEventListener('mouseleave', function() {
-      autoAdvance = setInterval(function() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-      }, 5000);
-    });
-    
-    // Initial slide
-    showSlide(currentSlide);
-  }
   
   /**
    * Modal Functionality
@@ -406,59 +433,98 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Clear the form fields when the page loads
-  window.addEventListener('load', function() {
-    const form = document.getElementById('contact-form');
-    if (form) {
-        form.reset(); // Reset the form fields
-    }
-  });
+window.addEventListener('load', function() {
+  // ... (form reset logic) ...
+});
 
-  // Carousel Setup with Autoplay, Arrows & Dots
-function setupCarousel(selector) {
-  const container = document.querySelector(selector);
-  const track = container.querySelector('.'+selector.replace('.', '')+'-track');
-  const items = track.children;
-  const prev = container.querySelector('.prev-' + selector.replace('.', ''));
-  const next = container.querySelector('.next-' + selector.replace('.', ''));
-  const dotsContainer = container.querySelector('.pagination-dots');
-  let index = 0, timer;
-  const total = items.length, interval = 4000;
-
-  // Create and attach dots
-  for (let i = 0; i < total; i++) {
-    const dot = document.createElement('button');
-    dot.addEventListener('click', () => goTo(i));
-    dotsContainer.append(dot);
-  }
-  const dots = dotsContainer.children;
-
-  function update() {
-    track.scrollTo({ left: index * track.clientWidth, behavior: 'smooth' });
-    Array.from(dots).forEach((d, i) => d.classList.toggle('active', i === index));
-  }
-  function nextSlide() { index = (index + 1) % total; update(); }
-  function prevSlide() { index = (index - 1 + total) % total; update(); }
-  function resetTimer() { clearInterval(timer); timer = setInterval(nextSlide, interval); }
-  function goTo(i) { index = i; resetTimer(); update(); }
-
-  prev.addEventListener('click', () => { prevSlide(); resetTimer(); });
-  next.addEventListener('click', () => { nextSlide(); resetTimer(); });
-  resetTimer(); update();
+// Carousel Setup with Autoplay, Arrows & Dots
+function setupCarousel(carouselSelector) { // Note: parameter name changed for clarity
+const container = document.querySelector(carouselSelector);
+if (!container) {
+  // console.warn('Carousel container not found:', carouselSelector);
+  return; 
 }
 
-setupCarousel('.tech-carousel');
-setupCarousel('.projects-carousel');
+let track, items, prev, next, dotsContainer;
+let trackSelector, prevSelector, nextSelector, dotsSelector;
 
-// Lightbox Functionality
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = lightbox.querySelector('.lightbox-img');
-const closeBtn = lightbox.querySelector('.lightbox-close');
-document.querySelectorAll('.thumbnail').forEach(img => {
-  img.addEventListener('click', () => {
-    lightboxImg.src = img.src;
-    lightbox.classList.remove('hidden');
-  });
+if (carouselSelector === '.tech-carousel') {
+  trackSelector = '.tech-track';
+  prevSelector = '.prev-tech';
+  nextSelector = '.next-tech';
+  dotsSelector = '.tech-dots'; 
+} else if (carouselSelector === '.projects-carousel') {
+  trackSelector = '.proj-track';
+  prevSelector = '.prev-proj';
+  nextSelector = '.next-proj';
+  dotsSelector = '.proj-dots';
+} else {
+  console.error('Unknown carousel selector for setup:', carouselSelector);
+  return;
+}
+
+track = container.querySelector(trackSelector);
+if (!track) {
+  // console.warn('Carousel track not found for:', carouselSelector, 'using trackSelector:', trackSelector);
+  return; 
+}
+items = track.children;
+prev = container.querySelector(prevSelector);
+next = container.querySelector(nextSelector);
+dotsContainer = container.querySelector(dotsSelector);
+if (!dotsContainer) {
+   dotsContainer = container.querySelector('.pagination-dots');
+}
+
+if (!items || items.length === 0 || !prev || !next || !dotsContainer) {
+  // console.warn('Missing essential carousel elements for:', carouselSelector);
+  return;
+}
+
+let index = 0, timer;
+const total = items.length, interval = 4000;
+
+// Create and attach dots
+dotsContainer.innerHTML = ''; // Clear existing dots if any (e.g., from HTML, though not present now)
+for (let i = 0; i < total; i++) {
+  const dot = document.createElement('button');
+  dot.setAttribute('aria-label', `Go to slide ${i + 1}`); // Accessibility
+  dot.addEventListener('click', () => goTo(i));
+  dotsContainer.append(dot);
+}
+const dots = dotsContainer.children;
+
+function update() {
+  // Ensure track has measurable width for clientWidth to be accurate
+  if (track.clientWidth > 0) {
+      track.scrollTo({ left: index * track.clientWidth, behavior: 'smooth' });
+  } else {
+      // Fallback or log if track width is 0 (e.g., hidden parent)
+      // For now, we'll just prevent error. This might happen if carousel is in a hidden tab/section initially.
+  }
+  Array.from(dots).forEach((d, i) => d.classList.toggle('active', i === index));
+}
+function nextSlide() { index = (index + 1) % total; update(); }
+function prevSlide() { index = (index - 1 + total) % total; update(); }
+function resetTimer() { clearInterval(timer); timer = setInterval(nextSlide, interval); }
+function goTo(i) { index = i; resetTimer(); update(); }
+
+prev.addEventListener('click', () => { prevSlide(); resetTimer(); });
+next.addEventListener('click', () => { nextSlide(); resetTimer(); });
+
+// Initial setup
+resetTimer(); 
+update(); // Call update after dots are created and timer is set
+}
+
+// Form reset on load
+window.addEventListener('load', function() {
+  const form = document.getElementById('contact-form');
+  if (form) {
+      form.reset();
+  }
 });
-closeBtn.addEventListener('click', () => lightbox.classList.add('hidden'));
-lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.add('hidden'); });
+
+
+
 
