@@ -1388,3 +1388,69 @@ input:focus, select:focus, textarea:focus {
     max-width: 100%; /* Ensure images are responsive */
     height: auto; /* Maintain aspect ratio */
 }
+
+
+/* =======Back to Top Button Styling======== */
+#backToTopBtn {
+  display: none; /* Hidden by default, JS will manage visibility */
+  position: fixed; /* Keep it in view while scrolling */
+  bottom: 20px;    /* 20px from the bottom */
+  right: 20px;     /* 20px from the right */
+  z-index: 9999;   /* Ensure it's on top of other content */
+
+  /* Button Appearance */
+  background-color: var(--error); /* Dark background */
+  color: white;           /* White arrow */
+  border: none;           /* No border */
+  outline: none;          /* No outline on focus (optional, consider accessibility) */
+  cursor: pointer;        /* Pointer cursor on hover */
+  padding: 0;             /* Remove default padding */
+  border-radius: 50%;     /* Circular shape */
+  width: 50px;            /* Fixed width */
+  height: 50px;           /* Fixed height */
+  font-size: 24px;        /* Arrow size */
+  
+  /* For centering the arrow icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Transitions for fade-in/fade-out */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+/* Style for when the button is visible */
+#backToTopBtn.show {
+  display: flex; /* Or 'block' if not using flex for centering */
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Hover effect */
+#backToTopBtn:hover {
+  background-color: #555; /* Slightly lighter background on hover */
+}
+
+/* Basic focus styling for accessibility - you can enhance this */
+#backToTopBtn:focus-visible {
+  outline: 2px solid dodgerblue;
+  outline-offset: 2px;
+}
+
+/*
+If you don't want to use display: flex for centering the arrow,
+you can use line-height (if the button has a fixed height)
+and text-align:
+#backToTopBtn {
+  ...
+  text-align: center;
+  line-height: 50px; // Same as height
+  ...
+}
+#backToTopBtn.show {
+  display: block; // Instead of flex
+  ...
+}
+*/

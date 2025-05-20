@@ -33,6 +33,7 @@
 
   .contact-form-container {
     padding: 15px; /* Adjust padding as needed */
+
   }
 
   p .response-time {
@@ -143,6 +144,27 @@
   
   /* ... existing styles ... */
 
+  .map-container {
+    overflow: hidden; /* Prevent overflow */
+    width: 100%; /* Ensure it takes full width */
+    max-width: 100%; /* Prevent exceeding the container width */
+  }
+
+  .map-placeholder {
+    position: relative; /* Positioning for the overlay */
+    width: 100%; /* Ensure it takes full width */
+    height: 0; /* Set height to 0 for responsive aspect ratio */
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  }
+
+  .map-placeholder iframe {
+    position: absolute; /* Positioning for the iframe */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    border: 0; /* Remove border */
+  }
 
   </style>
 
@@ -479,6 +501,11 @@
     <!-- Added modal-close class so initModals picks it up -->
   </div>
 </div>
+
+<!-- Back to Top Button HTML -->
+<button id="backToTopBtn" aria-label="Scroll to top" title="Go to top">
+  ↑ <!-- Unicode upward arrow -->
+</button>
 
   <!-- Scripts -->
   <script src="./js/main.js"></script>

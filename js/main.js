@@ -526,5 +526,50 @@ window.addEventListener('load', function() {
 });
 
 
+// Wait for the DOM to be fully loaded before running the script
+document.addEventListener("DOMContentLoaded", function() {
+
+  // Get the button element by its ID
+  const backToTopButton = document.getElementById("backToTopBtn");
+
+  // Define the scroll distance (in pixels) when the button should appear
+  const scrollThreshold = 100;
+
+  // Function to show or hide the button based on scroll position
+  function toggleBackToTopButton() {
+      // Check current vertical scroll position
+      // window.scrollY is the modern standard.
+      // document.documentElement.scrollTop || document.body.scrollTop for older browser compatibility
+      const scrolled = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop;
+
+      if (scrolled > scrollThreshold) {
+          // If scrolled more than the threshold, add 'show' class to make it visible
+          backToTopButton.classList.add("show");
+      } else {
+          // Otherwise, remove 'show' class to hide it
+          backToTopButton.classList.remove("show");
+      }
+  }
+
+  // Function to smoothly scroll to the top of the page
+  function scrollToTop() {
+      window.scrollTo({
+          top: 0,
+          behavior: "smooth" // This enables smooth scrolling
+      });
+  }
+
+  // Add event listener for scroll events on the window
+  window.addEventListener("scroll", toggleBackToTopButton);
+
+  // Add event listener for click events on the button
+  backToTopButton.addEventListener("click", scrollToTop);
+
+  // Initially check the scroll position when the page loads
+  // (in case the page is loaded scrolled down, e.g., via a hash link or refresh)
+  toggleBackToTopButton();
+});
+
+
 
 
