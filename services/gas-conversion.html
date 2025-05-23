@@ -12,445 +12,466 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-/* ==========================================================================
-   SEESL Gas Conversion Page - Organized Stylesheet
-   ========================================================================== */
-
-/* -----------------------------------------------------------------------------
-   1. TYPOGRAPHY & BASIC STYLES
-   -------------------------------------------------------------------------- */
-body {
-    font-family: 'Titillium Web', sans-serif;
+        /* ==========================================================================
+           Gas Conversion Page - Enhanced Inline Stylesheet (Senior Dev Approach)
+           ==========================================================================
+           Table of Contents:
+           --------------------------------------------------------------------------
+           1. PAGE-SPECIFIC FONT STYLES & BASE OVERRIDES
+              1.1. Font Imports (if not global)
+              1.2. Body & Heading Font Application (Page-Specific)
+           2. SECTION ENHANCEMENTS (Modern & Interactive)
+              2.1. Hero Section Text (Specific Animations - if kept)
+              2.2. Service Overview (List styling, Background)
+              2.3. Gas Technology Image Grid
+              2.4. Dual Fuel Technology Section
+              2.5. Benefits Section (Interactive Cards)
+              2.6. "River" Section Dividers (Enhanced)
+           3. DARK MODE (Page-Specific Overrides for Enhanced Elements)
+           4. ANIMATIONS (Keyframes for Page-Specific Effects)
+           --------------------------------------------------------------------------
+        */
+        
+        /* -----------------------------------------------------------------------------
+           1. PAGE-SPECIFIC FONT STYLES & BASE OVERRIDES
+           -------------------------------------------------------------------------- */
+        /* 1.1. Font Imports - Assuming these are specific to service pages */
+        @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&family=Orbitron:wght@500&display=swap');
+        
+        /* 1.2. Body & Heading Font Application */
+        body {
+            font-family: 'Titillium Web', sans-serif;
+        }
+        
+        h1, h2, h3, h4 { /* Page-specific font for headings */
+            font-family: 'Orbitron', sans-serif;
+            /* Base color will come from global styles (e.g., var(--text) or var(--primary)) */
+        }
+        
+        /* Ensure section titles use consistent global styling,
+           unless a specific override is needed for this page. */
+        .service-overview h2,
+        .dual-fuel-technology h2,
+        .benefits h2,
+        .cta-section h2 {
+            /* These should primarily use .section-title h2 from global styles.css */
+            /* color: var(--primary-hover); */ /* Example if a slightly different shade is needed */
+        }
+        
+        
+        /* -----------------------------------------------------------------------------
+           2. SECTION ENHANCEMENTS (Modern & Interactive)
+           -------------------------------------------------------------------------- */
+        
+        /* 2.1. Hero Section Text (If typing/glow animations are kept) */
+        /* Assuming global .hero styles handle layout. These are for text effects. */
+        .hero-content .typing-effect { /* If you keep this from engineering.html */
+            /* Styles for typing effect... (as in engineering.html) */
+        }
+        
+        /* 2.2. Service Overview */
+        .service-overview {
+            position: relative;
+            overflow: hidden; /* For the background effect */
+            /* Padding comes from global section styles */
+        }
+        .service-overview .background-image-effect { /* Renamed from .background-image */
+            position: absolute; 
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.1), rgba(var(--secondary-rgb), 0.15));
+            z-index: 0; /* Behind content */
+            transition: opacity 0.5s ease-in-out;
+        }
+        [data-theme="dark"] .service-overview .background-image-effect {
+            background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.2), rgba(var(--secondary-rgb), 0.25));
+        }
+        .service-overview .service-content, /* Text content */
+        .service-overview .service-list-container { /* List container */
+            position: relative;
+            z-index: 1; /* Above background effect */
+        }
+        
+        .service-overview .service-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* More robust responsive columns */
+            gap: var(--spacing-md);
+            padding: 0; /* Remove padding if items handle it */
+            list-style: none;
+            margin-top: var(--spacing-md);
+        }
+        .service-overview .service-list li {
+            background-color: var(--background-alt);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--border-radius-sm);
+            border-left: 4px solid var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            transition: transform 0.3s ease, background-color 0.3s ease, border-left-color 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+        .service-overview .service-list li:hover {
+            transform: translateX(5px) scale(1.02);
+            background-color: var(--background); /* Lighten on hover */
+            border-left-color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+        .service-overview .service-list li i {
+            color: var(--secondary);
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+        .service-overview .service-list li:hover i {
+            color: var(--primary);
+        }
+        
+        /* 2.3. Gas Technology Image Grid */
+        /* .gallery-track is used for gas-tech images & dual fuel images */
+        .gallery-track {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+            gap: var(--spacing-lg); /* Consistent spacing */
+            margin: var(--spacing-lg) 0; /* Vertical margin */
+        }
+        .gas-tech-image { /* Card-like container for each image */
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.35s ease;
+            position: relative; /* For overlay */
+            background-color: var(--background-alt); /* Placeholder if image doesn't load */
+        }
+        .gas-tech-image img { /* The image itself */
+            display: block;
+            width: 100%;
+            height: 250px; /* Fixed height for uniform grid items */
+            object-fit: cover;
+            transition: transform 0.35s ease;
+        }
+        .gas-tech-image:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: var(--shadow-lg);
+        }
+        .gas-tech-image:hover img {
+            transform: scale(1.1);
+        }
+        /* Optional: Subtle overlay on hover */
+        .gas-tech-image::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(var(--primary-rgb), 0.4) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+        .gas-tech-image:hover::after {
+            opacity: 1;
+        }
+        
+        /* 2.4. Dual Fuel Technology Section - ENHANCED LIST */
+.dual-fuel-technology {
+    /* This section might use .section-light or .section-dark from global styles */
+    /* Padding will come from global section styles */
+}
+.dual-fuel-technology h2,
+.dual-fuel-technology h3 { /* Assuming "Our Dual Fuel Services Include:" is an h3 */
+    text-align: center; /* Center the headings in this section */
+    margin-bottom: var(--spacing-sm);
+}
+.dual-fuel-technology h3 {
+    font-size: var(--font-size-xl); /* Slightly larger for sub-section title */
+    color: var(--primary-hover);
+    margin-top: var(--spacing-lg); /* Space above "Our Dual Fuel Services Include:" */
+}
+[data-theme="dark"] .dual-fuel-technology h3 {
+    color: var(--secondary);
 }
 
-h1, h2, h3, h4 {
-    font-family: 'Orbitron', sans-serif;
-    color: #004d99; /* Default color for headings */
+.dual-fuel-technology .service-list { /* The UL element */
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
 }
 
-.service-content h2, 
-.facility-maintenance h2, 
-.visual-highlights h2, 
-.success-gallery h2, 
-.cta-section h2 {
-    color: #0077cc; /* Default color for section headings */
-    margin-bottom: 1rem;
+.dual-fuel-technology .service-list li {
+    background-color: var(--background); /* Card-like background */
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--primary); /* Accent border on the left */
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    display: flex;
+    align-items: flex-start; /* Align icon with top of multi-line text */
+    gap: var(--spacing-sm);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+                border-left-color 0.3s ease,
+                background-color 0.3s ease;
+    cursor: default; /* Default cursor, can be pointer if they link somewhere */
 }
 
-/* -----------------------------------------------------------------------------
-   2. UI COMPONENT EFFECTS & ANIMATIONS
-   -------------------------------------------------------------------------- */
+.dual-fuel-technology .service-list li:hover {
+    transform: translateY(-5px) scale(1.02); /* Lift and slightly scale */
+    box-shadow: var(--shadow-lg); /* More pronounced shadow */
+    border-left-color: var(--secondary); /* Change accent color on hover */
+    background-color: var(--background-alt); /* Slight background change */
+}
 
-/* 3D Floating Card Effect */
-.float-3d {
-    background-color: #ffffff; /* Default background for cards */
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    padding: 1rem;
+.dual-fuel-technology .service-list li i {
+    color: var(--primary); /* Icon color matches initial border */
+    font-size: 1.3em; /* Slightly larger icon */
+    margin-top: 0.1em; /* Fine-tune vertical alignment */
+    min-width: 25px; /* Ensure space for icon */
     text-align: center;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.float-3d:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+.dual-fuel-technology .service-list li:hover i {
+    color: var(--secondary); /* Icon color matches hover border */
+    transform: rotate(-10deg) scale(1.1); /* Subtle icon animation */
 }
 
-/* Thumbnail Image Effects */
-.thumbnail {
-    width: 100%;
-    border-radius: 8px;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+.dual-fuel-technology .service-list li span { /* If text is wrapped in span, otherwise targets text node */
+    flex-grow: 1; /* Allow text to take remaining space */
+    color: var(--text);
+    line-height: 1.5;
 }
 
-.thumbnail:hover {
-    box-shadow: 0 0 20px rgba(0, 153, 255, 0.75);
-    transform: scale(1.03);
+        
+        
+        /* 2.5. Benefits Section (Interactive Cards) */
+        .benefits {
+            /* Uses global section padding */
+            /* Background color set globally by .section-light or .section-dark */
+        }
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Responsive */
+            gap: var(--spacing-lg);
+        }
+        .benefit-card { /* This is a .card with .float-3d behavior */
+            /* Base styles come from global .card */
+            padding: var(--spacing-md); /* Override global .card padding if needed */
+            text-align: center;
+            border-top: 5px solid transparent; /* For hover effect */
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-top-color 0.3s ease;
+        }
+        .benefit-card:hover {
+            /* transform: translateY(-8px); */ /* From global .float-3d:hover */
+            border-top-color: var(--secondary); /* Brand color accent on hover */
+        }
+        .benefit-icon {
+            font-size: 2.5rem; /* Slightly smaller than original */
+            color: var(--primary);
+            margin-bottom: var(--spacing-sm);
+            line-height: 1;
+            width: auto; /* Let icon size dictate */
+            height: auto;
+            display: inline-block; /* For animations */
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .benefit-card:hover .benefit-icon {
+            color: var(--secondary);
+            /* Icon animations will be applied via specific fa-classes below */
+        }
+        .benefit-card h3 { /* Title within benefit card */
+            /* font-family: 'Orbitron', sans-serif; */ /* Inherited */
+            color: var(--text); /* Use standard text color, can be themed */
+            font-size: var(--font-size-lg); /* Consistent sizing */
+            margin-bottom: var(--spacing-xs);
+        }
+        .benefit-card p {
+            font-size: var(--font-size-sm); /* Smaller for card descriptions */
+            color: var(--text-light);
+            line-height: 1.6;
+            /* flex-grow: 1; */ /* Global .card-content handles this */
+            margin-bottom: 0;
+        }
+        
+        
+        /* 2.6. "River" Section Dividers (Enhanced) */
+        .river-divider { /* Replaces .river and .space-between-sections */
+            height: 10px; /* Slimmer, more modern */
+            margin: var(--spacing-xl) 0; /* Consistent vertical spacing */
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(90deg, 
+                rgba(var(--primary-rgb), 0.2), 
+                rgba(var(--secondary-rgb), 0.3), 
+                rgba(var(--primary-rgb), 0.2)
+            );
+            background-size: 300% 100%; /* For animation */
+            animation: animatedGradientFlow 12s ease infinite;
+        }
+        .river-divider::before, .river-divider::after { /* Subtle wave/light effects */
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 30%;
+            top: 0;
+            background: rgba(255,255,255,0.1);
+            filter: blur(5px);
+            opacity: 0.7;
+        }
+        .river-divider::before {
+            left: -40%;
+            animation: riverShine 8s linear infinite 0s;
+        }
+        .river-divider::after {
+            left: -40%;
+            animation: riverShine 8s linear infinite 2s; /* Delayed second shine */
+        }
+        [data-theme="dark"] .river-divider {
+            background: linear-gradient(90deg, 
+                rgba(var(--primary-rgb), 0.3), 
+                rgba(var(--secondary-rgb), 0.4), 
+                rgba(var(--primary-rgb), 0.3)
+            );
+        }
+        [data-theme="dark"] .river-divider::before, 
+        [data-theme="dark"] .river-divider::after {
+            background: rgba(var(--secondary-rgb),0.15);
+        }
+        
+        
+        /* -----------------------------------------------------------------------------
+           3. DARK MODE (Page-Specific Overrides for Enhanced Elements)
+           -------------------------------------------------------------------------- */
+        [data-theme="dark"] .service-overview .service-list li {
+            background-color: rgba(var(--secondary-rgb), 0.1);
+            border-left-color: var(--primary);
+            color: var(--text);
+        }
+        [data-theme="dark"] .service-overview .service-list li:hover {
+            background-color: rgba(var(--secondary-rgb), 0.15);
+            border-left-color: var(--secondary-hover);
+        }
+        [data-theme="dark"] .service-overview .service-list li i {
+            color: var(--primary);
+        }
+        [data-theme="dark"] .service-overview .service-list li:hover i {
+            color: var(--secondary-hover);
+        }
+        
+        [data-theme="dark"] .dual-fuel-technology .service-list li {
+            border-left-color: var(--secondary);
+        }
+        [data-theme="dark"] .dual-fuel-technology .service-list li:hover {
+            border-left-color: var(--primary);
+        }
+        [data-theme="dark"] .dual-fuel-technology .service-list li i {
+            color: var(--secondary);
+        }
+        [data-theme="dark"] .dual-fuel-technology .service-list li:hover i {
+            color: var(--primary);
+        }
+        
+        
+        [data-theme="dark"] .gas-tech-image {
+            box-shadow: 0 2px 10px rgba(255,255,255,0.05);
+            background-color: #2a2a2a;
+        }
+        [data-theme="dark"] .gas-tech-image:hover {
+            box-shadow: 0 5px 15px rgba(255,255,255,0.1);
+        }
+        
+        [data-theme="dark"] .benefits .benefit-card {
+            background-color: var(--background-alt); 
+            border-color: rgba(var(--secondary-rgb), 0.3);
+        }
+        [data-theme="dark"] .benefits .benefit-card:hover {
+            border-top-color: var(--primary);
+        }
+        [data-theme="dark"] .benefits .benefit-icon {
+            color: var(--secondary);
+        }
+        [data-theme="dark"] .benefits .benefit-card:hover .benefit-icon {
+            color: var(--primary);
+        }
+        [data-theme="dark"] .benefits .benefit-card h3 {
+            color: var(--text);
+        }
+        [data-theme="dark"] .benefits .benefit-card p {
+            color: var(--text-light);
+        }
+
+        [data-theme="dark"] .dual-fuel-technology .service-list li {
+    background-color: var(--background-alt); /* Darker card background */
+    border-color: var(--border); /* Dark theme border */
+    border-left-color: var(--secondary); /* Accent for dark theme */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4); /* Dark theme shadow */
 }
 
-/* Service Images Styling */
-.service-image {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 20px; /* Add margin for better spacing */
+[data-theme="dark"] .dual-fuel-technology .service-list li:hover {
+    background-color: #2c3e50; /* Slightly different dark hover background */
+    border-left-color: var(--primary);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
 
-.service-image img {
-    width: 100%;
+[data-theme="dark"] .dual-fuel-technology .service-list li i {
+    color: var(--secondary); /* Icon color matches initial border in dark */
 }
 
-/* -----------------------------------------------------------------------------
-   3. DARK MODE STYLES
-   -------------------------------------------------------------------------- */
-body.dark-mode {
-    background-color: #121212; /* Dark background */
-    color: #ffffff; /* Light text */
+[data-theme="dark"] .dual-fuel-technology .service-list li:hover i {
+    color: var(--primary); /* Icon color matches hover border in dark */
 }
 
-body.dark-mode h1, 
-body.dark-mode h2, 
-body.dark-mode h3, 
-body.dark-mode h4 {
-    color: #ffffff; /* Light headings for dark mode */
+[data-theme="dark"] .dual-fuel-technology .service-list li span {
+    color: var(--text);
 }
 
-body.dark-mode .service-content h2, 
-body.dark-mode .facility-maintenance h2, 
-body.dark-mode .visual-highlights h2, 
-body.dark-mode .success-gallery h2, 
-body.dark-mode .cta-section h2 {
-    color: #ffffff; /* Light section headings for dark mode */
-}
+        
+        
+        /* -----------------------------------------------------------------------------
+           4. ANIMATIONS (Keyframes for Page-Specific Effects)
+           -------------------------------------------------------------------------- */
+        @keyframes animatedGradientFlow { /* For .river-divider */
+            0%{background-position:0% 50%}
+            50%{background-position:100% 50%}
+            100%{background-position:0% 50%}
+        }
+        @keyframes riverShine {
+            0% { left: -40%; opacity: 0; }
+            20% { opacity: 0.7; }
+            80% { opacity: 0.7; }
+            100% { left: 110%; opacity: 0; }
+        }
+        
+        /* Benefit Icon Animations (Maintained from original) */
+        @keyframes moneyWave { 0%, 100% { transform: rotate(0deg) scale(1); } 25% { transform: rotate(-3deg) scale(1.05); } 50% { transform: rotate(3deg) scale(1.1); } 75% { transform: rotate(-2deg) scale(1.05); } }
+        .benefit-card:hover .fa-money-bill-wave { animation: moneyWave 1.2s ease-in-out infinite; }
+        
+        @keyframes leafGrow { 0%, 100% { transform: scale(1) rotate(-5deg); opacity: 0.8; } 50% { transform: scale(1.15) rotate(5deg); opacity: 1; } }
+        .benefit-card:hover .fa-leaf { transform-origin: bottom center; animation: leafGrow 1.8s ease-in-out infinite; }
+        
+        @keyframes syncSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .benefit-card:hover .fa-sync { animation: syncSpin 1.5s linear infinite; }
+        
+        @keyframes tachometerPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+        .benefit-card:hover .fa-tachometer-alt { animation: tachometerPulse 0.9s ease-in-out infinite; }
+        
+        
+        /* Responsive styles for this page, if any, would go into the global
+           styles.css under the appropriate media query, or here if truly page-specific */
+        @media (max-width: 768px) {
+            .service-overview .service-list,
+            .dual-fuel-technology .service-list {
+                grid-template-columns: 1fr; /* Stack list items on smaller screens */
+            }
+            .gallery-track { /* For gas-tech images */
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                margin: var(--spacing-md) 0;
+            }
+            .river-divider {
+                margin: var(--spacing-lg) 0;
+            }
+        }
+        
+        </style>
 
-body.dark-mode .service-list li {
-    color: #f0f0f0; /* Light text for list items in dark mode */
-}
-
-/* -----------------------------------------------------------------------------
-   4. LAYOUT GRIDS & CONTAINERS
-   -------------------------------------------------------------------------- */
-
-/* Highlight Grid Layout */
-.highlight-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px; /* Space between grid items */
-}
-
-/* Gallery Track Layout */
-.gallery-track {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjusted min size for responsiveness */
-    gap: 20px; /* Space between gallery items */
-    margin: 40px;
-}
-
-/* Service Content Layout */
-.service-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: center; /* Center the text for better presentation */
-    margin-top: 20px; /* Space between content and the next section */
-    position: relative; /* Position relative for layering */
-    z-index: 2; /* Ensure content is above the background */
-}
-
-/* Service Overview Section Layout */
-.service-overview {
-    position: relative; /* Position relative for absolute children */
-    margin: 20px 0; /* Add margin for spacing */
-    overflow: hidden; /* Hide overflow for the background image */
-}
-
-/* Service List Container Layout */
-.service-list-container {
-    display: flex;
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center the list container */
-    margin-top: 20px; /* Space between content and list */
-    position: relative; /* Position relative for layering */
-    z-index: 2; /* Ensure list is above the background */
-}
-
-/* -----------------------------------------------------------------------------
-   5. SERVICE LIST COMPONENTS
-   -------------------------------------------------------------------------- */
-
-/* Service List Grid */
-.service-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Responsive grid */
-    gap: 25px; /* Space between grid items */
-    padding: 15px; /* Padding inside the border */
-    border-radius: 8px; /* Rounded corners */
-    background: linear-gradient(to right, #ffcc0086, #ff990070); /* Gradient background */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    width: 100%; /* Full width */
-    max-width: 1200px; /* Max width for the gallery */
-}
-
-/* Service List Items */
-.service-list li {
-    background-color: rgba(255, 255, 0, 0.142); /* Change background color to yellow */
-    border: 2px solid #0077cc; /* Thick border for card */
-    border-radius: 8px; /* Rounded corners */
-    padding: 10px; /* Padding inside the card */
-    display: flex;
-    align-items: center;
-    transition: transform 0.3s ease; /* Animation effect */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-}
-
-.service-list li:hover {
-    transform: scale(1.05); /* Scale effect on hover */
-}
-
-/* Background Gradient Image */
-.background-image {
-    position: absolute; /* Position absolute to cover the section */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, #00ffff86, #255a8c70); /* Color gradient */
-    background-size: cover; /* Cover the entire area */
-    background-position: center; /* Center the background image */
-    z-index: 1; /* Ensure it is behind the content */
-}
-
-/* -----------------------------------------------------------------------------
-   6. GAS TECHNOLOGY IMAGES
-   -------------------------------------------------------------------------- */
-.gas-tech-image {
-    border: 4px solid #0077cc; /* Thick border */
-    border-radius: 8px; /* Rounded corners */
-    overflow: hidden; /* Ensure images don't overflow */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation effect */
-}
-
-.gas-tech-image:hover {
-    transform: scale(1.05); /* Scale effect on hover */
-    box-shadow: 0 0 20px rgba(0, 153, 255, 0.75); /* Shadow effect on hover */
-}
-
-.gas-tech-image img {
-    width: 100%; /* Ensure images take full width */
-    height: auto; /* Maintain aspect ratio */
-    display: block; /* Remove bottom space */
-}
-
-/* -----------------------------------------------------------------------------
-   7. RIVER & SECTION DIVIDER ANIMATIONS
-   -------------------------------------------------------------------------- */
-
-/* Basic Section Divider */
-.space-between-sections {
-    height: 20px;
-    background: linear-gradient(to right, #00ffff86, #255a8c70);
-    border-radius: 10px;
-    margin: 20px 0;
-}
-
-/* Animated Gradient Flow Effect */
-.space-between-sections.river {
-    background: linear-gradient(to right, #00ffff86, #255a8c70);
-    background-size: 200% 100%;
-    animation: gradient-flow 10s linear infinite;
-}
-
-@keyframes gradient-flow {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 200% 0%; }
-}
-
-/* River Component */
-.river {
-    height: 30px; /* Increased height for better visibility */
-    background: linear-gradient(to right, #00aaff, #005577); /* Gradient colors for the river */
-    border-radius: 10px; /* Rounded edges for a more natural look */
-    position: relative; /* Position for the pseudo-element */
-    overflow: hidden; /* Hide overflow for the animation */
-}
-
-/* River Wave Animation */
-.river::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%; /* Start off-screen */
-    width: 200%; /* Double the width for smooth animation */
-    height: 100%;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)); /* White wave effect */
-    animation: wave-flow 3s linear infinite; /* Animation for flowing effect */
-}
-
-/* -----------------------------------------------------------------------------
-   X. BENEFITS SECTION STYLES (New or to be added/modified)
-   -------------------------------------------------------------------------- */
-
- .benefits {
-    padding: 40px 0;
-    background-color: #f4f7f6; /* Light mode background for the section */
-    /* This ensures the section itself takes this color */
-}
-
-/*
-   IMPORTANT FOR DARK MODE BACKGROUND:
-   The .container div INSIDE the .benefits section might have its own background
-   (e.g., white) from your global styles.css. We need to make sure it's transparent
-   in dark mode so the .benefits section's dark background can show through.
-*/
-.benefits .container {
-    /* By default, ensure the container is transparent.
-       If your global .container has a background, this will override it
-       ONLY when the container is inside .benefits. */
-    background-color: transparent;
-}
-
-body.dark-mode .benefits {
-    background-color: #1f1f1f; /* Dark mode background for the SECTION */
-}
-
-/*
-   This rule explicitly ensures that the .container *within* .benefits
-   is also transparent (or inherits the section's dark background) in dark mode.
-   This is crucial if your global .container style has a background color.
-*/
-body.dark-mode .benefits .container {
-    background-color: transparent; /* Ensures it doesn't have its own conflicting background */
-}
-
-
-.benefits h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #004d99; /* Match heading color */
-}
-
-body.dark-mode .benefits h2 {
-    color: #e0e0e0; /* Light heading for dark mode */
-}
-
-.benefits-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive columns */
-    gap: 30px; /* Space between cards */
-    /* Padding should ideally be on the .container or .benefits, not the grid itself
-       if .container handles page width constraints. */
-}
-
-.benefit-card {
-    background-color: #ffffff; /* Card background in light mode */
-    border-radius: 12px;
-    padding: 25px 20px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid #e0e0e0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.benefit-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 25px rgba(0, 77, 153, 0.15);
-}
-
-body.dark-mode .benefit-card {
-    background-color: #2a2a2a; /* Card background in dark mode */
-    border-color: #444;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-body.dark-mode .benefit-card:hover {
-    box-shadow: 0 12px 25px rgba(0, 119, 204, 0.25);
-}
-
-.benefit-icon {
-    font-size: 3rem;
-    color: #0077cc;
-    margin-bottom: 20px;
-    line-height: 1;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-body.dark-mode .benefit-icon {
-    color: #3498db;
-}
-
-.benefit-card h3 {
-    font-family: 'Orbitron', sans-serif;
-    color: #004d99;
-    font-size: 1.4rem;
-    margin-bottom: 10px;
-}
-
-body.dark-mode .benefit-card h3 {
-    color: #f0f0f0;
-}
-
-.benefit-card p {
-    font-size: 0.95rem;
-    color: #555;
-    line-height: 1.6;
-    flex-grow: 1;
-}
-
-body.dark-mode .benefit-card p {
-    color: #cccccc;
-}
-
-/* --- Animations for Benefit Icons --- */
-@keyframes moneyWave {
-    0%, 100% { transform: rotate(0deg) scale(1); }
-    25% { transform: rotate(-3deg) scale(1.05); }
-    50% { transform: rotate(3deg) scale(1.1); }
-    75% { transform: rotate(-2deg) scale(1.05); }
-}
-.benefit-card:hover .fa-money-bill-wave {
-    animation: moneyWave 1.2s ease-in-out infinite;
-}
-
-@keyframes leafGrow {
-    0%, 100% { transform: scale(1) rotate(-5deg); opacity: 0.8; }
-    50% { transform: scale(1.15) rotate(5deg); opacity: 1; }
-}
-.benefit-card:hover .fa-leaf {
-    transform-origin: bottom center;
-    animation: leafGrow 1.8s ease-in-out infinite;
-}
-
-@keyframes syncSpin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-.benefit-card:hover .fa-sync {
-    animation: syncSpin 1.5s linear infinite;
-}
-
-@keyframes tachometerPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.12); }
-}
-.benefit-card:hover .fa-tachometer-alt {
-    animation: tachometerPulse 0.9s ease-in-out infinite;
-}
-
-/* Add a media query for smaller screens if cards get too narrow */
-@media (max-width: 360px) {
-    .benefits-grid {
-        grid-template-columns: 1fr; /* Single column on very small screens */
-    }
-}
-
-
-@keyframes wave-flow {
-    0% {
-        left: -100%; /* Start off-screen */
-    }
-    100% {
-        left: 100%; /* Move to the right */
-    }
-}
-
-/* -----------------------------------------------------------------------------
-   8. RESPONSIVE STYLES
-   -------------------------------------------------------------------------- */
-@media (max-width: 768px) {
-    .gallery-track {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjusted min size for responsiveness */
-        gap: 20px; /* Space between gallery items */
-    }
-}
-
-    </style>
 </head>
 <body>
      <!-- Header -->
@@ -586,12 +607,12 @@ body.dark-mode .benefit-card p {
                         </div>
                             
                         
-                        <!-- <div class="demo-section">
+                        <div class="demo-section">
 
                             
                             <div class="river">
 
-                        </div> -->
+                        </div>
                             
                             
                             <div class="service-content">
@@ -629,43 +650,20 @@ body.dark-mode .benefit-card p {
         
 
         <section class="dual-fuel-technology">
-            <!-- <div class="demo-section">
-                            
-            <div class="space-between-sections river">
-
-        </div> -->
-            
-        
-        <div class="demo-section">
-
-            
-            <div class="river">
-
-        </div>
             <div class="container">
                 <h2>Combustion Engines | Dual Fuel Technology & Support Services</h2>
                 <p>As part of our contribution to the actualization of the Nigerian Gas Masterplan, we have developed great capability in Autogas Technologies. We make use of Italian Standard Sequential CNG kits that are the latest in CNG Autogas technology. We install these kits in your vehicles or Power generators professionally with minimal damages and offer Bi-annual checks and certifications for your assets.</p>
                 
-                <div class="gallery-track">
-                    <div class="gas-tech-image">
-                        <img src="../images/GAS-CONVERSION/dual_fuel-engine.avif" alt="Gas Conversion Technologies3">
-                    </div>
-                    <div class="gas-tech-image">
-                        <img src="../images/GAS-CONVERSION/combustion-engine.jpg" alt="Combustion Engine">
-                    </div>
-                    <div class="gas-tech-image">
-                        <img src="../images/GAS-CONVERSION/DualFuelEngine-1.webp" alt="Gas Conversion Technologies3">
-                    </div>
-                </div>
+                <!-- ... gallery-track with images ... -->
                 
                 <h3>Our Dual Fuel Services Include:</h3>
-                <ul class="service-list two-column">
-                    <li><i class="fas fa-car"></i> PMS and Auto-CNG for light duty vehicles including Tricycles</li>
-                    <li><i class="fas fa-truck"></i> AGO and Auto-CNG for heavy duty vehicles</li>
-                    <li><i class="fas fa-bolt"></i> Installation of CNG Module for Modular power generators</li>
-                    <li><i class="fas fa-industry"></i> Installation of LNG Module for Industrial Power generators</li>
-                    <li><i class="fas fa-tools"></i> Post-Installation Support services</li>
-                    <li><i class="fas fa-cogs"></i> Sales of Quality parts and Accessories</li>
+                <ul class="service-list"> <!-- Ensure this ul has the class "service-list" -->
+                    <li><i class="fas fa-car"></i> <span>PMS and Auto-CNG for light duty vehicles including Tricycles</span></li>
+                    <li><i class="fas fa-truck"></i> <span>AGO and Auto-CNG for heavy duty vehicles</span></li>
+                    <li><i class="fas fa-bolt"></i> <span>Installation of CNG Module for Modular power generators</span></li>
+                    <li><i class="fas fa-industry"></i> <span>Installation of LNG Module for Industrial Power generators</span></li>
+                    <li><i class="fas fa-tools"></i> <span>Post-Installation Support services</span></li>
+                    <li><i class="fas fa-cogs"></i> <span>Sales of Quality parts and Accessories</span></li>
                 </ul>
             </div>
         </section>

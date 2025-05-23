@@ -14,55 +14,99 @@
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
 
     <style>
+        /* ==========================================================================
+           Procurement Services Page - Inline Stylesheet
+           ==========================================================================
+           Table of Contents:
+           --------------------------------------------------------------------------
+           1. PAGE DEFAULTS & TYPOGRAPHY
+              1.1. Body & Heading Base Styles (Page-Specific Fonts)
+              1.2. Section Heading Colors
+              1.3. Intro Text Paragraph
+           2. CARD & THUMBNAIL STYLES (Page-Specific Enhancements/Overrides)
+              2.1. Floating 3D Cards (.float-3d)
+              2.2. Thumbnails (.thumbnail, .placeholder-img)
+           3. SECTION-SPECIFIC STYLES
+              3.1. Generic Service Image Container (.service-image)
+              3.2. Procurement Portfolio / Highlight Grid (.highlight-grid, .procurement-items-grid)
+              3.3. Supply Capabilities Section
+              3.4. Gallery Track (for carousels or grids)
+           4. DARK MODE STYLES (Using [data-theme="dark"])
+           5. RESPONSIVE ADJUSTMENTS
+           --------------------------------------------------------------------------
+        */
+        
+        /* -----------------------------------------------------------------------------
+           1. PAGE DEFAULTS & TYPOGRAPHY
+           -------------------------------------------------------------------------- */
+        
+        /* 1.1. Body & Heading Base Styles (Page-Specific Fonts) */
         body {
             font-family: 'Titillium Web', sans-serif;
         }
-
+        
         h1, h2, h3, h4 {
             font-family: 'Orbitron', sans-serif;
             color: var(--primary); /* Default color for headings from variables.css */
         }
+        
+        /* 1.2. Section Heading Colors */
         /* Ensure section titles use the primary color from variables.css directly */
-        .service-content h2,
-        .procurement-portfolio h2, /* New section */
+        .service-content h2,       /* Assuming .service-content is a general wrapper */
+        .procurement-portfolio h2,
         .procurement-advantage h2,
-        .supply-capabilities h2, /* Renamed section */
+        .supply-capabilities h2,
         .success-gallery h2,
         .cta-section h2 {
             color: var(--primary);
             margin-bottom: 1.5rem; /* Consistent margin */
         }
-
-
+        
+        /* 1.3. Intro Text Paragraph */
+        .intro-text p { /* Used in .procurement-advantage section */
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center; 
+            margin-bottom: 3rem;
+        }
+        
+        /* -----------------------------------------------------------------------------
+           2. CARD & THUMBNAIL STYLES (Page-Specific Enhancements/Overrides)
+           -------------------------------------------------------------------------- */
+        
+        /* 2.1. Floating 3D Cards (.float-3d) */
         .float-3d {
-            background-color: var(--background); /* Use CSS var */
+            background-color: var(--background); 
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.15);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            padding: 1.5rem; /* Slightly more padding */
+            padding: 1.5rem; 
             text-align: center;
-            height: 100%; /* For consistent card heights in a grid */
+            height: 100%; 
             display: flex;
             flex-direction: column;
         }
         .float-3d .card-content-inner { /* For content inside card to allow footer button */
             flex-grow: 1;
         }
-
         .float-3d:hover {
             transform: translateY(-10px) scale(1.02);
             box-shadow: 0 10px 30px rgba(0,0,0,0.25);
         }
-
+        
+        /* 2.2. Thumbnails (.thumbnail, .placeholder-img) */
         .thumbnail {
             width: 100%;
-            height: 200px; /* Consistent height for thumbnails */
-            object-fit: contain; /* Changed to contain for product images from screenshot */
+            height: 200px; 
+            object-fit: contain; 
             border-radius: 8px;
-            margin-bottom: 1rem; /* Space below image */
-            background-color: #f8f9fa; /* Light bg for images that might not fill */
+            margin-bottom: 1rem; 
+            background-color: #f8f9fa; 
         }
-        .thumbnail.placeholder-img { /* For the blank placeholders from original image */
+        .thumbnail.placeholder-img { /* For the blank placeholders */
             border: 1px dashed var(--border);
             display: flex;
             align-items: center;
@@ -70,70 +114,40 @@
             color: var(--text-light);
             font-style: italic;
         }
-
-
-        .thumbnail:hover {
+        .thumbnail:hover { /* Maintained from original, no transform */
             box-shadow: 0 0 20px rgba(0, 153, 255, 0.75);
-            /* transform: scale(1.03); No scale on hover for product images to keep text readable */
         }
-
+        
+        
+        /* -----------------------------------------------------------------------------
+           3. SECTION-SPECIFIC STYLES
+           -------------------------------------------------------------------------- */
+        
+        /* 3.1. Generic Service Image Container (.service-image) */
         .service-image {
             width: 100%;
             display: flex;
             justify-content: center;
             margin-top: 20px;
         }
-
         .service-image img {
             width: 100%;
             border-radius: 8px;
         }
-
-        /* Dark mode styles */
-        body[data-theme="dark"] {
-            background-color: var(--background); /* Uses dark theme var */
-            color: var(--text); /* Uses dark theme var */
-        }
-
-        body[data-theme="dark"] h1,
-        body[data-theme="dark"] h2,
-        body[data-theme="dark"] h3,
-        body[data-theme="dark"] h4 {
-            color: var(--text); /* Uses dark theme var */
-        }
-
-        body[data-theme="dark"] .float-3d {
-            background-color: var(--background-alt); /* Darker background for cards in dark mode */
-            box-shadow: 0 4px 20px rgba(255,255,255,0.05);
-        }
-        body[data-theme="dark"] .float-3d:hover {
-            box-shadow: 0 10px 30px rgba(255,255,255,0.1);
-        }
-        body[data-theme="dark"] .thumbnail {
-            background-color: #2c303a; /* Darker bg for images */
-        }
-        body[data-theme="dark"] .thumbnail.placeholder-img {
-            border-color: var(--border);
-            color: var(--text-light);
-        }
-
-
-        .highlight-grid, .procurement-items-grid { /* Used for product portfolio */
+        
+        /* 3.2. Procurement Portfolio / Highlight Grid (.highlight-grid, .procurement-items-grid) */
+        .highlight-grid, 
+        .procurement-items-grid { /* Grouped as they had identical styles */
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Adjusted minmax for 3 columns */
-            gap: 2rem; /* Space between grid items */
+            grid-template-columns: repeat(auto-fill, minmax(370px, 1fr)); 
+            gap: 2rem; 
         }
-
-        .gallery-track {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
+        
+        /* 3.3. Supply Capabilities Section */
         .supply-capabilities ul {
             list-style: none;
             padding-left: 0;
-            columns: 2; /* Create two columns for the list */
+            columns: 2; 
             column-gap: 2rem;
         }
         .supply-capabilities li {
@@ -143,20 +157,59 @@
             border-radius: var(--border-radius-sm);
             border-left: 4px solid var(--primary);
             transition: background-color 0.3s, transform 0.3s;
-            display: flex; /* For icon alignment */
-            align-items: flex-start; /* Align items to start for multi-line text */
-            gap: 0.75rem; /* Space between icon and text */
+            display: flex; 
+            align-items: flex-start; 
+            gap: 0.75rem; 
         }
         .supply-capabilities li i {
-            color: var(--secondary); /* Use secondary color for icons here */
-            margin-top: 0.15em; /* Fine-tune icon vertical alignment */
+            color: var(--secondary); 
+            margin-top: 0.15em; 
         }
-
         .supply-capabilities li:hover {
             background-color: var(--primary-hover);
             color: white;
             transform: translateX(5px);
         }
+        
+        /* 3.4. Gallery Track (for carousels or grids, e.g., Success Gallery) */
+        .gallery-track {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        
+        /* -----------------------------------------------------------------------------
+           4. DARK MODE STYLES (Using [data-theme="dark"])
+           -------------------------------------------------------------------------- */
+        body[data-theme="dark"] {
+            background-color: var(--background); 
+            color: var(--text); 
+        }
+        
+        body[data-theme="dark"] h1,
+        body[data-theme="dark"] h2,
+        body[data-theme="dark"] h3,
+        body[data-theme="dark"] h4 {
+            color: var(--text); 
+        }
+        
+        body[data-theme="dark"] .float-3d {
+            background-color: var(--background-alt); 
+            box-shadow: 0 4px 20px rgba(255,255,255,0.05);
+        }
+        body[data-theme="dark"] .float-3d:hover {
+            box-shadow: 0 10px 30px rgba(255,255,255,0.1);
+        }
+        
+        body[data-theme="dark"] .thumbnail {
+            background-color: #2c303a; 
+        }
+        body[data-theme="dark"] .thumbnail.placeholder-img {
+            border-color: var(--border);
+            color: var(--text-light);
+        }
+        
         body[data-theme="dark"] .supply-capabilities li {
             background-color: var(--background-alt);
             border-left-color: var(--secondary);
@@ -164,30 +217,22 @@
         }
         body[data-theme="dark"] .supply-capabilities li:hover {
             background-color: var(--secondary-hover);
-            color: var(--text); /* Or white if preferred for hover on dark */
+            color: var(--text); 
         }
         body[data-theme="dark"] .supply-capabilities li i {
-            color: var(--primary); /* Swap icon color for dark mode if needed */
+            color: var(--primary); 
         }
-
-        /* Responsive adjustments for supply capabilities list */
+        
+        /* -----------------------------------------------------------------------------
+           5. RESPONSIVE ADJUSTMENTS
+           -------------------------------------------------------------------------- */
         @media (max-width: 768px) {
             .supply-capabilities ul {
                 columns: 1; /* Single column on smaller screens */
             }
         }
-        .intro-text p {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center; /* Center the intro paragraph */
-            margin-bottom: 3rem;
-        }
-
-
-    </style>
+        
+        </style>
 
 </head>
 <body data-theme="light"> <!-- Set default theme, JS will handle toggle -->

@@ -14,175 +14,550 @@
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
 
     <style>
-        body {
-            font-family: 'Titillium Web', sans-serif;
-        }
+      /* ==========================================================================
+         Asset Management Page - Inline Stylesheet
+         ==========================================================================
+         Table of Contents:
+         --------------------------------------------------------------------------
+         1. FONT IMPORTS & PAGE DEFAULTS
+            1.1. Font Imports
+            1.2. Body & Heading Base Styles (Page-Specific)
+         2. COMPONENT STYLES (Page-Specific Enhancements/Overrides)
+            2.1. Floating 3D Cards (.float-3d)
+            2.2. Thumbnails (.thumbnail)
+            2.3. Service Image Container (.service-image)
+         3. SECTION-SPECIFIC STYLES
+            3.1. Service Overview Section
+                 - .service-overview
+                 - .service-content (general within overview)
+                 - .service-list-container & .service-list
+                 - .background-image (for service-overview)
+            3.2. Visual Highlights Section
+                 - .visual-highlights (wrapper)
+                 - .highlight-grid & .highlight-card
+            3.3. Facility Maintenance Section
+                 - .facility-maintenance (wrapper)
+                 - .facility-grid
+                 - .service-list.two-column (specific list style)
+            3.4. Client Success Gallery Section
+                 - .success-gallery (wrapper)
+                 - .gallery-carousel, .gallery-track, .gallery-card
+                 (Note: Carousel nav/dots are styled globally)
+            3.5. CTA Section (Primarily uses global .cta-section if defined)
+         4. DARK MODE STYLES (Using [data-theme="dark"])
+         --------------------------------------------------------------------------
+      */
+      
+      /* -----------------------------------------------------------------------------
+         1. FONT IMPORTS & PAGE DEFAULTS
+         -------------------------------------------------------------------------- */
+      /* 1.1. Font Imports */
+      @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&family=Orbitron:wght@500&display=swap');
+      
+      /* 1.2. Body & Heading Base Styles (Page-Specific) */
+      body { /* Overrides global font-family for this page */
+          font-family: 'Titillium Web', sans-serif;
+      }
+      
+      h1, h2, h3, h4 { /* Page-specific font and color for headings */
+          font-family: 'Orbitron', sans-serif;
+          color: #004d99; /* Page-specific default heading color - blueish */
+      }
+      
+      /* Specific Section Heading Colors (Overrides the h1-h4 default above for these sections) */
+      .service-content h2, 
+      .facility-maintenance h2, 
+      .visual-highlights h2, 
+      .success-gallery h2, 
+      .cta-section h2 { /* Matches global .section-title h2 if defined elsewhere */
+          color: #0077cc; /* Page-specific section heading color - brighter blue */
+          margin-bottom: 1rem; /* Maintained from original */
+      }
+      
+      /* -----------------------------------------------------------------------------
+         2. COMPONENT STYLES (Page-Specific Enhancements/Overrides)
+         -------------------------------------------------------------------------- */
+      
+      /* 2.1. Floating 3D Cards (.float-3d) - Page-specific styling */
+      .float-3d {
+          background-color: #ffffff; /* Card background */
+          border-radius: 10px;
+          box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          padding: 1rem;
+          text-align: center;
+          /* height: 100%; */ /* If cards are in a flex/grid row and need equal height */
+          /* display: flex; flex-direction: column; */ /* For aligning content if needed */
+      }
+      
+      .float-3d:hover {
+          transform: translateY(-10px) scale(1.02);
+          box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      }
+      
+      /* 2.2. Thumbnails (.thumbnail) - Page-specific styling */
+      .thumbnail {
+          width: 100%;
+          border-radius: 8px;
+          transition: box-shadow 0.3s ease, transform 0.3s ease;
+          /* height: auto; */ /* Ensure aspect ratio is maintained or set explicitly */
+          /* object-fit: cover; */ /* If height is fixed and you want to cover */
+      }
+      
+      .thumbnail:hover {
+          box-shadow: 0 0 20px rgba(0, 153, 255, 0.75); /* Brighter blue glow */
+          transform: scale(1.03);
+      }
+      
+      /* 2.3. Service Image Container (.service-image) */
+      .service-image {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          margin-top: 20px; 
+      }
+      
+      .service-image img { /* Styles for the image within .service-image */
+          width: 100%; /* Responsive image */
+          /* max-width: 500px; */ /* As in original, if a max width is desired for specific images */
+          /* border-radius: 8px; */ /* If images should have rounded corners */
+      }
+      
+      
+      /* -----------------------------------------------------------------------------
+         3. SECTION-SPECIFIC STYLES
+         -------------------------------------------------------------------------- */
+      
+      /* 3.1. Service Overview Section */
+      .service-overview { /* The main wrapper for the overview content */
+          position: relative; 
+          margin: 20px 0; 
+          overflow: hidden; /* For the .background-image */
+      }
+      
+      .service-overview .service-content { /* Text content within overview */
+          text-align: center; 
+          margin-bottom: 20px; 
+          position: relative; 
+          z-index: 2; /* Above .background-image */
+          /* display: flex; flex-direction: column; align-items: flex-start; */ /* From original, but seems overridden by text-align: center */
+      }
+      
+      .service-list-container { /* Container for the ul.service-list */
+          display: flex;
+          flex-direction: column; 
+          align-items: center; 
+          margin-top: 20px; 
+          position: relative; 
+          z-index: 2; /* Above .background-image */
+      }
+      
+      ul.service-list { /* The list of services (used in multiple sections) */
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
+          gap: 15px; 
+          padding: 15px; 
+          border-radius: 8px; 
+          background: linear-gradient(to right, #ffcc0086, #ff990070); /* Yellow/Orange gradient */
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+          width: 100%; 
+          max-width: 1200px; /* Max width for the list itself */
+          list-style: none; /* Ensure no bullets */
+      }
+      
+      ul.service-list li {
+          background-color: yellow; /* Solid yellow background for items */
+          border: 2px solid #0077cc; /* Blue border */
+          border-radius: 8px; 
+          padding: 10px; 
+          display: flex;
+          align-items: center; /* Vertically align icon and text */
+          gap: 0.5em; /* Space between icon and text */
+          transition: transform 0.3s ease; 
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+          color: #333; /* Text color for list items, ensure readability on yellow */
+      }
+      ul.service-list li i { /* Icon styling within list items */
+          color: #0077cc; /* Blue icon color */
+          /* font-size: 1.2em; */ /* Optional: Adjust icon size */
+      }
+      
+      ul.service-list li:hover {
+          transform: scale(1.05); 
+      }
+      
+      .background-image { /* Full-section background gradient/image */
+          position: absolute; 
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(to right, #00ffff86, #255a8c70); /* Cyan/Blue gradient */
+          background-size: cover; 
+          background-position: center; 
+          z-index: 1; /* Behind content */
+      }
+      
+/* 3.2. Visual Highlights Section - REVISED */
+.visual-highlights {
+    /* This section typically uses .section-dark or .section-light from global styles */
+    /* Padding is also handled by global section styles */
+}
 
-        h1, h2, h3, h4 {
-            font-family: 'Orbitron', sans-serif;
-            color: #004d99; /* Default color for headings */
-        }
+.visual-highlights h2 {
+    /* Using the page-specific section heading color defined earlier: #0077cc */
+    /* And Orbitron font also defined earlier for this page's headings */
+}
 
-        .service-content h2, 
-        .facility-maintenance h2, 
-        .visual-highlights h2, 
-        .success-gallery h2, 
-        .cta-section h2 {
-            color: #0077cc; /* Default color for section headings */
-            margin-bottom: 1rem;
-        }
+[data-theme="dark"] .visual-highlights h2 {
+    color: #ffffff; /* Ensured from earlier dark mode rules for page headings */
+}
+
+.highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive columns */
+    gap: var(--spacing-lg); /* Use theme variable for gap (e.g., 2rem) */
+}
+
+.highlight-card { /* This card also has .float-3d class from original styles */
+    background-color: var(--background); /* Theme-aware background */
+    border-radius: var(--border-radius-md); /* Consistent radius */
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease, box-shadow 0.35s ease, border-color 0.3s ease;
+    text-align: left; /* Content alignment */
+    overflow: hidden; /* Important for child element effects and border-radius */
+    display: flex;
+    flex-direction: column;
+    /* Removed padding: 1rem from .float-3d as it's handled by content wrapper now */
+    /* Text-align: center from .float-3d is overridden by text-align: left here */
+}
+
+.highlight-card:hover {
+    transform: translateY(-8px) scale(1.02); /* Enhanced hover effect */
+    box-shadow: var(--shadow-lg); /* Use theme shadow */
+    border-color: var(--primary); /* Highlight border with primary color */
+}
+
+[data-theme="dark"] .highlight-card {
+    background-color: var(--background-alt); /* Darker card */
+    border-color: var(--border); /* Dark theme border color */
+}
+
+[data-theme="dark"] .highlight-card:hover {
+    border-color: var(--secondary); /* Use secondary for hover border in dark */
+}
+
+.highlight-card .thumbnail-container { /* New wrapper for image */
+    width: 100%;
+    height: 230px; /* Fixed height for image area, adjust as needed */
+    position: relative; /* For overlay elements */
+    overflow: hidden; /* Clip image */
+    background-color: var(--background-alt); /* Placeholder background */
+}
+
+.highlight-card .thumbnail { /* The image itself */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Make image cover the container */
+    border-radius: 0; /* Image takes shape of container, remove individual radius */
+    transition: transform 0.4s ease, filter 0.3s ease;
+    margin-bottom: 0; /* Reset if it had margin */
+}
+
+.highlight-card:hover .thumbnail {
+    transform: scale(1.1); /* Zoom image on card hover */
+    filter: brightness(0.85); /* Slightly dim image to emphasize overlay/text */
+}
+
+/* Interactive Overlay for Image */
+.highlight-card .thumbnail-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(var(--primary-rgb), 0); /* Start transparent, use primary from variables.css */
+    opacity: 0;
+    transition: background-color 0.4s ease, opacity 0.4s ease;
+    z-index: 1; /* Sit above image but below content if any */
+}
+
+.highlight-card:hover .thumbnail-container::before {
+    background-color: rgba(var(--primary-rgb), 0.4); /* Primary overlay on hover */
+    opacity: 1;
+}
+
+[data-theme="dark"] .highlight-card:hover .thumbnail-container::before {
+    background-color: rgba(var(--secondary-rgb), 0.5); /* Secondary overlay in dark mode */
+}
+
+.highlight-card-content { /* Wrapper for text below image */
+    padding: var(--spacing-md); /* Consistent padding (e.g. 1rem) */
+    flex-grow: 1; /* Allows this section to grow and push buttons to bottom if any */
+    display: flex;
+    flex-direction: column;
+}
+
+.highlight-card h4 { /* Title within the card */
+    font-family: 'Orbitron', sans-serif; /* Maintained from page specific */
+    color: var(--primary); /* Use brand primary from variables.css */
+    font-size: var(--font-size-lg); /* From variables.css */
+    margin-bottom: var(--spacing-sm); /* Use theme spacing */
+}
+
+.highlight-card p { /* Paragraph within the card */
+    font-family: 'Titillium Web', sans-serif; /* Maintained */
+    color: var(--text-light); /* Use theme text-light */
+    font-size: var(--font-size-base); /* Use theme base font size */
+    line-height: 1.6;
+    margin-bottom: var(--spacing-md); /* Space before a potential button */
+    flex-grow: 1; /* Push button to bottom */
+}
+
+[data-theme="dark"] .highlight-card h4 {
+    color: var(--secondary); /* Use secondary for titles in dark mode */
+}
+[data-theme="dark"] .highlight-card p {
+    color: var(--text); /* Use main text color for dark theme paragraph for better contrast */
+}
+
+/* Ensure the generic .float-3d style (if kept separate) doesn't conflict badly.
+   The .highlight-card specific styles for padding and text-align will override.
+   The original .thumbnail hover effect will still apply if hovering directly on image,
+   which might be okay, or you could target it more specifically to avoid double effects:
+   .highlight-card .thumbnail:not(:hover) { ... } if needed, but the card hover is primary.
+*/
+      
+      
+      /* 3.3. Facility Maintenance Section */
+      /* .facility-maintenance uses global .section-light */
+      /* .facility-maintenance h2 uses section heading color */
+      .facility-grid { /* Grid for facility images */
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive images */
+          gap: 1rem;
+          margin-bottom: 1.5rem;
+      }
+      .facility-image img {
+          width: 100%;
+          border-radius: 8px;
+          object-fit: cover;
+          /* height: 200px; */ /* Optional: fixed height for images */
+      }
+      .facility-maintenance h3 { /* Sub-heading like "Our Services Cover:" */
+          /* font-family: 'Orbitron', sans-serif; */ /* Inherited */
+          /* color: #004d99; */ /* Inherited */
+          margin-top: 1.5rem;
+          margin-bottom: 1rem;
+      }
+      /* Uses .service-list for its list, may need .two-column variant if that's for columns */
+      ul.service-list.two-column { /* If this class is meant for multi-column layout */
+          /* column-count: 2; */ /* CSS columns, or use grid for more control */
+          /* column-gap: 20px; */
+          display: grid; /* Prefer grid for better control over columns */
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Example for 2 columns */
+          /* background: none; */ /* Overrides default service-list background if plain list desired */
+          /* box-shadow: none; */
+      }
+      /* ul.service-list.two-column li {
+          background-color: transparent;
+          border: none;
+          box-shadow: none;
+          padding-left: 0;
+          border-bottom: 1px solid var(--border);
+      } */
+      
+      
+/* 3.4. Client Success Gallery Section - REVISED */
+.success-gallery {
+    /* This section typically uses .section-dark or .section-light from global styles */
+}
+
+.success-gallery h2 {
+    /* Using the page-specific section heading color defined earlier: #0077cc */
+}
+
+[data-theme="dark"] .success-gallery h2 {
+    color: #ffffff; /* Ensured from earlier dark mode rules for page headings */
+}
+
+/* .gallery-carousel is the main wrapper for the JS carousel */
+/* .gallery-track is the direct child of .gallery-carousel that holds the cards.
+   main.js will likely make this display: flex and handle scrolling.
+   The inline style "display: grid" for .gallery-track should be removed if it exists,
+   or this CSS won't apply correctly for a JS flex-based carousel. */
+.gallery-track {
+    display: flex; /* Assuming JS will handle this, or it's a default for carousels */
+    /* gap: var(--spacing-md); */ /* Gap between cards, JS or global CSS might also set this */
+    /* overflow-x: auto; */ /* JS usually handles overflow for carousels */
+    /* scroll-snap-type: x mandatory; */ /* If you want snapping */
+}
 
 
-        .float-3d {
-            background-color: #ffffff; /* Default background for cards */
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            padding: 1rem;
-            text-align: center;
-        }
+.gallery-card { /* This card also has .float-3d class from original styles */
+    background-color: var(--background); /* Theme-aware background */
+    border-radius: var(--border-radius-md); /* Consistent radius */
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease, box-shadow 0.35s ease, border-color 0.3s ease;
+    overflow: hidden; /* Important for child element effects and border-radius */
+    display: flex;
+    flex-direction: column;
+    text-align: left; /* Content alignment */
+    min-width: 280px; /* Ensure cards have a minimum width in the carousel track */
+    flex: 0 0 auto; /* Prevent shrinking in the flex track */
+    margin-right: var(--spacing-md); /* Creates space between cards in a flex track */
+}
+.gallery-card:last-child {
+    margin-right: 0; /* No margin for the last card */
+}
 
-        .float-3d:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-        }
 
-        .thumbnail {
-            width: 100%;
-            border-radius: 8px;
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-        }
+.gallery-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--secondary); /* Highlight border with secondary color for variety */
+}
 
-        .thumbnail:hover {
-            box-shadow: 0 0 20px rgba(0, 153, 255, 0.75);
-            transform: scale(1.03);
-        }
+[data-theme="dark"] .gallery-card {
+    background-color: var(--background-alt);
+    border-color: var(--border);
+}
 
-        .service-image {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            margin-top: 20px; /* Add margin for better spacing */
-        }
+[data-theme="dark"] .gallery-card:hover {
+    border-color: var(--primary); /* Use primary for hover border in dark for gallery */
+}
 
-        .service-image img {
-            width: 100%;
-        }
+.gallery-card .thumbnail-container { /* Wrapper for image */
+    width: 100%;
+    height: 200px; /* Consistent height for image area, adjust as needed */
+    position: relative;
+    overflow: hidden;
+    background-color: var(--background-alt);
+}
 
-        /* Dark mode styles */
-        body.dark-mode {
-            background-color: #121212; /* Dark background */
-            color: #ffffff; /* Light text */
-        }
+.gallery-card .thumbnail { /* The image itself */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+    transition: transform 0.4s ease;
+    margin-bottom: 0;
+}
 
-        body.dark-mode h1, 
-        body.dark-mode h2, 
-        body.dark-mode h3, 
-        body.dark-mode h4 {
-            color: #ffffff; /* Light headings for dark mode */
-        }
+.gallery-card:hover .thumbnail {
+    transform: scale(1.1);
+}
 
-        body.dark-mode .service-content h2, 
-        body.dark-mode .facility-maintenance h2, 
-        body.dark-mode .visual-highlights h2, 
-        body.dark-mode .success-gallery h2, 
-        body.dark-mode .cta-section h2 {
-            color: #ffffff; /* Light section headings for dark mode */
-        }
+/* Optional subtle overlay for gallery images, different from highlight cards */
+.gallery-card .thumbnail-container::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 60%); /* Bottom shadow */
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+}
+.gallery-card:hover .thumbnail-container::after {
+    opacity: 1;
+}
 
-        body.dark-mode .service-list li {
-            color: #f0f0f0; /* Light text for list items in dark mode */
-        }
 
-        .highlight-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px; /* Space between grid items */
-        }
+.gallery-card-content { /* Wrapper for text below image */
+    padding: var(--spacing-md);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center text if it's short */
+}
 
-        .gallery-track {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px; /* Space between gallery items */
-        }
+.gallery-card p { /* Paragraph within the card */
+    font-family: 'Titillium Web', sans-serif;
+    color: var(--text);
+    font-size: var(--font-size-sm); /* Slightly smaller for gallery captions */
+    line-height: 1.5;
+    text-align: center; /* Center the caption text */
+    margin-bottom: 0; /* Remove bottom margin if it's the only content */
+}
 
-        .service-content {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
+[data-theme="dark"] .gallery-card p {
+    color: var(--text); /* Main text color for dark theme */
+}
 
-        .service-list li {
-            display: flex;
-            align-items: center;
-            transition: transform 0.3s ease; /* Animation effect */
-        }
-
-        .service-list li:hover {
-            transform: scale(1.05); /* Scale effect on hover */
-        }
-
-        .service-overview {
-            position: relative; /* Position relative for absolute children */
-            margin: 20px 0; /* Add margin for spacing */
-            overflow: hidden; /* Hide overflow for the background image */
-        }
-
-        .service-content {
-            text-align: center; /* Center the text for better presentation */
-            margin-bottom: 20px; /* Space between content and the next section */
-            position: relative; /* Position relative for layering */
-            z-index: 2; /* Ensure content is above the background */
-        }
-
-        .service-list-container {
-            display: flex;
-            flex-direction: column; /* Stack items vertically */
-            align-items: center; /* Center the list container */
-            margin-top: 20px; /* Space between content and list */
-            position: relative; /* Position relative for layering */
-            z-index: 2; /* Ensure list is above the background */
-        }
-
-        .service-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Responsive grid */
-            gap: 15px; /* Space between grid items */
-            padding: 15px; /* Padding inside the border */
-            border-radius: 8px; /* Rounded corners */
-            background: linear-gradient(to right, #ffcc0086, #ff990070); /* Gradient background */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-            width: 100%; /* Full width */
-            max-width: 1200px; /* Max width for the gallery */
-        }
-
-        .service-list li {
-            background-color: yellow; /* Change background color to yellow */
-            border: 2px solid #0077cc; /* Thick border for card */
-            border-radius: 8px; /* Rounded corners */
-            padding: 10px; /* Padding inside the card */
-            display: flex;
-            align-items: center;
-            transition: transform 0.3s ease; /* Animation effect */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-        }
-
-        .service-list li:hover {
-            transform: scale(1.05); /* Scale effect on hover */
-        }
-
-        .background-image {
-            position: absolute; /* Position absolute to cover the section */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to right, #00ffff86, #255a8c70); /* Color gradient */
-            background-size: cover; /* Cover the entire area */
-            background-position: center; /* Center the background image */
-            z-index: 1; /* Ensure it is behind the content */
-        }
-    </style>
+/* Carousel Navigation and Dots for this specific gallery */
+/* These are usually styled globally, but if you need specific overrides for .success-gallery: */
+/*
+.success-gallery .carousel-nav {
+    background-color: rgba(var(--secondary-rgb), 0.5);
+}
+.success-gallery .pagination-dots button.active {
+    background-color: var(--primary);
+}
+*/
+      
+      /* 3.5. CTA Section */
+      /* .cta-section uses global section styles */
+      /* .cta-section h2 uses section heading color */
+      /* .cta-section .btn uses global button styles */
+      
+      
+      /* -----------------------------------------------------------------------------
+         4. DARK MODE STYLES (Using [data-theme="dark"])
+         -------------------------------------------------------------------------- */
+      
+      [data-theme="dark"] body { /* Redundant if global handles it, but keeps specificity */
+          background-color: #121212; 
+          color: #ffffff; 
+      }
+      
+      [data-theme="dark"] h1, 
+      [data-theme="dark"] h2, 
+      [data-theme="dark"] h3, 
+      [data-theme="dark"] h4 {
+          color: #ffffff; /* Light headings for dark mode, overrides page default #004d99 */
+      }
+      
+      /* Ensures section headings also become white in dark mode */
+      [data-theme="dark"] .service-content h2, 
+      [data-theme="dark"] .facility-maintenance h2, 
+      [data-theme="dark"] .visual-highlights h2, 
+      [data-theme="dark"] .success-gallery h2, 
+      [data-theme="dark"] .cta-section h2 {
+          color: #ffffff; /* Overrides page default #0077cc */
+      }
+      
+      [data-theme="dark"] ul.service-list {
+          background: linear-gradient(to right, rgba(255, 204, 0, 0.3), rgba(255, 153, 0, 0.25)); /* Muted yellow/orange for dark */
+          /* border: 1px solid #444; */ /* Optional border for dark mode list */
+      }
+      
+      [data-theme="dark"] ul.service-list li {
+          background-color: rgba(255, 255, 0, 0.15); /* More transparent yellow */
+          border-color: #00aaff; /* Brighter blue border for contrast */
+          color: #f0f0f0; /* Light text for list items */
+          box-shadow: 0 2px 5px rgba(255, 255, 255, 0.05);
+      }
+      [data-theme="dark"] ul.service-list li i {
+          color: #00aaff; /* Brighter blue icon */
+      }
+      
+      [data-theme="dark"] .float-3d { /* Card styling in dark mode */
+          background-color: #1e1e1e; /* Darker card background */
+          box-shadow: 0 4px 20px rgba(255,255,255,0.08);
+      }
+      [data-theme="dark"] .float-3d:hover {
+          box-shadow: 0 10px 30px rgba(255,255,255,0.12);
+      }
+      
+      [data-theme="dark"] .thumbnail:hover { /* Thumbnail glow in dark mode */
+          box-shadow: 0 0 20px rgba(0, 180, 255, 0.6); /* Adjusted glow for dark */
+      }
+      
+      [data-theme="dark"] .background-image { /* Section background in dark mode */
+           background: linear-gradient(to right, rgba(0, 255, 255, 0.2), rgba(37, 90, 140, 0.25)); /* Muted cyan/blue gradient */
+      }
+      
+      </style>
 
 </head>
 <body>
@@ -328,27 +703,45 @@
 
     <!-- Visual Features Section -->
     <section class="visual-highlights section-dark">
-        <div class="container">
-            <h2 class="text-center">What We Bring to the Table</h2>
-            <div class="highlight-grid">
-                <div class="highlight-card float-3d">
-                    <img src="../images/asset-management/digital-monitoring-system-2.jpg" alt="High-Tech Monitoring" class="thumbnail">
-                    <h4>Digital Monitoring Systems</h4>
-                    <p>24/7 remote asset surveillance and predictive analytics.</p>
-                </div>
-                <div class="highlight-card float-3d">
-                    <img src="../images/asset-management/Preventive-Maintenance-Tools.avif" alt="Preventive Maintenance" class="thumbnail">
-                    <h4>Preventive Maintenance Tools</h4>
-                    <p>Advanced tools and techniques to extend asset lifespan.</p>
-                </div>
-                <div class="highlight-card float-3d">
-                    <img src="../images/asset-management/Smart Analytics Dashboard-1.png" alt="Analytics Dashboard" class="thumbnail">
-                    <h4>Smart Analytics Dashboard</h4>
-                    <p>Real-time performance insights for smarter decision-making.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+      <div class="container">
+          <h2 class="text-center">What We Bring to the Table</h2>
+          <div class="highlight-grid">
+              <!-- Card 1 -->
+              <div class="highlight-card float-3d">
+                  <div class="thumbnail-container">
+                      <img src="../images/asset-management/digital-monitoring-system-2.jpg" alt="High-Tech Monitoring" class="thumbnail">
+                  </div>
+                  <div class="highlight-card-content">
+                      <h4>Digital Monitoring Systems</h4>
+                      <p>24/7 remote asset surveillance and predictive analytics for proactive maintenance.</p>
+                      <!-- Optional button:
+                      <a href="#" class="btn btn-secondary btn-sm mt-auto" style="align-self: flex-start;">Details</a> 
+                      -->
+                  </div>
+              </div>
+              <!-- Card 2 -->
+              <div class="highlight-card float-3d">
+                  <div class="thumbnail-container">
+                      <img src="../images/asset-management/Preventive-Maintenance-Tools.avif" alt="Preventive Maintenance" class="thumbnail">
+                  </div>
+                  <div class="highlight-card-content">
+                      <h4>Preventive Maintenance Tools</h4>
+                      <p>Advanced tools and techniques to extend asset lifespan and optimize performance.</p>
+                  </div>
+              </div>
+              <!-- Card 3 -->
+              <div class="highlight-card float-3d">
+                  <div class="thumbnail-container">
+                      <img src="../images/asset-management/Smart Analytics Dashboard-1.png" alt="Analytics Dashboard" class="thumbnail">
+                  </div>
+                  <div class="highlight-card-content">
+                      <h4>Smart Analytics Dashboard</h4>
+                      <p>Real-time performance insights and data visualization for smarter decision-making.</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
 
     <!-- Facility Maintenance Section -->
     <section class="facility-maintenance section-light">
@@ -387,17 +780,30 @@
             <div class="gallery-carousel">
                 <button class="carousel-nav prev-gallery"><i class="fas fa-chevron-left"></i></button>
                 <div class="gallery-track">
-                    <div class="gallery-card float-3d">
+                  <div class="gallery-card float-3d">
+                    <div class="thumbnail-container"> <!-- Added for consistency -->
                         <img src="../images/client1.jpg" alt="Client Project 1" class="thumbnail">
+                    </div>
+                    <div class="gallery-card-content"> <!-- Added for consistency -->
                         <p>Recovered 80% of failing pipeline integrity at XYZ Facility.</p>
+                        <!-- You could add an optional <h4> if success stories have titles -->
                     </div>
+                </div>
                     <div class="gallery-card float-3d">
+                      <div class="thumbnail-container"> <!-- Added for consistency -->
                         <img src="../images/client2.jpg" alt="Client Project 2" class="thumbnail">
+                      </div>
+                      <div class="gallery-card-content"> <!-- Added for consistency -->
                         <p>Implemented AI-powered corrosion tracking for ABC Group.</p>
+                      </div>
                     </div>
-                    <div class="gallery-card float-3d">
+                      <div class="gallery-card float-3d">
+                      <div class="thumbnail-container"> <!-- Added for consistency -->
                         <img src="../images/client3.jpg" alt="Client Project 3" class="thumbnail">
+                      </div>
+                      <div class="gallery-card-content"> <!-- Added for consistency -->
                         <p>Reduced facility downtime by 45% through predictive maintenance.</p>
+                      </div>
                     </div>
                 </div>
                 <button class="carousel-nav next-gallery"><i class="fas fa-chevron-right"></i></button>

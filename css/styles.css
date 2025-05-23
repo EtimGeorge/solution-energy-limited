@@ -1,29 +1,66 @@
 /**
  * SEESL Website - Optimized Stylesheet
- * 
+ *
  * Table of Contents:
- * 1. CSS Variables & Theme Settings
- * 2. Reset & Base Styles
- * 3. Typography
- * 4. Layout & Container
- * 5. Header & Navigation
- * 6. Footer
- * 7. Hero Section
- * 8. Sections & Cards
- * 9. Services Grid
- * 10. Partners Carousel
- * 11. Buttons & Forms
- * 12. Utilities
- * 13. Theme Toggle
- * 14. Responsive Design
+ * ---------------------------------------------------------------------
+ * 0.  GLOBAL & THEME
+ *     0.1. CSS Variables (Light & Dark Themes)
+ *     0.2. Reset & Base Styles
+ *     0.3. Basic Typography (h1-h6, p, a, ul)
+ *
+ * 1.  LAYOUT & CORE UTILITIES
+ *     1.1. Container
+ *     1.2. Section Base & Theming
+ *     1.3. Generic Section Title Styling (h2, p, ::after hover)
+ *     1.4. Specific Section Subtitle & Description Classes (.section-subtitle, .section-description)
+ *     1.5. Utility Classes (text-center, spacing, hidden, float-3d)
+ *
+ * 2.  CORE COMPONENTS
+ *     2.1. Header & Navigation (Desktop, Mobile, Dropdowns, Theme Toggle)
+ *     2.2. Footer (Grid, Links, Social, Bottom)
+ *     2.3. Buttons (Primary, Secondary)
+ *     2.4. Cards (Generic .card, .card-icon, .image-container)
+ *     2.5. Modals (Overlay, Content, Close)
+ *     2.6. Lightbox (Overlay, Image, Close)
+ *     2.7. Back to Top Button
+ *
+ * 3.  PAGE-SPECIFIC & SECTION COMPONENTS
+ *     3.1. Hero Section (Generic styling)
+ *     3.2. Services Grid & Service Cards (Home Page)
+ *     3.3. Mission, Vision, Gallery (MVG - Home Page) & Generic Thumbnails
+ *     3.4. Projects Section & Project Cards (Home Page - Unified with Tech Cards)
+ *     3.5. Featured Technologies Section & Tech Cards (Home Page - Unified with Project Cards)
+ *     3.6. Partners (CSS Carousel - Home Page & Static Grid - About Page)
+ *     3.7. General Forms (Inputs, Labels, Error Messages)
+ *     3.8. Contact Page Specifics (Contact Form, Info Container/Card, Social, Map)
+ *
+ * 4.  CAROUSEL SPECIFICS (JS DRIVEN)
+ *     4.1. JS Carousel Navigation Buttons (.carousel-nav, .prev-tech, etc.)
+ *     4.2. JS Carousel Pagination Dots (.pagination-dots)
+ *
+ * 5.  ANIMATIONS
+ *     5.1. @keyframes scroll (for CSS Partners Carousel)
+ *     5.2. @keyframes cardFadeInUp (for JS .in-view class)
+ *
+ * 6.  RESPONSIVE DESIGN (@media queries)
+ *     6.1. Medium Screens (min-width: 768px)
+ *     6.2. Large Screens (min-width: 1024px)
+ *     6.3. Extra-Large Screens (min-width: 1440px)
+ *     6.4. Small Screens (max-width: 767px)
+ *     6.5. Very Small Screens (max-width: 480px)
+ * ---------------------------------------------------------------------
  */
 
-/* 1. CSS Variables & Theme Settings */
+/* =====================================================================
+   0. GLOBAL & THEME
+   ===================================================================== */
+
+/* 0.1. CSS Variables (Light & Dark Themes) */
 :root {
   /* Colors */
   --primary: #005792;
   --primary-hover: #004a7c;
-  --secondary: #00b0ff;
+  --secondary: #00b0ff; 
   --secondary-hover: #0090d4;
   --header: #005792;
   --footer: #0a2540;
@@ -35,8 +72,7 @@
   --error: #dc2626;
   --erro-hover:rgb(178, 7, 7);
   --accent:#ffff00;
-  --secondary: #00b0ff;
-    --secondary-rgb: 0, 176, 255; /* Added for rgba use */
+  --secondary-rgb: 0, 176, 255;
   
   /* Typography */
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -64,6 +100,10 @@
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease; /* Added from modal close button */
+  /* --transition-normal: 0.3s ease; */ /* You can add this if used commonly */
 }
 
 /* Dark Theme Variables */
@@ -74,10 +114,10 @@
   --background-alt: #1f2937;
   --border: #374151;
   --secondary: #00b0ff;
-    --secondary-rgb: 0, 176, 255; /* Added for rgba use */
+  --secondary-rgb: 0, 176, 255;
 }
 
-/* 2. Reset & Base Styles */
+/* 0.2. Reset & Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -96,6 +136,12 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
+img { 
+  max-width: 100%;
+  display: block;
+}
+
+/* 0.3. Basic Typography */
 ul {
   list-style: none;
 }
@@ -105,42 +151,25 @@ a {
   color: inherit;
 }
 
-img {
-  max-width: 100%;
-  display: block;
-}
-
-/* 3. Typography */
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.5em;
   font-weight: 700;
   line-height: 1.2;
-  color: var(--text);
+  color: var(--text); 
 }
 
-h1 {
-  font-size: var(--font-size-3xl);
-}
+h1 { font-size: var(--font-size-3xl); }
+h2 { font-size: var(--font-size-2xl); margin-bottom: 1.5rem; text-align: center; }
+h3 { font-size: var(--font-size-xl); }
+h4 { font-size: var(--font-size-lg); }
+p  { margin-bottom: 1rem; }
 
-h2 {
-  font-size: var(--font-size-2xl);
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
 
-h3 {
-  font-size: var(--font-size-xl);
-}
+/* =====================================================================
+   1. LAYOUT & CORE UTILITIES
+   ===================================================================== */
 
-h4 {
-  font-size: var(--font-size-lg);
-}
-
-p {
-  margin-bottom: 1rem;
-}
-
-/* 4. Layout & Container */
+/* 1.1. Container */
 .container {
   width: 100%;
   max-width: var(--container-max-width);
@@ -148,1379 +177,473 @@ p {
   padding: 0 var(--container-padding);
 }
 
+/* 1.2. Section Base & Theming */
 section {
   padding: var(--spacing-xl) 0;
 }
+.section-light { background-color: var(--background); }
+.section-dark  { background-color: var(--background-alt); }
 
-.section-light {
-  background-color: var(--background);
-}
-
-.section-dark {
-  background-color: var(--background-alt);
-}
-
-.section-title {
+/* 1.3. Generic Section Title Styling (h2, p, ::after hover) */
+.section-title { 
   text-align: center;
   margin-bottom: 3rem;
 }
-
-.section-title h2 {
-  /* margin-bottom: 1rem;
-  color: var(--primary); */
-  /* Visibility Enhancements */
-  font-size: var(--font-size-3xl); /* Slightly larger if desired, default is 2xl */
-  color: var(--primary-hover);    /* Use a slightly darker or more vibrant shade of primary */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease; /* For hover effects */
-  position: relative; /* For potential pseudo-element effects */
-  padding-bottom: 0.5rem; /* Add some space for an underline effect */
+.section-title h2 { 
+  font-size: calc(var(--font-size-3xl) * 1.2); 
+  color: var(--primary-hover);    
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+  position: relative; 
+  padding-bottom: 0.5rem; 
+  text-transform: uppercase; 
+  letter-spacing: 1.5px;    
+  margin-bottom: 0.5rem;   
 }
-
 .section-title h2::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 80px; /* Width of the underline */
-  height: 3px;  /* Thickness of the underline */
-  background-color: var(--secondary); /* Use accent color */
-  transition: width 0.3s ease; /* Animate width on hover */
+  width: 80px; 
+  height: 3px;  
+  background-color: var(--secondary); 
+  transition: width 0.4s ease; 
 }
-
-.section-title p {
-  /* Visibility Enhancements */
-  font-size: var(--font-size-lg); /* Make it a bit larger than default p */
-  color: var(--text-light);     /* Ensure it's clearly legible, adjust if needed */
-  font-weight: 500;             /* Slightly bolder */
-  transition: color 0.3s ease, transform 0.3s ease; /* For hover effects */
-  letter-spacing: 0.5px;        /* Slightly increased letter spacing for clarity */
-  margin-top: 0.5rem;           /* Add some space below the h2 */
-}
-
-
-
-/* Interactivity - Hover Effects */
 .section-title h2:hover {
-  color: var(--secondary); /* Change color on hover */
-  transform: scale(1.03);  /* Slightly enlarge on hover */
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* More pronounced shadow on hover */
+  color: var(--secondary); 
+  transform: scale(1.03);  
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
 }
-
 .section-title h2:hover::after {
-  width: 120px; /* Expand underline on h2 hover */
+  width: 200px; 
 }
-
+.section-title p { /* Paragraph directly under .section-title h2 */
+  font-size: var(--font-size-lg); 
+  color: var(--text-light);      
+  font-weight: 500;             
+  transition: color 0.3s ease, transform 0.3s ease; 
+  letter-spacing: 0.5px;        
+  margin-top: 0.5rem; 
+}
 .section-title p:hover {
-  color: var(--primary); /* Change color on hover to primary */
-  transform: translateY(-2px); /* Slightly lift up on hover */
-}
-
-/* 5. Header & Navigation */
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: var(--header);
-  color: white;
-  padding: 1rem 0;
-  z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  transition: padding 0.3s;
-}
-
-.header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo img {
-  height: 70px;
-  transition: height 0.3s;
-  border-radius: 5px;
-}
-
-/* Desktop Navigation */
-.desktop-nav {
-  display: none;
-}
-
-.desktop-nav ul {
-  display: flex;
-  gap: 2rem;
-}
-
-.desktop-nav a, .desktop-nav button {
-  position: relative;
-  padding: 0.5rem 0;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-
-.desktop-nav a:hover,
-.desktop-nav a.active,
-.desktop-nav button:hover {
-  color: var(--secondary);
-}
-
-.desktop-nav a.active::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: var(--secondary);
-}
-
-/* Dropdown Menu */
-.dropdown {
-  position: relative;
-}
-
-.dropdown-button {
-  background: none;
-  border: none;
-  color: inherit;
-  font: inherit;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  padding: 0.5rem 0;
-  font-weight: 500;
-}
-
-.dropdown-button:hover {
-  color: var(--secondary);
-}
-
-.dropdown-content {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  min-width: 200px;
-  background-color: white;
-  border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-lg);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
-  transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
-  z-index: 100;
-  overflow: hidden;
-}
-
-.dropdown:hover .dropdown-content {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.dropdown-content a {
-  display: block;
-  padding: 0.75rem 1rem;
-  color: var(--text);
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.dropdown-content a:hover {
-  background-color: var(--secondary);
-  color: white;
-}
-
-/* Header Actions */
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.contact-info {
-  display: none;
-}
-
-.contact-info a {
-  color: white;
-  font-weight: 500;
-}
-
-.social-icons {
-  display: none;
-}
-
-.social-icons a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  color: white;
-  transition: color 0.3s;
-}
-
-.social-icons a:hover {
-  color: var(--secondary);
-}
-
-/* Mobile Menu Toggle */
-.mobile-menu-toggle {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
-  display: block;
-}
-
-/* Mobile Menu */
-.mobile-menu {
-  background-color: var(--header);
-  height: 0;
-  overflow: auto;
-  max-height: 100%;
-  transition: height 0.3s ease;
-  visibility: hidden;
-}
-
-.mobile-menu.open {
-  height: auto;
-  visibility: visible;
-}
-
-.mobile-menu ul {
-  padding: 1rem;
-}
-
-.mobile-menu li {
-  margin-bottom: 0.5rem;
-}
-
-.mobile-menu a {
-  display: block;
-  padding: 0.5rem 0;
-  color: white;
-  font-weight: 500;
-}
-
-.mobile-menu a:hover {
-  color: var(--secondary);
-}
-
-.services-dropdown {
-  background: none;
-  border: none;
-  color: white;
-  font: inherit;
-  width: 100%;
-  text-align: left;
-  padding: 0.5rem 0;
-  font-weight: 500;
-  display: flex;
-  gap: 1em;
-  align-items: center;
-  cursor: pointer;
-}
-
-.mobile-services {
-  display: none;
-  padding-left: 1rem;
-  margin-top: 0.5rem;
-  border-left: 2px solid var(--secondary);
-}
-
-.mobile-services.open {
-  display: block;
-}
-
-.mobile-social {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.social-icons-mobile {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.social-icons-mobile a {
-  font-size: 1.25rem;
-}
-
-/* 6. Footer */
-.footer {
-  background-color: var(--footer);
-  color: white;
-  padding: 4rem 0 2rem;
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  margin-bottom: 3rem;
-}
-
-.footer h4 {
-  color: white;
-  margin-bottom: 1.5rem;
-  position: relative;
-}
-
-.footer h4::after {
-  content: '';
-  position: absolute;
-  bottom: -0.5rem;
-  left: 0;
-  width: 50px;
-  height: 2px;
-  background-color: var(--secondary);
-}
-
-.footer ul li {
-  margin-bottom: 0.75rem;
-}
-
-.footer a {
-  transition: color 0.3s;
-}
-
-.footer a:hover {
-  color: var(--secondary);
-}
-
-.footer-contact li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-}
-
-.footer-contact i {
-  color: var(--secondary);
-  margin-top: 0.25rem;
-}
-
-.footer-social {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.social-icons-footer {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-top: 1rem;
-}
-
-.social-icons-footer a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: white;
-  font-size: 1.25rem;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.social-icons-footer a:hover {
-  background-color: var(--secondary);
-  color: white;
-}
-
-.footer-bottom {
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  text-align: center;
-}
-
-.footer-legal {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-}
-
-/* 7. Hero Section */
-.hero {
-  position: relative;
-  padding: 10rem 0 6rem;
-  background: linear-gradient(to right, var(--primary), #003366);
-  color: white;
-  overflow: hidden;
-  margin-top: 0;
-}
-
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  opacity: 0.4;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 10;
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.hero h1 {
-  color: white;
-  margin-bottom: 1.5rem;
-}
-
-.hero p {
-  font-size: var(--font-size-lg);
-  margin-bottom: 2rem;
-  opacity: 0.9;
-}
-
-.hero-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-}
-
-/* 8. Sections & Cards */
-.card {
-  background-color: var(--background);
-  border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-md);
-  padding: 2rem;
-  transition: transform 0.3s, box-shadow 0.3s;
-  height: 100%;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-}
-
-.card-icon {
-  font-size: 3rem;
-  color: var(--primary);
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-.card h3 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.image-container {
-  border-radius: var(--border-radius-md);
-  overflow: hidden;
-  margin-bottom: 1.5rem;
-}
-
-.image-container img {
-  width: 100%;
-  height: auto;
-  transition: transform 0.3s;
-}
-
-.image-container:hover img {
-  transform: scale(1.03);
-}
-
-/* 9. Services Grid */
-.services-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-}
-
-.service-card {
-  display: flex;
-  flex-direction: column;
-}
-
-.service-card .card-content {
-  flex-grow: 1;
-}
-
-.service-card ul {
-  margin-bottom: 1.5rem;
-}
-
-.service-card li {
-  margin-bottom: 0.5rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-}
-
-.service-card li i {
-  color: var(--secondary);
-  margin-top: 0.25rem;
-}
-
-/* 10. Partners Carousel */
-.partners-carousel {
-  position: relative;
-  margin: 2rem 0;
-  overflow: hidden;
-}
-
-.carousel-container {
-  display: flex;
-  animation: scroll 20s linear infinite;
-}
-
-.partner-item {
-  flex: 0 0 auto;
-  width: 200px;
-  margin: 0 1rem;
-  transition: transform 0.3s;
-  scroll-snap-align: start;
-}
-
-.partner-item:hover {
-  transform: scale(1.05);
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-250%);
-  }
-  
-}
-
-.carousel-controls {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
-  z-index: 10;
-}
-
-.prev-button, .next-button {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: none;
-  border-radius: 50%;
-  padding: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin: 0 1rem;
-}
-
-.prev-button:hover, .next-button:hover {
-  background-color: rgba(255, 255, 255, 1);
-}
-
-
-/* =============================================== */
-/* ===== Featured Technologies Section Styling ===== */
-/* =============================================== */
-
-/* =============================================== */
-/* ===== Featured Technologies Section Styling ===== */
-/* =============================================== */
-
-.featured-tech {
-  /* background: linear-gradient(135deg, var(--background-alt) 0%, #2a3a4f 100%); Darker, more techy gradient */
-  /* Or a subtle pattern if you have one: */
-  /* background-image: url('../images/tech-background-pattern.svg'); */
-  /* background-repeat: no-repeat; */
-  /* background-position: center center; */
-  /* background-size: cover; */
-  padding-top: var(--spacing-xl);
-  padding-bottom: var(--spacing-xl);
-  overflow: hidden; /* Important for some animated effects */
-}
-
-.featured-tech .section-title h2 {
-  font-size: calc(var(--font-size-3xl) * 1.2); /* Even larger title */
-  color: var(--secondary); /* Bright accent color */
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 0 10px var(--secondary-hover), 0 0 20px var(--secondary-hover); /* Neon glow effect */
-  position: relative; /* For animations or pseudo-elements */
-}
-
-.featured-tech .section-title h3 { /* Subtitle for featured tech */
-  font-size: var(--font-size-lg);
-  color: var(--text-light);
-  font-weight: 400;
-  margin-bottom: 2rem;
+  color: var(--primary); 
+  transform: translateY(-2px); 
+}
+
+/* 1.4. Specific Section Subtitle & Description Classes */
+.section-subtitle { 
+  font-size: calc(var(--font-size-lg) * 1.2);
+  color: var(--secondary); 
+  font-weight: 600; 
+  margin-bottom: 2rem; 
   letter-spacing: 0.5px;
   text-align: center;
+  line-height: 1.6; 
 }
-
-.featured-tech > .container > p.text-center.mb-3 { /* The introductory paragraph */
+.section-description { 
   font-size: var(--font-size-base);
   color: var(--text-light);
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
   line-height: 1.7;
-  margin-bottom: 3rem; /* Ensure enough space before carousel */
-}
-
-/* Adjust spacing for the track containing the tech cards */
-.featured-tech .tech-track {
-  display: flex; 
-  gap: var(--spacing-lg); /* Increased gap between tech cards (e.g., 2rem) */
-  scroll-behavior: smooth; 
-  margin: 20px; /* Or use padding on the container if preferred */
-  /* The following are important if you want horizontal scrolling and not wrapping: */
-  /* / Allows horizontal scrolling if cards exceed container width */
-  padding-bottom: var(--spacing-md); /* Space for scrollbar without cutting off cards */
-  /* If you want cards to wrap instead of scroll horizontally, remove overflow-x and use flex-wrap: wrap; */
-  flex-wrap: wrap; /* Uncomment this and remove overflow-x if you prefer wrapping */
-}
-
-
-/* Styling for individual Tech Cards */
-.featured-tech .tech-card {
-  background: rgba(255, 255, 255, 0.05); /* Slightly transparent card on dark theme */
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--border-radius-lg); /* More rounded corners */
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Softer, more spread out shadow */
-  backdrop-filter: blur(4px); /* Frosted glass effect (if background is interesting) */
-  -webkit-backdrop-filter: blur(4px); /* For Safari */
-  padding: var(--spacing-lg); /* Increased padding inside the card (e.g., 2rem) */
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
-              box-shadow 0.4s ease,
-              border-color 0.4s ease;
-  overflow: hidden; /* For effects within the card */
-  position: relative; /* For pseudo-elements or absolutely positioned inner elements */
-  flex: 0 0 auto; /* Prevent cards from shrinking if tech-track uses flex and items overflow */
-  width: 90%; /* Example fixed width, adjust as needed or use min/max-width */
-                  /* Or use percentages if tech-track is set up for responsive columns */
-}
-
-/* Specific to dark theme for better glass effect */
-[data-theme="dark"] .featured-tech .tech-card {
-  background: rgba(42, 62, 80, 0.6); /* Darker glass */
-  border: 1px solid rgba(var(--secondary-rgb, 0, 176, 255), 0.3); 
-  box-shadow: 0 0 25px rgba(var(--secondary-rgb, 0, 176, 255), 0.15);
-}
-
-
-.featured-tech .tech-card .image-thumbnails {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adjust minmax as needed */
-  gap: var(--spacing-md); /* Increased gap between thumbnails (e.g., 1rem) */
-  margin-bottom: 1.5rem;
-  /* border-radius: var(--border-radius-md); */ /* Not needed here, apply to individual images if desired */
-  /* overflow: hidden; */ /* Not strictly needed here if individual images handle overflow/clipping */
-}
-
-.featured-tech .tech-card .image-thumbnails .thumbnail {
-  width: 100%; /* Make image take full width of its grid cell */
-  aspect-ratio: 16 / 9; /* Or 4/3, 1/1 - forces a consistent aspect ratio for the space */
-  object-fit: cover; /* Scales the image to maintain aspect ratio while filling the element’s entire content box. Any excess is clipped. */
-  border-radius: var(--border-radius-sm); /* Optional: slight rounding on image corners */
-  transition: transform 0.5s ease, filter 0.5s ease;
-  display: block; /* Removes any extra space below the image if it's an inline element */
-}
-
-.featured-tech .tech-card h4 {
-  color: var(--secondary); /* Title of the tech */
-  font-size: var(--font-size-xl);
-  margin-bottom: 0.75rem;
+  margin-bottom: 3rem; 
   text-align: center;
+  padding: 1rem; 
 }
 
-.featured-tech .tech-card p {
-  font-size: var(--font-size-sm);
-  color: var(--text-light);
-  line-height: 1.6;
-  text-align: center;
-  min-height: 60px; 
-}
-
-/* WOW Hover Effects for Tech Cards */
-.featured-tech .tech-card::before { /* Glowing border effect on hover */
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: var(--border-radius-lg);
-  border: 2px solid transparent;
-  background: linear-gradient(45deg, var(--secondary), var(--primary)) border-box;
-  -webkit-mask:
-      linear-gradient(#fff 0 0) padding-box, 
-      linear-gradient(#fff 0 0);
-  -webkit-mask-composite: destination-out;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: -1; /* Behind content */
-}
-
-.featured-tech .tech-card:hover {
-  transform: translateY(-15px) scale(1.03); /* More pronounced lift and scale */
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); /* Stronger shadow */
-  /* border-color: var(--secondary); */ /* Border color is now handled by the ::before pseudo-element for glow */
-}
-
-[data-theme="dark"] .featured-tech .tech-card:hover {
-  box-shadow: 0 10px 50px rgba(var(--secondary-rgb, 0, 176, 255), 0.3);
-}
-
-
-.featured-tech .tech-card:hover::before {
-  opacity: 1; /* Show glowing border */
-}
-
-.featured-tech .tech-card:hover .image-thumbnails .thumbnail {
-  transform: scale(1.1); /* Zoom in image slightly on card hover */
-  filter: brightness(1.1); /* Make image slightly brighter */
-}
-
-/* Carousel Navigation button styling for this section */
-.featured-tech .carousel-nav {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--secondary);
-  border: 1px solid var(--secondary);
-  width: 40px;
-  height: 40px;
-  font-size: 1.2rem;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-}
-
-.featured-tech .carousel-nav:hover {
-  background: var(--secondary);
-  color: white;
-  transform: scale(1.1);
-}
-
-.featured-tech .pagination-dots button {
-  background: rgba(255, 255, 255, 0.3);
-}
-.featured-tech .pagination-dots button.active {
-  background: var(--secondary);
-  transform: scale(1.2);
-}
-
-/* Optional: Add a subtle animation to cards on scroll into view */
-/* You might need a small JS snippet for adding/removing 'in-view' class */
-/* For CSS only, you could try an animation on load, but it might fire too early */
-
-@keyframes cardFadeInUp {
-  from {
-      opacity: 0;
-      transform: translateY(30px);
-  }
-  to {
-      opacity: 1;
-      transform: translateY(0);
-  }
-}
-
-/* Apply to cards if you implement in-view detection: */
-.featured-tech .tech-card.in-view {
-  animation: cardFadeInUp 0.6s 0.2s ease-out forwards; 
-}
-
-/* ============= */
-
-
-/* 11. Buttons & Forms */
-.btn {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--border-radius-sm);
-  font-weight: 600;
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
-  border: none;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-}
-
-.btn-primary {
-  background-color: var(--error);
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: var(--erro-hover);
-}
-
-.btn-secondary {
-  background-color: var(--secondary);
-  color: white;
-}
-
-.btn-secondary:hover {
-  background-color: var(--secondary-hover);
-}
-
-.contact-form-container {
-  background-color: var(--background);
-  border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-lg);
-  padding: 2rem;
-  
-
-  
-    background-image: url('../images/SEESL-office-image.png'); /* Path to your form background image */
-    background-size: cover;
-    background-position: center;
-    max-width: 600px; /* Adjust size as needed */
-    margin: 0 auto; /* Center the form */
-    margin-bottom: 2rem;
-
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-  position: relative;
-  color: var(--accent);
-}
-
-.form-title {
-  font-size: var(--font-size-lg);
-  font-weight: 800;
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--primary);
-  color: var(--primary);
-}
-
-
-
-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-}
-
-input, select, textarea {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid var(--border);
-  border-radius: var(--border-radius-sm);
-  background-color: var(--background);
-  color: var(--text);
-  font-family: inherit;
-}
-
-input:focus, select:focus, textarea:focus {
-  outline: none;
-  border-color: var(--primary);
-}
-
-.form-group.error input,
-.form-group.error select,
-.form-group.error textarea {
-  border-color: var(--error);
-}
-
-.error-message {
-  color: var(--error);
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
-  display: block;
-}
-
-/* 12. Utilities */
-.text-center {
-  text-align: center;
-}
-
+/* 1.5. Utility Classes */
+.text-center { text-align: center; }
 .mt-1 { margin-top: var(--spacing-sm); }
 .mt-2 { margin-top: var(--spacing-md); }
 .mt-3 { margin-top: var(--spacing-lg); }
 .mt-4 { margin-top: var(--spacing-xl); }
-
 .mb-1 { margin-bottom: var(--spacing-sm); }
 .mb-2 { margin-bottom: var(--spacing-md); }
 .mb-3 { margin-bottom: var(--spacing-lg); }
 .mb-4 { margin-bottom: var(--spacing-xl); }
-
-.hidden {
-  display: none;
-}
-
-/* 13. Theme Toggle */
-.theme-toggle {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.25rem;
-  cursor: pointer;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.theme-toggle .fa-sun {
-  display: none;
-}
-
-.theme-toggle .fa-moon {
-  display: block;
-}
-
-[data-theme="dark"] .theme-toggle .fa-sun {
-  display: block;
-}
-
-[data-theme="dark"] .theme-toggle .fa-moon {
-  display: none;
-}
-
-/* 14. Responsive Design */
-@media (max-width: 767px) {
-  .hero {
-    padding: 8rem 0 4rem;
-  }
-  
-  .hero h1 {
-    font-size: 1.8rem;
-  }
-  
-  .prev-button, .next-button {
-    padding: 0.3rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .mobile-menu-toggle {
-    display: none;
-  }
-  
-  .desktop-nav {
-    display: block;
-  }
-  
-  .contact-info {
-    display: block;
-  }
-  
-  .social-icons {
-    display: flex;
-    gap: 1rem;
-  }
-  
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .footer-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .hero h1 {
-    font-size: 2.5rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .services-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  
-  .footer-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-  
-  .footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .footer-legal {
-    margin-top: 0;
-  }
-  
-  .hero h1 {
-    font-size: 3.5rem;
-  }
-}
-
-/* Enhanced responsiveness for larger screens */
-@media (min-width: 1440px) {
-  :root {
-    --container-max-width: 1400px;
-    --container-padding: 2rem;
-  }
-  
-  .services-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-/* Enhanced responsiveness for very small screens */
-@media (max-width: 480px) {
-  .hero {
-    padding: 7rem 0 3rem;
-  }
-  
-  .hero-buttons {
-    flex-direction: column;
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
-  }
-  
-  .btn {
-    width: 100%;
-  }
-  
-  .card {
-    padding: 1.5rem;
-  }
-  
-  .logo img {
-    height: 50px;
-  }
-}
-
-
-/* ========================================== */
-
-/* <!-- ===== CSS Code (NOTE this code needs to be proparly placed) ===== --> */
-
-/* Carousel & Layout */
-.t.tech-carousel, .projects-carousel, .tech-track, .proj-track {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  margin: 20px 0;
-}
-.tech-track  {
-   display: flex; 
-   gap: 1rem; 
-   scroll-behavior: smooth; 
-   margin: 20px;
-  }
-
-  .proj-track{
-    display: flex; 
-   gap: 1rem; 
-   scroll-behavior: smooth; 
-  }
-
-
-.mv-gallery {
-   display: grid; 
-   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-   gap: 6rem; 
-  }
-.image-thumbnails {
-   display: grid; 
-   grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); 
-   gap: 0.7rem; 
-  }
-
-/* Hover Effects */
- .thumbnail {
-  
-   width: 100%; 
-   height: 100%;
-   object-fit: cover; /* This is the key property to make the image cover the area */
-   object-position: center; /* Optional: centers the image within its box if clipped */
-   cursor: pointer; 
-   border-radius: var(--border-radius-sm); 
-   transition: transform 0.2s, box-shadow 0.3s; 
-  }
-
-  .thumbnail:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(0, 123, 255, 0.7); /* blue glow for visibility on both dark/light */
-  }
-  /* The hover effect might need to be on .thumbnail-container if the image itself doesn't fill it due to padding trick */
-.thumbnail-container:hover .thumbnail {
-  transform: scale(1.05); /* Or apply shadow to container */
-}
+.hidden { display: none; }
 .float-3d {
    transition: transform 0.3s; 
    transform-style: preserve-3d; 
-  }
+}
 .float-3d:hover {
    transform: translateY(-10px) rotateX(2deg) rotateY(2deg); 
-  }
+}
 
-/* Nav Buttons */
-.carousel-nav {
-   position: absolute; 
-   top: 50%; 
-   transform: translateY(-50%); 
-   background: rgba(0,0,0,0.5); border: none; color: #fff; padding: 0.5rem; 
-   border-radius: 50%; cursor: pointer; z-index: 2; 
-  }
-.prev-tech, .prev-proj {
-   left: 0.5rem; 
-  }
-.next-tech, .next-proj {
-   right: 0.5rem; 
-  }
 
-/* Pagination Dots */
-.pagination-dots {
-   position: absolute; 
-   bottom: 1rem; 
-   left: 50%; 
-   transform: translateX(-50%); 
-   display: flex; gap: 0.5rem; 
-  }
-.pagination-dots button {
-   width: 10px; 
-   height: 10px; 
-   border: none; 
-   border-radius: 50%; 
-   background: rgba(255,255,255,0.5); 
-   cursor: pointer; 
-  }
-.pagination-dots button.active {
-   background: #fff; 
-  }
+/* =====================================================================
+   2. CORE COMPONENTS
+   ===================================================================== */
 
-/* Lightbox Styles */
-.lightbox {
+/* 2.1. Header & Navigation */
+.header {
    position: fixed; 
-   top:0; left:0; 
-   width:100%; 
-   height:100%; 
-   background: rgba(0,0,0,0.8); 
-   display: flex; 
-   justify-content: center; 
-   align-items: center; 
-   z-index: 999; 
+   top: 0; 
+   left: 0; 
+   width: 100%; 
+   background-color: var(--header); 
+   color: white; 
+   padding: 1rem 0; 
+   z-index: 1000; 
+   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); transition: padding 0.3s; 
   }
-.lightbox.hidden {
+
+.header-content {
+   display: flex; 
+   justify-content: space-between; 
+   align-items: center; 
+  }
+
+.logo img {
+   height: 70px; 
+   transition: height 0.3s; 
+   border-radius: 5px; 
+  }
+
+.desktop-nav {
    display: none; 
   }
-.lightbox-img {
-   max-width: 90%; 
-   max-height: 90%; 
-   border-radius: var(--border-radius-md); 
-  }
-.lightbox-close {
-   position: absolute; top:1rem; 
-   right:1rem; 
-   font-size:2rem; 
-   color:#fff; 
-   cursor:pointer; 
+
+.desktop-nav ul {
+   display: flex; 
+   gap: 2rem; 
   }
 
-  
-
-  /* Responsive adjustments for image thumbnails */
-  @media (max-width: 768px) {
-    .tech-carousel, .projects-carousel {
-      flex-direction: column;
-      align-items: center;
-    }
-    .tech-track, .proj-track {
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
+.desktop-nav a, .desktop-nav button {
+   position: relative; 
+   padding: 0.5rem 0; 
+   font-weight: 500; 
+   transition: color 0.3s; 
   }
 
-  @media (max-width: 480px) {
-    .tech-carousel, .projects-carousel {
-      gap: 10px;
-    }
-    .tech-track, .proj-track {
-      gap: 5px;
-    }
+.desktop-nav a:hover, .desktop-nav a.active, .desktop-nav button:hover {
+   color: var(--secondary); 
   }
 
-  /* ========= new modal style============ */
-
-/* ========= Improved Modal Styles ============ */
-
-/* Modal Overlay */
-.modal {
-  display: none; /* Hidden by default, JS changes to 'block' to show */
-  position: fixed;
-  z-index: 1000; /* High z-index to sit on top */
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto; /* Enable scroll if modal content (including transform) is too large for viewport */
-  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent dark background */
-  padding: var(--spacing-md); /* Padding for smaller screens so modal-content doesn't touch edges */
-}
-
-/* Modal Content Box */
-.modal-content {
-  background-color: var(--background);
-  color: var(--text);
-  padding: var(--spacing-lg); /* Consistent padding using variables */
-  border: 1px solid var(--border);
-  border-radius: var(--border-radius-md); /* Consistent border radius */
-  box-shadow: var(--shadow-lg); /* Consistent shadow for depth */
-  
-  width: 90%; /* Responsive width, takes 90% of parent (.modal) width */
-  max-width: 600px; /* Maximum width to prevent it from being too wide on large screens */
-  
-  position: relative; /* Required for absolute positioning of close button and for centering trick */
-  margin-left: auto;
-  margin-right: auto; /* Horizontal centering */
-  
-  /* Vertical centering trick when parent .modal is display: block */
-  top: 50%;
-  transform: translateY(-50%);
-  
-  /* For modals with potentially long content */
-  max-height: 90vh; /* Max height relative to viewport height */
-  overflow-y: auto; /* Add scrollbar if content inside modal-content exceeds max-height */
-  text-align: left; /* Explicitly set text alignment */
-}
-
-/* Adjustments for very small screens or short viewports where translateY(-50%) might not be ideal */
-@media (max-height: 450px), (max-width: 480px) {
-  .modal-content {
-      top: auto; /* Reset top positioning */
-      transform: none; /* Reset transform */
-      margin-top: 5vh; /* Add some margin from the top of the viewport */
-      margin-bottom: 5vh; /* Add some margin from the bottom */
-      max-height: 90vh; /* Ensure it doesn't exceed viewport height */
+.desktop-nav a.active::after {
+   content: ''; 
+   position: absolute; 
+   bottom: 0; 
+   left: 0; 
+   width: 100%; 
+   height: 2px; 
+   background-color: var(--secondary); 
   }
-}
 
-/* Modal Close Button */
-.modal-close {
-  position: absolute;
-  top: var(--spacing-sm); /* Position from top using variable */
-  right: var(--spacing-md); /* Position from right using variable */
-  color: var(--text-light);
-  background-color: transparent;
-  border: none;
-  font-size: 1.75rem; /* Adjust size as needed */
-  font-weight: bold;
-  line-height: 1; /* Prevent extra spacing */
-  cursor: pointer;
-  padding: 0.25rem 0.5rem; /* Slightly larger click/tap area */
-  transition: color var(--transition-fast);
-}
+.dropdown {
+   position: relative; 
+  }
 
-.modal-close:hover,
-.modal-close:focus {
-  color: var(--primary); /* Use primary color on hover/focus for clear feedback */
-  outline: none; /* Remove default outline if custom focus is handled or not desired */
-}
+.dropdown-button {
+   background: none;
+    border: none; 
+    color: inherit; 
+    font: inherit; 
+    cursor: pointer; 
+    display: flex; 
+    align-items: center; 
+    gap: 0.3rem; 
+    padding: 0.5rem 0; 
+    font-weight: 500; 
+  }
 
-/* Optional: if you want a visible focus ring for accessibility on the close button */
-.modal-close:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 2px;
-}
+.dropdown-content {
+   position: absolute; 
+   top: 100%; 
+   left: 0; 
+   min-width: 200px; 
+   background-color: white; 
+   border-radius: var(--border-radius-md); box-shadow: var(--shadow-lg); opacity: 0; visibility: hidden; 
+   transform: translateY(10px); 
+   transition: opacity 0.3s, transform 0.3s, visibility 0.3s; 
+   z-index: 100; 
+   overflow: hidden; 
+  }
 
-/* ====================================== */
+.dropdown:hover .dropdown-content {
+   opacity: 1; visibility: visible; transform: translateY(0); }
+.dropdown-content a { display: block; padding: 0.75rem 1rem; color: var(--text); transition: background-color 0.3s, color 0.3s; }
+.dropdown-content a:hover { background-color: var(--secondary); color: white; }
+.header-actions { display: flex; align-items: center; gap: 1rem; }
+.contact-info { display: none; }
+.contact-info a { color: white; font-weight: 500; }
+.social-icons { display: none; }
+.social-icons a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; color: white; transition: color 0.3s; }
+.social-icons a:hover { color: var(--secondary); }
+.theme-toggle { background: none; border: none; color: white; font-size: 1.25rem; cursor: pointer; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; position: relative; }
+.theme-toggle .fa-sun { display: none; }
+.theme-toggle .fa-moon { display: block; }
+[data-theme="dark"] .theme-toggle .fa-sun { display: block; }
+[data-theme="dark"] .theme-toggle .fa-moon { display: none; }
+.mobile-menu-toggle { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; display: block; }
+.mobile-menu { background-color: var(--header); height: 0; overflow: auto; max-height: 100%; transition: height 0.3s ease; visibility: hidden; }
+.mobile-menu.open { height: auto; visibility: visible; }
+.mobile-menu ul { padding: 1rem; }
+.mobile-menu li { margin-bottom: 0.5rem; }
+.mobile-menu a { display: block; padding: 0.5rem 0; color: white; font-weight: 500; }
+.mobile-menu a:hover { color: var(--secondary); }
+.services-dropdown { background: none; border: none; color: white; font: inherit; width: 100%; text-align: left; padding: 0.5rem 0; font-weight: 500; display: flex; gap: 1em; align-items: center; cursor: pointer; }
+.mobile-services { display: none; padding-left: 1rem; margin-top: 0.5rem; border-left: 2px solid var(--secondary); }
+.mobile-services.open { display: block; }
+.mobile-social { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.2); }
+.social-icons-mobile { display: flex; gap: 1.5rem; }
+.social-icons-mobile a { font-size: 1.25rem; }
 
-/* ====================================== */
-/* Partners Grid */
-.partners-grid {
-    display: flex; /* Use flexbox for layout */
-    flex-wrap: wrap; /* Allow items to wrap to the next line */
-    justify-content: center; /* Center items horizontally */
-    gap: 20px; /* Space between items */
-}
+/* 2.2. Footer */
+.footer { background-color: var(--footer); color: white; padding: 4rem 0 2rem; }
+.footer-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-bottom: 3rem; }
+.footer h4 { color: white; margin-bottom: 1.5rem; position: relative; }
+.footer h4::after { content: ''; position: absolute; bottom: -0.5rem; left: 0; width: 50px; height: 2px; background-color: var(--secondary); }
+.footer ul li { margin-bottom: 0.75rem; }
+.footer a { transition: color 0.3s; }
+.footer a:hover { color: var(--secondary); }
+.footer-contact li { display: flex; align-items: flex-start; gap: 0.5rem; }
+.footer-contact i { color: var(--secondary); margin-top: 0.25rem; }
+.footer-social { text-align: center; margin-bottom: 3rem; }
+.social-icons-footer { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1rem; }
+.social-icons-footer a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.1); color: white; font-size: 1.25rem; transition: background-color 0.3s, color 0.3s; }
+.social-icons-footer a:hover { background-color: var(--secondary); color: white; }
+.footer-bottom { padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.1); text-align: center; }
+.footer-legal { margin-top: 1rem; display: flex; justify-content: center; gap: 1.5rem; }
 
-/* Partner Logo */
-.partner-logo {
-    flex: 1 1 150px; /* Allow logos to grow and shrink, with a base width */
-    max-width: 200px; /* Set a maximum width for logos */
-    text-align: center; /* Center logos */
-}
+/* 2.3. Buttons */
+.btn { display: inline-block; padding: 0.75rem 1.5rem; border-radius: var(--border-radius-sm); font-weight: 600; text-align: center; cursor: pointer; transition: background-color 0.3s, transform 0.3s; border: none; }
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background-color: var(--error); color: white; }
+.btn-primary:hover { background-color: var(--erro-hover); }
+.btn-secondary { background-color: var(--secondary); color: white; }
+.btn-secondary:hover { background-color: var(--secondary-hover); }
 
-.partner-logo img {
-    max-width: 100%; /* Ensure images are responsive */
-    height: auto; /* Maintain aspect ratio */
-}
+/* 2.4. Cards (Generic) */
+.card { background-color: var(--background); border-radius: var(--border-radius-md); box-shadow: var(--shadow-md); padding: 2rem; transition: transform 0.3s, box-shadow 0.3s; height: 100%; display: flex; flex-direction: column; }
+.card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+.card-icon { font-size: 3rem; color: var(--primary); margin-bottom: 1.5rem; text-align: center; }
+.card h3 { text-align: center; margin-bottom: 1.5rem; }
+.card-content { flex-grow: 1; }
+.image-container { border-radius: var(--border-radius-md); overflow: hidden; margin-bottom: 1.5rem; }
+.image-container img { width: 100%; height: auto; transition: transform 0.3s; }
+.image-container:hover img { transform: scale(1.03); }
+
+/* 2.5. Modals */
+.modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.6); padding: var(--spacing-md); }
+.modal-content { background-color: var(--background); color: var(--text); padding: var(--spacing-lg); border: 1px solid var(--border); border-radius: var(--border-radius-md); box-shadow: var(--shadow-lg); width: 90%; max-width: 600px; position: relative; margin-left: auto; margin-right: auto; top: 50%; transform: translateY(-50%); max-height: 90vh; overflow-y: auto; text-align: left; }
+.modal-close { position: absolute; top: var(--spacing-sm); right: var(--spacing-md); color: var(--text-light); background-color: transparent; border: none; font-size: 1.75rem; font-weight: bold; line-height: 1; cursor: pointer; padding: 0.25rem 0.5rem; transition: color var(--transition-fast); }
+.modal-close:hover, .modal-close:focus { color: var(--primary); outline: none; }
+.modal-close:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+/* 2.6. Lightbox */
+.lightbox { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; z-index: 1001; }
+.lightbox.hidden { display: none; }
+.lightbox-img { max-width: 90%; max-height: 90%; border-radius: var(--border-radius-md); }
+.lightbox-close { position: absolute; top:1rem; right:1rem; font-size:2rem; color:#fff; cursor:pointer; }
+
+/* 2.7. Back to Top Button */
+#backToTopBtn { display: none; position: fixed; bottom: 20px; right: 20px; z-index: 9999; background-color: var(--error); color: white; border: none; outline: none; cursor: pointer; padding: 0; border-radius: 50%; width: 50px; height: 50px; font-size: 24px; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, background-color 0.2s ease-in-out; }
+#backToTopBtn.show { display: flex; opacity: 1; visibility: visible; }
+#backToTopBtn:hover { background-color: #555; }
+#backToTopBtn:focus-visible { outline: 2px solid dodgerblue; outline-offset: 2px; }
 
 
-/* =======Back to Top Button Styling======== */
-#backToTopBtn {
-  display: none; /* Hidden by default, JS will manage visibility */
-  position: fixed; /* Keep it in view while scrolling */
-  bottom: 20px;    /* 20px from the bottom */
-  right: 20px;     /* 20px from the right */
-  z-index: 9999;   /* Ensure it's on top of other content */
+/* =====================================================================
+   3. PAGE-SPECIFIC & SECTION COMPONENTS
+   ===================================================================== */
 
-  /* Button Appearance */
-  background-color: var(--error); /* Dark background */
-  color: white;           /* White arrow */
-  border: none;           /* No border */
-  outline: none;          /* No outline on focus (optional, consider accessibility) */
-  cursor: pointer;        /* Pointer cursor on hover */
-  padding: 0;             /* Remove default padding */
-  border-radius: 50%;     /* Circular shape */
-  width: 50px;            /* Fixed width */
-  height: 50px;           /* Fixed height */
-  font-size: 24px;        /* Arrow size */
-  
-  /* For centering the arrow icon */
-  display: flex;
+/* 3.1. Hero Section */
+.hero { position: relative; padding: 10rem 0 6rem; background: linear-gradient(to right, var(--primary), #003366); color: white; overflow: hidden; margin-top: 0; }
+.hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0.4; }
+.hero-content { position: relative; z-index: 10; max-width: 800px; margin: 0 auto; text-align: center; }
+.hero h1 { color: white; margin-bottom: 1.5rem; }
+.hero p { font-size: var(--font-size-lg); margin-bottom: 2rem; opacity: 0.9; }
+.hero-buttons { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+
+/* 3.2. Services Grid & Service Cards */
+.services-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+.service-card ul { margin-bottom: 1.5rem; }
+.service-card li { margin-bottom: 0.5rem; display: flex; align-items: flex-start; gap: 0.5rem; }
+.service-card li i { color: var(--secondary); margin-top: 0.25rem; }
+
+/* 3.3. Mission, Vision, Gallery (MVG - Home Page) & Generic Thumbnails */
+.mv-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 6rem; }
+.image-thumbnails { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.7rem; }
+.thumbnail { width: 100%; height: 100%; object-fit: cover; object-position: center; cursor: pointer; border-radius: var(--border-radius-sm); transition: transform 0.2s, box-shadow 0.3s; }
+.thumbnail:hover { transform: scale(1.05); box-shadow: 0 0 15px rgba(0, 123, 255, 0.7); }
+
+/* 3.4. Projects Section & Project Cards */
+.proj-track { 
+  display: flex; 
+  gap: 1rem; 
+  scroll-behavior: smooth;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* margin: 1rem; */
 
-  /* Transitions for fade-in/fade-out */
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, background-color 0.2s ease-in-out;
+}
+/* Project Card h3 and p styles are unified with Tech Card h4 and p below */
+
+/* 3.5. Featured Technologies Section & Tech Cards */
+/* .featured-tech .section-title h2 { text-shadow: 0 0 10px var(--secondary-hover), 0 0 20px var(--secondary-hover), 1px 1px 2px rgba(0, 0, 0, 0.1); } */
+.featured-tech .tech-track { display: flex; gap: var(--spacing-lg); scroll-behavior: smooth; margin: 20px; padding-bottom: var(--spacing-md); flex-wrap: wrap; justify-content: center; }
+.featured-tech .tech-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--border-radius-lg); box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); padding: var(--spacing-lg); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease; overflow: hidden; position: relative; flex: 0 0 auto; width: 90%; max-width: 350px; }
+[data-theme="dark"] .featured-tech .tech-card { background: rgba(42, 62, 80, 0.6); border: 1px solid rgba(var(--secondary-rgb), 0.3); box-shadow: 0 0 25px rgba(var(--secondary-rgb), 0.15); }
+.featured-tech .tech-card .image-thumbnails { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: var(--spacing-md); margin-bottom: 1.5rem; }
+.featured-tech .tech-card .image-thumbnails .thumbnail { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--border-radius-sm); transition: transform 0.5s ease, filter 0.5s ease; display: block; }
+.featured-tech .tech-card h4, .projects .project-card h3 { color: var(--secondary); font-size: var(--font-size-xl); margin-bottom: 0.75rem; text-align: center; }
+.featured-tech .tech-card p, .projects .project-card p { font-size: var(--font-size-sm); color: var(--text-light); line-height: 1.6; text-align: center; min-height: 60px; }
+.featured-tech .tech-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: var(--border-radius-lg); border: 2px solid transparent; background: linear-gradient(45deg, var(--secondary), var(--primary)) border-box; -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0); -webkit-mask-composite: destination-out; mask-composite: exclude; opacity: 0; transition: opacity 0.4s ease; z-index: -1; }
+.featured-tech .tech-card:hover { transform: translateY(-15px) scale(1.03); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); }
+[data-theme="dark"] .featured-tech .tech-card:hover { box-shadow: 0 10px 50px rgba(var(--secondary-rgb), 0.3); }
+.featured-tech .tech-card:hover::before { opacity: 1; }
+.featured-tech .tech-card:hover .image-thumbnails .thumbnail { transform: scale(1.1); filter: brightness(1.1); }
+
+/* 3.6. Partners */
+.partners-carousel { position: relative; margin: 2rem 0; overflow: hidden; }
+.partners-carousel .carousel-container { display: flex; animation: scroll 20s linear infinite; }
+.partner-item { flex: 0 0 auto; width: 200px; margin: 0 1rem; transition: transform 0.3s; scroll-snap-align: start; }
+.partner-item:hover { transform: scale(1.05); }
+.carousel-controls { position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; transform: translateY(-50%); z-index: 10; }
+.prev-button, .next-button { background-color: rgba(255, 255, 255, 0.8); border: none; border-radius: 50%; padding: 0.5rem; cursor: pointer; transition: background-color 0.3s; margin: 0 1rem; }
+.prev-button:hover, .next-button:hover { background-color: rgba(255, 255, 255, 1); }
+.partners-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+.partner-logo { flex: 1 1 150px; max-width: 200px; text-align: center; }
+.partner-logo img { max-width: 100%; height: auto; }
+
+/* 3.7. General Forms */
+.form-group { margin-bottom: 1.5rem; position: relative; color: var(--accent); }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--text); }
+input, select, textarea { width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--border-radius-sm); background-color: var(--background); color: var(--text); font-family: inherit; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary); }
+.form-group.error input, .form-group.error select, .form-group.error textarea { border-color: var(--error); }
+.error-message { color: var(--error); font-size: var(--font-size-sm); margin-top: 0.25rem; display: block; }
+
+/* 3.8. Contact Page Specifics */
+.contact-section .contact-grid { display: grid; gap: var(--spacing-lg); }
+.contact-form-container { padding: 15px; margin: 20px; background-image: url('../images/SEESL-office-image.png'); background-size: cover; background-position: center; border-radius: var(--border-radius-md); box-shadow: var(--shadow-lg); max-width: 600px; }
+.contact-form-container p, .contact-form-container small { background: var(--footer); margin: 0.5rem; border-radius: var(--border-radius-sm); padding: 5px; text-align: center; color: yellow; }
+.contact-form-container p .response-time { background: var(--footer); color: wheat; }
+.contact-form input[type="text"], .contact-form input[type="email"], .contact-form input[type="tel"], .contact-form select, .contact-form textarea { height: 40px; box-sizing: border-box; }
+.contact-form textarea { height: 80px; }
+.contact-form-container .form-title { font-size: var(--font-size-lg); font-weight: 800; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--primary); color: var(--primary); }
+.contact-form-container .form-group label { color: var(--accent); }
+.contact-info-container { background-image: url('../images/contact-background.jpg'); background-size: cover; background-position: center; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.228); max-width: 900px; margin: 0 auto; border: 2px solid var(--primary); width: 100%; box-sizing: border-box; }
+.contact-info-card { padding: 20px; border-radius: 8px; background-color: rgba(255, 255, 255, 0.9); }
+.social-icons-contact { display: flex; justify-content: center; gap: var(--spacing-md); }
+.social-icons-contact a { font-size: 1.5em; color: var(--primary); transition: color 0.3s ease; }
+.social-icons-contact a:hover { color: var(--secondary); }
+.map-container { overflow: hidden; width: 100%; max-width: 100%; }
+.map-placeholder { position: relative; width: 100%; height: 0; padding-bottom: 56.25%; }
+.map-placeholder iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+
+/* =====================================================================
+   4. CAROUSEL SPECIFICS (JS DRIVEN)
+   ===================================================================== */
+
+/* 4.1. JS Carousel Navigation Buttons */
+.carousel-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); border: none; color: #fff; padding: 0.5rem; border-radius: 50%; cursor: pointer; z-index: 2; }
+.prev-tech, .prev-proj { left: 0.5rem; }
+.next-tech, .next-proj { right: 0.5rem; }
+.featured-tech .carousel-nav { background: rgba(255, 255, 255, 0.1); color: var(--secondary); border: 1px solid var(--secondary); width: 40px; height: 40px; font-size: 1.2rem; transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; }
+.featured-tech .carousel-nav:hover { background: var(--secondary); color: white; transform: translateY(-50%) scale(1.1); }
+
+/* 4.2. JS Carousel Pagination Dots */
+.pagination-dots { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); display: flex; gap: 0.5rem; z-index: 2; }
+.pagination-dots button { width: 10px; height: 10px; border: none; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; transition: background-color 0.3s, transform 0.3s; }
+.pagination-dots button.active { background: var(--secondary); }
+.featured-tech .pagination-dots button { background: rgba(255, 255, 255, 0.3); }
+.featured-tech .pagination-dots button.active { background: var(--secondary); transform: scale(1.2); }
+
+
+/* =====================================================================
+   5. ANIMATIONS
+   ===================================================================== */
+
+/* 5.1. @keyframes scroll (for CSS Partners Carousel) */
+@keyframes scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-250%); } 
 }
 
-/* Style for when the button is visible */
-#backToTopBtn.show {
-  display: flex; /* Or 'block' if not using flex for centering */
-  opacity: 1;
-  visibility: visible;
+/* 5.2. @keyframes cardFadeInUp (for JS .in-view class) */
+@keyframes cardFadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.featured-tech .tech-card.in-view { 
+  animation: cardFadeInUp 0.6s 0.2s ease-out forwards; 
 }
 
-/* Hover effect */
-#backToTopBtn:hover {
-  background-color: #555; /* Slightly lighter background on hover */
+
+/* =====================================================================
+   6. RESPONSIVE DESIGN (@media queries)
+   ===================================================================== */
+
+/* 6.1. Medium Screens (min-width: 768px) */
+@media (min-width: 768px) {
+  .mobile-menu-toggle { display: none; }
+  .desktop-nav { display: block; }
+  .contact-info { display: block; } 
+  .social-icons { display: flex; gap: 1rem; } 
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero h1 { font-size: 2.5rem; }
+  .contact-section .contact-grid { grid-template-columns: 1fr 1fr; }
+  .contact-form-container { margin-bottom: 0; } 
+  .featured-tech .tech-card { width: 45%; }
 }
 
-/* Basic focus styling for accessibility - you can enhance this */
-#backToTopBtn:focus-visible {
-  outline: 2px solid dodgerblue;
-  outline-offset: 2px;
+/* 6.2. Large Screens (min-width: 1024px) */
+@media (min-width: 1024px) {
+  .services-grid { grid-template-columns: repeat(3, 1fr); }
+  .footer-grid { grid-template-columns: repeat(4, 1fr); } 
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+  .footer-legal { margin-top: 0; }
+  .hero h1 { font-size: 3.5rem; }
+  .featured-tech .tech-card { width: 30%; }
 }
 
-/*
-If you don't want to use display: flex for centering the arrow,
-you can use line-height (if the button has a fixed height)
-and text-align:
-#backToTopBtn {
-  ...
-  text-align: center;
-  line-height: 50px; // Same as height
-  ...
+/* 6.3. Extra-Large Screens (min-width: 1440px) */
+@media (min-width: 1440px) {
+  :root { 
+    --container-max-width: 1400px;
+    --container-padding: 2rem;
+  }
+  .services-grid { grid-template-columns: repeat(4, 1fr); }
 }
-#backToTopBtn.show {
-  display: block; // Instead of flex
-  ...
+
+/* 6.4. Small Screens (max-width: 767px) */
+@media (max-width: 767px) {
+  .hero { padding: 8rem 0 4rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .prev-button, .next-button { padding: 0.3rem; }
+  .tech-carousel, .projects-carousel { /* These were original class names */
+      /* flex-direction: column; align-items: center; */ /* Uncomment to stack */
+  }
+  .tech-track, .proj-track { 
+      /* flex-direction: column; align-items: center; */ /* Uncomment to stack */
+      gap: 10px; 
+  }
+  .featured-tech .tech-card { 
+      width: 90%; 
+      max-width: 400px; 
+      margin-left: auto;
+      margin-right: auto;
+  }
 }
-*/
+
+/* 6.5. Very Small Screens (max-width: 480px) */
+@media (max-width: 480px) {
+  .hero { padding: 7rem 0 3rem; }
+  .hero-buttons { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto; }
+  .btn { width: 100%; } 
+  .card { padding: 1.5rem; } 
+  .logo img { height: 50px; }
+  .section-title h2 { font-size: var(--font-size-2xl); } 
+  .section-title h2::after { width: 60px; }
+  .section-title h2:hover::after { width: 120px; }
+  .modal-content { top: auto; transform: none; margin-top: 5vh; margin-bottom: 5vh; max-height: 90vh; }
+  .tech-carousel, .projects-carousel { gap: 10px; }
+  .tech-track, .proj-track { gap: 5px; }
+}
