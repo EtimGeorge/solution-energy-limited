@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Civil Construction | SEESL</title>
+
     <link rel="stylesheet" href="../css/variables.css">
     <link rel="stylesheet" href="../css/styles.css">
+
+    <link rel="icon" href="../images/SEES_new_logo.jpg" type="image/png">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -67,6 +72,74 @@
         /* -----------------------------------------------------------------------------
            3. SECTION STYLING
            -------------------------------------------------------------------------- */
+
+        /* Add or modify these styles within the <style> tag of each service page */
+
+/* --- Enhanced .service-image styling --- */
+.service-overview .service-image {
+    width: 100%;
+    max-width: 550px; /* Control the maximum size of the image area */
+    margin: 2.5rem auto 0; /* Center it and provide some top margin */
+    position: relative; /* Crucial for positioning the decorative ::before element */
+    padding: 10px; /* Creates a small gap for the ::before element to peek through if desired */
+}
+
+.service-overview .service-image::before { /* Decorative backdrop/frame */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Slightly offset to create a layered look. Adjust these values as you like. */
+    /* Example: top: -8px; left: -8px; right: -8px; bottom: -8px; */
+    /* For an inset border effect if .service-image has padding: */
+    /* top: 5px; left: 5px; right: 5px; bottom: 5px; */
+    border-radius: calc(var(--border-radius-md) + 4px); /* Slightly larger radius than the image */
+    background: linear-gradient(145deg, rgba(var(--primary-rgb), 0.15), rgba(var(--secondary-rgb), 0.1));
+    z-index: 1; /* Behind the image */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+    opacity: 0.7; /* Start slightly transparent */
+}
+
+.service-overview .service-image img {
+    display: block; /* Removes any bottom space if img is inline */
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    border-radius: var(--border-radius-md); /* Consistent rounded corners */
+    box-shadow: var(--shadow-lg); /* More prominent shadow */
+    position: relative; /* To sit on top of the ::before pseudo-element */
+    z-index: 2;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                box-shadow 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Hover effects */
+.service-overview .service-image:hover img {
+    transform: scale(1.03) translateY(-6px) rotate(-1deg); /* Subtle lift, scale, and tilt */
+    box-shadow: 0 22px 45px rgba(0, 0, 0, 0.25); /* More pronounced shadow on hover */
+}
+
+.service-overview .service-image:hover::before {
+    transform: scale(1.05) translate(3px, 3px) rotate(1deg); /* Background element moves slightly differently */
+    opacity: 1; /* Becomes fully opaque */
+}
+
+/* Dark Mode adjustments */
+[data-theme="dark"] .service-overview .service-image::before {
+    background: linear-gradient(145deg, rgba(var(--primary-rgb), 0.25), rgba(var(--secondary-rgb), 0.2));
+}
+
+[data-theme="dark"] .service-overview .service-image img {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5); /* Dark mode shadow */
+}
+
+[data-theme="dark"] .service-overview .service-image:hover img {
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6); /* Enhanced dark mode hover shadow */
+}
+        
+           
+
         
         /* 3.1. Service Overview (List Styling) */
         .service-overview .service-list {
@@ -413,7 +486,7 @@
                     </ul>
                 </div>
                 <div class="service-image">
-                    <img src="../images/service-civil-construction.jpg" alt="Civil Construction Services">
+                    <img src="../images/civil construction/Our Civil Construction Services.jpg" alt="Civil Construction Services">
                 </div>
             </div>
         </section>
@@ -425,28 +498,28 @@
                 
                 <div class="projects-grid">
                     <div class="project-item">
-                        <img src="../images/construction-project-1.jpg" alt="Road Construction Project">
+                        <img src="../images/civil construction/Road Construction.jpg" alt="Road Construction Project">
                         <div class="project-info">
                             <h3>Road Construction</h3>
                             <p>Modern road construction with proper drainage systems and durable materials.</p>
                         </div>
                     </div>
                     <div class="project-item">
-                        <img src="../images/construction-project-2.jpg" alt="Building Project">
+                        <img src="../images/civil construction/Public Edifice Construction.jpg" alt="Building Project">
                         <div class="project-info">
                             <h3>Public Edifice Construction</h3>
                             <p>Design and construction of public buildings with focus on durability and functionality.</p>
                         </div>
                     </div>
                     <div class="project-item">
-                        <img src="../images/construction-project-3.jpg" alt="Water Channel Project">
+                        <img src="../images/civil construction/Water Channel Construction.jpg" alt="Water Channel Project">
                         <div class="project-info">
                             <h3>Water Channel Construction</h3>
                             <p>Efficient water channel systems designed to prevent flooding and erosion.</p>
                         </div>
                     </div>
                     <div class="project-item">
-                        <img src="../images/construction-project-4.jpg" alt="Building Maintenance">
+                        <img src="../images/civil construction/High-Rise Building Maintenance.jpg" alt="Building Maintenance">
                         <div class="project-info">
                             <h3>High-Rise Building Maintenance</h3>
                             <p>Robotic cleaning and automated painting of high-rise buildings ensuring safety and efficiency.</p>
