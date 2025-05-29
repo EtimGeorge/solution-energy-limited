@@ -82,6 +82,71 @@
         /* -----------------------------------------------------------------------------
            3. SECTION STYLING
            -------------------------------------------------------------------------- */
+
+           /* Add or modify these styles within the <style> tag of each service page */
+
+/* --- Enhanced .service-image styling --- */
+.service-overview .service-image {
+    width: 100%;
+    max-width: 550px; /* Control the maximum size of the image area */
+    margin: 2.5rem auto 0; /* Center it and provide some top margin */
+    position: relative; /* Crucial for positioning the decorative ::before element */
+    padding: 10px; /* Creates a small gap for the ::before element to peek through if desired */
+}
+
+.service-overview .service-image::before { /* Decorative backdrop/frame */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Slightly offset to create a layered look. Adjust these values as you like. */
+    /* Example: top: -8px; left: -8px; right: -8px; bottom: -8px; */
+    /* For an inset border effect if .service-image has padding: */
+    /* top: 5px; left: 5px; right: 5px; bottom: 5px; */
+    border-radius: calc(var(--border-radius-md) + 4px); /* Slightly larger radius than the image */
+    background: linear-gradient(145deg, rgba(var(--primary-rgb), 0.15), rgba(var(--secondary-rgb), 0.1));
+    z-index: 1; /* Behind the image */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+    opacity: 0.7; /* Start slightly transparent */
+}
+
+.service-overview .service-image img {
+    display: block; /* Removes any bottom space if img is inline */
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    border-radius: var(--border-radius-md); /* Consistent rounded corners */
+    box-shadow: var(--shadow-lg); /* More prominent shadow */
+    position: relative; /* To sit on top of the ::before pseudo-element */
+    z-index: 2;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                box-shadow 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Hover effects */
+.service-overview .service-image:hover img {
+    transform: scale(1.03) translateY(-6px) rotate(-1deg); /* Subtle lift, scale, and tilt */
+    box-shadow: 0 22px 45px rgba(0, 0, 0, 0.25); /* More pronounced shadow on hover */
+}
+
+.service-overview .service-image:hover::before {
+    transform: scale(1.05) translate(3px, 3px) rotate(1deg); /* Background element moves slightly differently */
+    opacity: 1; /* Becomes fully opaque */
+}
+
+/* Dark Mode adjustments */
+[data-theme="dark"] .service-overview .service-image::before {
+    background: linear-gradient(145deg, rgba(var(--primary-rgb), 0.25), rgba(var(--secondary-rgb), 0.2));
+}
+
+[data-theme="dark"] .service-overview .service-image img {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5); /* Dark mode shadow */
+}
+
+[data-theme="dark"] .service-overview .service-image:hover img {
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6); /* Enhanced dark mode hover shadow */
+}
         
         /* 3.1. Service Overview (List Styling) */
         .service-overview .service-list {
@@ -464,7 +529,7 @@
                     </ul>
                 </div>
                 <div class="service-image">
-                    <img src="../images/service-tank-cleaning.jpg" alt="Tank Cleaning Services">
+                    <img src="../images/Tank and Vessel Cleaning/Tank Cleaning Services.webp" alt="Tank Cleaning Services">
                 </div>
             </div>
         </section>
@@ -547,21 +612,21 @@
                 <h2>Our Tank Cleaning Projects</h2>
                 <div class="case-studies-grid">
                     <div class="case-study">
-                        <img src="../images/tank-cleaning-case-1.jpg" alt="Petroleum Storage Tank Cleaning">
+                        <img src="../images/Tank and Vessel Cleaning/Petroleum Storage Tank Cleaning.jpg" alt="Petroleum Storage Tank Cleaning">
                         <div class="case-study-info">
                             <h3>Petroleum Storage Tank Cleaning</h3>
                             <p>Successfully completed automated cleaning of a 10,000-barrel crude oil storage tank with minimal downtime and zero safety incidents.</p>
                         </div>
                     </div>
                     <div class="case-study">
-                        <img src="../images/tank-cleaning-case-2.jpg" alt="Water Storage Tank Cleaning">
+                        <img src="../images/Tank and Vessel Cleaning/Water Storage Tank Cleaning-1.jpg" alt="Water Storage Tank Cleaning">
                         <div class="case-study-info">
                             <h3>Water Storage Tank Cleaning</h3>
                             <p>Performed no-entry cleaning of municipal water storage tanks, maintaining water quality standards throughout the process.</p>
                         </div>
                     </div>
                     <div class="case-study">
-                        <img src="../images/tank-cleaning-case-3.jpg" alt="Pressure Vessel Cleaning">
+                        <img src="../images/Tank and Vessel Cleaning/Pressure Vessel Cleaning.jpg" alt="Pressure Vessel Cleaning">
                         <div class="case-study-info">
                             <h3>Pressure Vessel Cleaning</h3>
                             <p>Utilized specialized equipment to clean industrial pressure vessels, restoring optimal operational efficiency.</p>
