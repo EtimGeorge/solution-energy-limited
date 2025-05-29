@@ -72,6 +72,7 @@
   --error: #dc2626;
   --erro-hover:rgb(178, 7, 7);
   --accent:#ffff00;
+  --primary-rgb: 0, 87, 146; /* Added for rgba usage */
   --secondary-rgb: 0, 176, 255;
   
   /* Typography */
@@ -108,13 +109,21 @@
 
 /* Dark Theme Variables */
 [data-theme="dark"] {
-  --text: #f3f4f6;
-  --text-light: #d1d5db;
-  --background: #121212;
-  --background-alt: #1f2937;
-  --border: #374151;
-  --secondary: #00b0ff;
-  --secondary-rgb: 0, 176, 255;
+  --primary: #1e88e5; /* Lighter blue for dark theme */
+  --primary-hover: #4dabf5; /* Lighter blue for dark theme hover - NEW & IMPROVED */
+  --secondary: #03a9f4; /* Slightly adjusted secondary for dark, if needed */
+  --secondary-hover: #29b6f6;
+  --header: #1e293b; /* Darker header for dark mode */
+  --footer: #1e293b; /* Darker footer for dark mode */
+  --text: #f3f4f6; /* Light text for dark mode */
+  --text-light: #cbd5e1; /* Slightly dimmer light text */
+  --background: #121212; /* Dark background */
+  --background-alt: #1f2937; /* Slightly lighter dark background */
+  --border: #374151; /* Darker border */
+  --accent: #FFEB3B; /* Potentially a brighter or different yellow for dark mode */
+  /* Ensure primary-rgb and secondary-rgb are updated if base colors change significantly */
+  --primary-rgb: 30, 136, 229; /* Corresponds to #1e88e5 */
+  --secondary-rgb: 3, 169, 244; /* Corresponds to #03a9f4 */
 }
 
 /* 0.2. Reset & Base Styles */
@@ -499,13 +508,7 @@ section {
 .featured-tech .tech-card:hover .image-thumbnails .thumbnail { transform: scale(1.1); filter: brightness(1.1); }
 
 /* 3.6. Partners */
-.partners-carousel { position: relative; margin: 2rem 0; overflow: hidden; }
-.partners-carousel .carousel-container { display: flex; animation: scroll 20s linear infinite; }
-.partner-item { flex: 0 0 auto; width: 200px; margin: 0 1rem; transition: transform 0.3s; scroll-snap-align: start; }
-.partner-item:hover { transform: scale(1.05); }
-.carousel-controls { position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; transform: translateY(-50%); z-index: 10; }
-.prev-button, .next-button { background-color: rgba(255, 255, 255, 0.8); border: none; border-radius: 50%; padding: 0.5rem; cursor: pointer; transition: background-color 0.3s; margin: 0 1rem; }
-.prev-button:hover, .next-button:hover { background-color: rgba(255, 255, 255, 1); }
+
 .partners-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
 .partner-logo { flex: 1 1 150px; max-width: 200px; text-align: center; }
 .partner-logo img { max-width: 100%; height: auto; }
@@ -537,6 +540,184 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
 .map-placeholder iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
 
+
+/* =====================================================================
+   OUR ESTEEMED CLIENTS SECTION
+   ===================================================================== */
+   .clients-showcase {
+    /* Uses global section padding & theming (section-light/section-dark) */
+  }
+  
+  .clients-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid */
+    gap: var(--spacing-lg); /* Consistent gap */
+    margin-top: 2rem; /* Space after section title */
+  }
+  
+  .client-item {
+    background-color: var(--background); /* Theme-aware background */
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    text-align: center;
+    box-shadow: var(--shadow-sm); /* Subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically if item height varies */
+  }
+  
+  .client-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg); /* More prominent shadow on hover */
+  }
+  
+  .client-logo-container {
+    height: 90px; /* Fixed height for logo area */
+    width: 100%;   /* Take full width of the .client-item padding box */
+    max-width: 180px; /* Max width for the logo image itself */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--spacing-sm);
+    overflow: hidden; /* Ensure logo stays within bounds */
+  }
+  
+  .client-logo-container img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain; /* Ensure logo scales nicely without distortion */
+    filter: grayscale(80%); /* Start logos slightly desaturated */
+    transition: filter 0.3s ease, transform 0.3s ease;
+  }
+  
+  .client-item:hover .client-logo-container img {
+    filter: grayscale(0%); /* Full color on hover */
+    transform: scale(1.05); /* Slight zoom on logo */
+  }
+  
+  .client-name {
+    font-size: var(--font-size-sm);
+    color: var(--text-light);
+    font-weight: 600; /* Make name slightly bolder */
+    margin-top: auto; /* Pushes name to bottom if logo container and name have varying heights */
+    line-height: 1.4;
+  }
+  
+  /* Dark Theme Adjustments for Client Showcase */
+  [data-theme="dark"] .client-item {
+    background-color: var(--background-alt); /* Darker card background */
+    border-color: var(--border);
+  }
+  
+  [data-theme="dark"] .client-logo-container img {
+    filter: grayscale(50%) brightness(0.9); /* Adjust for dark mode, less grayscale, slightly dimmed */
+  }
+  
+  [data-theme="dark"] .client-item:hover .client-logo-container img {
+    filter: grayscale(0%) brightness(1); /* Full color and normal brightness on hover */
+  }
+  
+  [data-theme="dark"] .client-name {
+    color: var(--text); /* Brighter text for dark mode */
+  }
+  
+  /* Responsive adjustments for the client grid if needed beyond auto-fill */
+  @media (max-width: 480px) {
+    .clients-grid {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Smaller items on very small screens */
+      gap: var(--spacing-md);
+    }
+    .client-logo-container {
+      height: 70px; /* Adjust logo container height for smaller screens */
+    }
+    .client-name {
+      font-size: 0.8rem; /* Slightly smaller font for client name */
+    }
+  }
+
+
+  /* =====================================================================
+   3.6. PARTNERS SECTION - AUTO-SCROLLING VERSION (in styles.css)
+   ===================================================================== */
+.partners {
+  /* Uses global section padding & theming (section-light/section-dark) */
+  /* background-color: var(--background); */ /* Example if it needs to be distinct */
+}
+
+.partners-auto-scroll-container { /* New wrapper class */
+  overflow: hidden;
+  width: 100%;
+  margin-top: 1.5rem; /* Space below the section title */
+  position: relative; /* For optional ::before/::after gradient fades at edges */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%); /* Optional: fade edges */
+  mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%); /* Optional: fade edges */
+}
+
+.partners-track-auto-scroll { /* New track class */
+  display: flex;
+  /* Calculate width: (partner_item_width + partner_item_margin-right) * total_partner_items (original + duplicates) */
+  /* Assuming partner-item is 150px wide (see below) + 2rem (32px) margin-right */
+  /* 8 original + 8 duplicates = 16 items */
+  /* (150px + 32px) * 16 = 182px * 16 = 2912px. Adjust if item width/margin/count changes */
+  width: calc((150px + var(--spacing-lg)) * 16); /* Adjust 150px and 16 if your items/count differ */
+  animation: partnersScroll 30s linear infinite; /* Adjust duration as needed */
+}
+
+.partners .partner-item {
+  flex: 0 0 150px; /* Fixed width for each partner logo item. Adjust as needed. */
+  height: 80px; /* Fixed height for consistent alignment */
+  margin-right: var(--spacing-lg); /* Gap between partner items */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xs); /* Small padding around the image */
+  background-color: transparent; /* Ensure no card-like background unless desired */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.partners .partner-item img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Ensures logo scales nicely within the item */
+  filter: grayscale(70%) opacity(0.8); /* Start slightly desaturated and less opaque */
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.partners .partner-item:hover img {
+  filter: grayscale(0%) opacity(1); /* Full color and opacity on hover */
+  transform: scale(1.1); /* Slight zoom */
+}
+
+/* Pause animation when hovering over the entire carousel area */
+.partners-auto-scroll-container:hover .partners-track-auto-scroll {
+  animation-play-state: paused;
+}
+
+/* Keyframes for the partners auto-scroll */
+@keyframes partnersScroll {
+0% {
+  transform: translateX(0);
+}
+100% {
+  /* Scroll by the width of the original set of partner items */
+  /* (150px item width + 32px margin) * 8 original items = 182px * 8 = -1456px */
+  transform: translateX(calc(-1 * (150px + var(--spacing-lg)) * 8)); /* Adjust if item count/width differs */
+}
+}
+
+/* Dark theme adjustments for partner logos if needed */
+[data-theme="dark"] .partners .partner-item img {
+  filter: grayscale(40%) brightness(0.9) opacity(0.85); /* Different filter for dark backgrounds */
+}
+
+[data-theme="dark"] .partners .partner-item:hover img {
+  filter: grayscale(0%) brightness(1) opacity(1);
+}
+
+
 /* =====================================================================
    4. CAROUSEL SPECIFICS (JS DRIVEN)
    ===================================================================== */
@@ -560,11 +741,7 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--p
    5. ANIMATIONS
    ===================================================================== */
 
-/* 5.1. @keyframes scroll (for CSS Partners Carousel) */
-@keyframes scroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-250%); } 
-}
+
 
 /* 5.2. @keyframes cardFadeInUp (for JS .in-view class) */
 @keyframes cardFadeInUp {

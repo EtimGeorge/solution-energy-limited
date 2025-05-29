@@ -367,133 +367,142 @@
       } */
       
       
-/* 3.4. Client Success Gallery Section - REVISED */
+
+
+/* Within the <style> block of asset-management.html */
+
+/* 3.4. Client Success Gallery Section - AUTO-SCROLLING VERSION */
 .success-gallery {
-    /* This section typically uses .section-dark or .section-light from global styles */
+    /* Uses global .section-dark or .section-light */
 }
 
 .success-gallery h2 {
-    /* Using the page-specific section heading color defined earlier: #0077cc */
+    /* Uses page-specific Orbitron font and themed color */
 }
 
-[data-theme="dark"] .success-gallery h2 {
-    color: #ffffff; /* Ensured from earlier dark mode rules for page headings */
+.gallery-carousel-auto-scroll { /* New wrapper class */
+    overflow: hidden;       /* Essential to hide the parts of the track that are off-screen */
+    width: 100%;
+    margin-top: 1.5rem; /* Space below the title */
+    position: relative; /* Added for potential future ::before/::after gradient fades */
 }
 
-/* .gallery-carousel is the main wrapper for the JS carousel */
-/* .gallery-track is the direct child of .gallery-carousel that holds the cards.
-   main.js will likely make this display: flex and handle scrolling.
-   The inline style "display: grid" for .gallery-track should be removed if it exists,
-   or this CSS won't apply correctly for a JS flex-based carousel. */
-.gallery-track {
-    display: flex; /* Assuming JS will handle this, or it's a default for carousels */
-    /* gap: var(--spacing-md); */ /* Gap between cards, JS or global CSS might also set this */
-    /* overflow-x: auto; */ /* JS usually handles overflow for carousels */
-    /* scroll-snap-type: x mandatory; */ /* If you want snapping */
+.gallery-track-auto-scroll { /* New track class */
+    display: flex;          /* Align cards in a row */
+    /* Calculate width: (card_width + card_margin-right) * total_cards (original + duplicates) */
+    /* Assuming gallery-card is 280px wide + 1rem (16px) margin-right */
+    /* 3 original + 3 duplicates = 6 cards */
+    /* (280px + 16px) * 6 = 296px * 6 = 1776px. Adjust if card width/margin/count changes */
+    width: calc((280px + var(--spacing-md)) * 6); /* Total width of all cards (original + duplicates) */
+    animation: successGalleryScroll 25s linear infinite; /* Adjust duration as needed */
 }
 
-
-.gallery-card { /* This card also has .float-3d class from original styles */
-    background-color: var(--background); /* Theme-aware background */
-    border-radius: var(--border-radius-md); /* Consistent radius */
+.success-gallery .gallery-card { /* Styling for individual cards remains largely the same */
+    background-color: var(--background);
+    border-radius: var(--border-radius-md);
     border: 1px solid var(--border);
     box-shadow: var(--shadow-md);
     transition: transform 0.3s ease, box-shadow 0.35s ease, border-color 0.3s ease;
-    overflow: hidden; /* Important for child element effects and border-radius */
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    text-align: left; /* Content alignment */
-    min-width: 280px; /* Ensure cards have a minimum width in the carousel track */
-    flex: 0 0 auto; /* Prevent shrinking in the flex track */
-    margin-right: var(--spacing-md); /* Creates space between cards in a flex track */
+    text-align: left;
+
+    /* Card sizing for the auto-scroll track */
+    flex: 0 0 280px; /* Fixed width for each card. Adjust as needed. */
+    margin-right: var(--spacing-md); /* Gap between cards */
+    /* float-3d class still applies hover effects */
 }
-.gallery-card:last-child {
-    margin-right: 0; /* No margin for the last card */
-}
+/* No :last-child margin removal needed as the animation handles the loop */
 
 
-.gallery-card:hover {
-    transform: translateY(-8px) scale(1.02);
+.success-gallery .gallery-card:hover {
+    transform: translateY(-8px) scale(1.01); /* Lift and scale */
     box-shadow: var(--shadow-lg);
-    border-color: var(--secondary); /* Highlight border with secondary color for variety */
+    border-color: var(--secondary);
+    /* To pause animation on hover (optional) */
+    /* animation-play-state: paused; */ /* This would apply to the card, not the track directly */
+}
+/* To pause track animation when hovering over the entire carousel area */
+.gallery-carousel-auto-scroll:hover .gallery-track-auto-scroll {
+    animation-play-state: paused;
 }
 
-[data-theme="dark"] .gallery-card {
+
+[data-theme="dark"] .success-gallery .gallery-card {
     background-color: var(--background-alt);
     border-color: var(--border);
 }
-
-[data-theme="dark"] .gallery-card:hover {
-    border-color: var(--primary); /* Use primary for hover border in dark for gallery */
+[data-theme="dark"] .success-gallery .gallery-card:hover {
+    border-color: var(--primary);
 }
 
-.gallery-card .thumbnail-container { /* Wrapper for image */
+.success-gallery .gallery-card .thumbnail-container {
     width: 100%;
-    height: 200px; /* Consistent height for image area, adjust as needed */
+    height: 200px;
     position: relative;
     overflow: hidden;
     background-color: var(--background-alt);
 }
 
-.gallery-card .thumbnail { /* The image itself */
+.success-gallery .gallery-card .thumbnail {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 0;
     transition: transform 0.4s ease;
-    margin-bottom: 0;
+}
+.success-gallery .gallery-card:hover .thumbnail {
+    transform: scale(1.08);
 }
 
-.gallery-card:hover .thumbnail {
-    transform: scale(1.1);
-}
-
-/* Optional subtle overlay for gallery images, different from highlight cards */
-.gallery-card .thumbnail-container::after {
+.success-gallery .gallery-card .thumbnail-container::after {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 60%); /* Bottom shadow */
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 70%);
     opacity: 0;
     transition: opacity 0.4s ease;
     z-index: 1;
 }
-.gallery-card:hover .thumbnail-container::after {
+.success-gallery .gallery-card:hover .thumbnail-container::after {
     opacity: 1;
 }
 
-
-.gallery-card-content { /* Wrapper for text below image */
+.success-gallery .gallery-card-content {
     padding: var(--spacing-md);
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center text if it's short */
+    justify-content: center;
 }
 
-.gallery-card p { /* Paragraph within the card */
+.success-gallery .gallery-card p {
     font-family: 'Titillium Web', sans-serif;
     color: var(--text);
-    font-size: var(--font-size-sm); /* Slightly smaller for gallery captions */
+    font-size: var(--font-size-sm);
     line-height: 1.5;
-    text-align: center; /* Center the caption text */
-    margin-bottom: 0; /* Remove bottom margin if it's the only content */
+    text-align: center;
+    margin-bottom: 0;
 }
 
-[data-theme="dark"] .gallery-card p {
-    color: var(--text); /* Main text color for dark theme */
+[data-theme="dark"] .success-gallery .gallery-card p {
+    color: var(--text);
 }
 
-/* Carousel Navigation and Dots for this specific gallery */
-/* These are usually styled globally, but if you need specific overrides for .success-gallery: */
-/*
-.success-gallery .carousel-nav {
-    background-color: rgba(var(--secondary-rgb), 0.5);
+/* Keyframes for the success gallery auto-scroll */
+@keyframes successGalleryScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* Scroll by the width of the original set of cards */
+    /* (280px card width + 16px margin) * 3 original cards = 296px * 3 = -888px */
+    transform: translateX(calc(-1 * (280px + var(--spacing-md)) * 3));
+  }
 }
-.success-gallery .pagination-dots button.active {
-    background-color: var(--primary);
-}
-*/
+
+/* REMOVE OLD CAROUSEL CSS for .success-gallery if any still exists, like: */
+/* .success-gallery .carousel-nav, .success-gallery .pagination-dots */
       
       /* 3.5. CTA Section */
       /* .cta-section uses global section styles */
@@ -773,44 +782,69 @@
         </div>
     </section>
 
-    <!-- Client Success Gallery -->
-    <section class="success-gallery section-dark">
-        <div class="container">
-            <h2 class="text-center">Client Success Stories</h2>
-            <div class="gallery-carousel">
-                <button class="carousel-nav prev-gallery"><i class="fas fa-chevron-left"></i></button>
-                <div class="gallery-track">
-                  <div class="gallery-card float-3d">
-                    <div class="thumbnail-container"> <!-- Added for consistency -->
+    <!-- asset-management.html -->
+
+<!-- Client Success Gallery -->
+<section class="success-gallery section-dark">
+    <div class="container">
+        <h2 class="text-center">Client Success Stories</h2>
+        <div class="gallery-carousel-auto-scroll"> <!-- Renamed for clarity and to avoid conflict if .gallery-carousel is used by JS -->
+            <div class="gallery-track-auto-scroll"> <!-- Renamed for clarity -->
+                <!-- Original Set of Cards -->
+                <div class="gallery-card float-3d">
+                    <div class="thumbnail-container">
                         <img src="../images/client1.jpg" alt="Client Project 1" class="thumbnail">
                     </div>
-                    <div class="gallery-card-content"> <!-- Added for consistency -->
+                    <div class="gallery-card-content">
                         <p>Recovered 80% of failing pipeline integrity at XYZ Facility.</p>
-                        <!-- You could add an optional <h4> if success stories have titles -->
                     </div>
                 </div>
-                    <div class="gallery-card float-3d">
-                      <div class="thumbnail-container"> <!-- Added for consistency -->
+                <div class="gallery-card float-3d">
+                    <div class="thumbnail-container">
                         <img src="../images/client2.jpg" alt="Client Project 2" class="thumbnail">
-                      </div>
-                      <div class="gallery-card-content"> <!-- Added for consistency -->
-                        <p>Implemented AI-powered corrosion tracking for ABC Group.</p>
-                      </div>
                     </div>
-                      <div class="gallery-card float-3d">
-                      <div class="thumbnail-container"> <!-- Added for consistency -->
-                        <img src="../images/client3.jpg" alt="Client Project 3" class="thumbnail">
-                      </div>
-                      <div class="gallery-card-content"> <!-- Added for consistency -->
-                        <p>Reduced facility downtime by 45% through predictive maintenance.</p>
-                      </div>
+                    <div class="gallery-card-content">
+                        <p>Implemented AI-powered corrosion tracking for ABC Group.</p>
                     </div>
                 </div>
-                <button class="carousel-nav next-gallery"><i class="fas fa-chevron-right"></i></button>
-                <div class="pagination-dots gallery-dots"></div>
+                <div class="gallery-card float-3d">
+                    <div class="thumbnail-container">
+                        <img src="../images/client3.jpg" alt="Client Project 3" class="thumbnail">
+                    </div>
+                    <div class="gallery-card-content">
+                        <p>Reduced facility downtime by 45% through predictive maintenance.</p>
+                    </div>
+                </div>
+
+                <!-- Duplicated Set of Cards for seamless scroll -->
+                <div class="gallery-card float-3d">
+                    <div class="thumbnail-container">
+                        <img src="../images/client1.jpg" alt="Client Project 1" class="thumbnail">
+                    </div>
+                    <div class="gallery-card-content">
+                        <p>Recovered 80% of failing pipeline integrity at XYZ Facility.</p>
+                    </div>
+                </div>
+                <div class="gallery-card float-3d">
+                    <div class="thumbnail-container">
+                        <img src="../images/client2.jpg" alt="Client Project 2" class="thumbnail">
+                    </div>
+                    <div class="gallery-card-content">
+                        <p>Implemented AI-powered corrosion tracking for ABC Group.</p>
+                    </div>
+                </div>
+                <div class="gallery-card float-3d">
+                    <div class="thumbnail-container">
+                        <img src="../images/client3.jpg" alt="Client Project 3" class="thumbnail">
+                    </div>
+                    <div class="gallery-card-content">
+                        <p>Reduced facility downtime by 45% through predictive maintenance.</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- CTA Section -->
     <section class="cta-section">

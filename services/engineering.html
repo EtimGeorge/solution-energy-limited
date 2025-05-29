@@ -56,14 +56,14 @@
     .stylized-paragraph {
         font-size: 1.1em; 
         line-height: 1.6; 
-        color: #333; /* Fixed color, consider var(--text) if consistent */
+        color: var(--text); /* Fixed color, consider var(--text) if consistent */
         margin-bottom: 1.5em; 
         transition: color 0.3s ease, transform 0.3s ease; 
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2), 0 0 25px rgba(0, 0, 0, 0.1); 
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Adjusted shadow for better visibility */
     }
     
     .stylized-paragraph:hover {
-        color: #007BFF; /* Fixed color, consider var(--primary) or var(--secondary) */
+        color: var(--primary-hover); /* Fixed color, consider var(--primary) or var(--secondary) */
         cursor: pointer; 
         transform: translateY(-2px); 
     }
@@ -75,7 +75,7 @@
     .page-hero { /* Assuming this is for the hero on this specific page */
         position: relative; 
         overflow: hidden; 
-        padding: 110px; /* Specific padding for this hero */
+        padding: 110px 0; /* Specific padding for this hero */
         height: 24rem; /* Specific height */
         /* justify-content: center; */ /* This was commented out */
     }
@@ -104,18 +104,27 @@
     .page-hero .hero-content p { /* Specific animation for paragraph in this hero */
         animation: slideInFromLeft 0.8s ease-out forwards; 
         animation-delay: 0.3s; 
-        color: yellow; /* Fixed color */
-        text-shadow: 1px 1px 2px rgba(253, 8, 8, 0.884), 0 0 25px rgba(0, 0, 0, 0.1), 0 0 5px #000; 
+        color: var(--accent); /* Use accent variable */
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5), /* Simplified base shadow */ 
+        0 0 10px rgba(var(--accent-rgb, 255, 255, 0), 0.6); /* Glow using accent-rgb */
     }
     
-    .typing-effect { /* For the animated text in the hero */
+     /* Optional: Dark theme specific text shadow for hero paragraph if needed */
+    [data-theme="dark"] .page-hero .hero-content p {
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7), /* Darker base for contrast */
+                     0 0 12px rgba(var(--accent-rgb, 255, 235, 59), 0.7); /* Brighter glow */
+    }
+
+    .typing-effect { 
         display: inline-block; 
         overflow: hidden; 
-        white-space: wrap; 
-        border-right: 2px solid; /* Cursor color will be animated by blink-caret */
-        animation: typing 4s steps(30, end), blink-caret 0.75s step-end infinite, glow 1s ease-in-out infinite alternate; 
-        font-weight: bold; 
-        /* color: yellow; */ /* Inherits from .page-hero .hero-content p if not set directly */
+        white-space: nowrap; /* Changed from wrap to nowrap for typical typing effect */
+        border-right: 2px solid; /* Cursor color via animation */
+        animation: typing 4s steps(60, end) forwards, /* Ensure it finishes */
+                   blink-caret 0.75s step-end infinite, 
+                   glow 1.5s ease-in-out infinite alternate; 
+        font-weight: bold;
+        /* color is inherited from .page-hero .hero-content p (var(--accent)) */
     }
     
     
@@ -383,14 +392,15 @@
     /* 3.3. @keyframes blink-caret (for .typing-effect cursor) */
     @keyframes blink-caret {
         from, to { border-color: transparent; }
-        50%      { border-color: black; } /* Cursor color */
+        50%      { border-color: var(--accent); } /* Cursor color */
         /* Consider theming cursor color: border-color: var(--text); or similar */
     }
     
     /* 3.4. @keyframes glow (for .typing-effect text) */
     @keyframes glow {
-        0%   { text-shadow: 0 0 5px rgba(0, 123, 255, 0.7), 0 0 10px rgba(0, 123, 255, 0.5); }
-        100% { text-shadow: 0 0 20px rgba(0, 123, 255, 1), 0 0 30px rgba(0, 123, 255, 0.7); }
+        0%   { text-shadow: 0 0 5px rgba(var(--accent-rgb, 255,255,0), 0.5), 0 0 10px rgba(var(--accent-rgb, 255,255,0), 0.3); }
+        100% { text-shadow: 0 0 15px rgba(var(--accent-rgb, 255,255,0), 0.7), 0 0 20px rgba(var(--accent-rgb, 255,255,0), 0.5); }
+    }
         /* These are fixed blue glows, consider using theme variables if applicable */
     }
     
@@ -661,7 +671,7 @@
                         <img src="../images/engineering-services/engg.jpg" alt="Placeholder Image 3" class="thumbnail">
                     </div>
                   </div>
-                  <p>Complete FEED, fabrication, and installation services for a major manufacturing plant expansion in Rivers State.</p>
+                  <p class="section-light">Complete FEED, fabrication, and installation services for a major manufacturing plant expansion in Rivers State.</p>
                 </div>
               </div>
               
@@ -683,7 +693,7 @@
                         <img src="../images/engineering-services/engg.jpg" alt="Placeholder Image 3" class="thumbnail">
                     </div>
                   </div>
-                  <p>Engineering and installation services for upgrading a process facility to improve efficiency and capacity.</p>
+                  <p class="section-light">Engineering and installation services for upgrading a process facility to improve efficiency and capacity.</p>
                 </div>
               </div>
               
@@ -705,7 +715,7 @@
                         <img src="../images/engineering-services/engg.jpg" alt="Placeholder Image 3" class="thumbnail">
                     </div>
                   </div>
-                  <p>Installation and commissioning of power generation equipment for an industrial client.</p>
+                  <p class="section-light">Installation and commissioning of power generation equipment for an industrial client.</p>
                 </div>
               </div>
             </div>
